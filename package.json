@@ -1,0 +1,64 @@
+{
+  "name": "truck-tracker-backend",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Backend for the WOEIP traffic counter web application.",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js --env development",
+    "lint": "xo",
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WOEIP/truck-tracker-backend.git"
+  },
+  "author": "West Oakland Environmental Indicators Project (http://woeip.org)",
+  "bugs": {
+    "url": "https://github.com/WOEIP/truck-tracker-backend/issues"
+  },
+  "homepage": "https://github.com/WOEIP/truck-tracker-backend#readme",
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "bcryptjs": "^2.4.3",
+    "convict": "^4.2.0",
+    "knex": "^0.14.6",
+    "koa": "^2.5.1",
+    "koa-body": "^2.5.0",
+    "koa-passport": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "koa-static": "^4.0.2",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.1",
+    "objection": "^1.1.7",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "axios": "^0.18.0",
+    "incito": "^1.1.1",
+    "nodemon": "^1.17.3",
+    "testdouble": "^3.7.0",
+    "winston": "^3.1.0",
+    "xo": "^0.20.3"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true,
+    "rules": {
+      "capitalized-comments": [
+        "off"
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false
+  }
+}
