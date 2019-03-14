@@ -1,0 +1,114 @@
+@import "colors";
+
+#app-container {
+    height: 100%;
+}
+
+#logo-container {
+    & > img {
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+.vert-space {
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.line {
+    &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid white;
+    }
+}
+
+.long {
+    height: 10%;
+}
+
+.short {
+    height: 5%;
+}
+
+#inner-title {
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgba($light-grey, 0.1);
+    border-style: solid;
+    border-color: white;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    & > h1 {
+        font-weight: 700;
+        text-align: center;
+        font-size: 5vw;
+        color: white;
+        letter-spacing: .3rem;
+        text-transform: uppercase;
+    }
+}
+
+.main-menu{
+    width: 30%;
+    margin: 0 auto;
+    border: solid 1px #fff;
+    border-radius: 10px;
+    & > a:first-child{
+        border: 0;
+    }
+    & > a:hover {
+        background-color: rgba($generic-blue, 0.8);
+    }
+    & > a {
+        &:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        &:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+        background-color: rgba($generic-blue, 0.7);
+        padding: .5rem;
+        box-sizing: border-box;
+        border-top: solid 1px white;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        font-size: 4vw;
+        color: white;
+        text-transform: uppercase;
+    }
+}
+
+@media screen and (min-width: 35.5em) {
+    #inner-title {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    #logo-container > img{
+        width: 15%;
+    }
+
+    .main-menu {
+        width: 50%;
+        & > a {
+            &:first-child {
+                border-radius: 10px 0 0 10px;
+            }
+            &:last-child {
+                border-radius: 0 10px 10px 0
+            }
+            letter-spacing: .1rem;
+            font-size: 1.6vw;
+            border-top:0;
+            border-left: solid 1px white;
+        }
+    }
+}

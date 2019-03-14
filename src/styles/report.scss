@@ -1,0 +1,136 @@
+@import "colors";
+@import '../../node_modules/flatpickr/dist/flatpickr.min.css';
+
+#inner-map-container {
+    //MUST specify dimensions of the Google map or it will not display.
+    width: 100%;
+    height: 75vh;
+}
+
+#map-wrapper {
+    //needed so overlay works
+    position: relative;
+}
+
+// #map-overlay {
+//     background-color: $white;
+//     display: block;
+//     position: absolute;
+//     top: 60px;
+//     left: 60px;
+//     z-index: 999;
+// }
+
+div#second_marker_prompt {
+    margin-top: 1em;
+    display: none;
+}
+
+p#idling_toggle {
+    display: inline-block;
+}
+
+#map-overlay {
+    z-index: 999;
+    background-color: rgba(white, 0.9);
+    box-sizing: border-box;
+    color: $dark-grey;
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: auto;
+    padding: 30px;
+    width: 20rem;
+    border-radius: 3px;
+    & input {
+        color: $dark-grey;
+        margin: 2px;
+        padding-left: 10px;
+    }
+    & > p {
+        text-align: left;
+    }
+}
+
+img.selected_truck_confirm {
+    padding: 0;
+    max-width: 50%;
+    max-height: 50%;
+    vertical-align: middle;
+    display: inline;
+    background-color: #7C92A6;
+    border-radius: 0.2em;
+}
+
+input#pac-input { /*the autocomplete places search box on the map*/
+    margin: 10px;
+    padding: 0.3em 0.5em;
+    width: 50%;
+    color: black;
+    text-overflow: ellipsis;
+    font-size: 1.5em;
+
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 1.0;
+}
+
+:-moz-placeholder {
+    color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 1.0;
+}
+
+::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 1.0;
+}
+
+:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 1.0;
+}
+
+.formerize-placeholder {
+    color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 1.0;
+}
+
+input[type=number] {
+    width: 3em;
+}
+
+.actions {
+    margin-bottom: 0;
+    padding: 1rem 0;
+    & button{
+        float: left;
+        box-sizing: border-box;
+        transition: background-color 0.1s ease;
+        border: 0 none;
+        border-radius: 3px;
+        background-color: $dark-blue;
+        color: $light-grey;
+        letter-spacing: .2rem;
+        padding: .5rem;
+        width: 45%;
+        max-width: 8rem;
+        &.cancel-button {
+            margin-left: 1rem;
+            background-color: $light-grey;
+            color: $dark-blue;
+        }
+        &:hover {
+            background-color: $generic-blue;
+            color: white;
+        }
+    }
+}

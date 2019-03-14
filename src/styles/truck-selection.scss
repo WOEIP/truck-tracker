@@ -1,0 +1,11 @@
+.truck-grid {
+    width: 70%;
+    margin: 0 auto;
+    & > .button-container {
+        input {
+            width:90%;
+            margin: 0 auto;
+        }
+        box-size: border-box;
+    }
+}

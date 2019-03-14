@@ -1,1 +1,3 @@
-# truck-tracker
+WOEIP traffic counter application
+
+trucktracker.net
