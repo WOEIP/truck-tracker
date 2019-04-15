@@ -31,4 +31,3 @@ jobs:
         - chmod 600 ~/.ssh/id_rsa
         - cat .known_hosts > ~/.ssh/known_hosts
         - rsync -azP --delete build/ deploy@trucktracker.net:~/sites/frontend
-
