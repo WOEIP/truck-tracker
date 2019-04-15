@@ -1,3 +1,5 @@
+#TODO: fix this file up
+
 language:
   - node_js
 
@@ -7,13 +9,17 @@ node_js:
 cache:
   directories:
     - $HOME/.npm
-    - node_modules
+    - frontend/node_modules
+    - backend/node_modules
+
+services:
+  - postgresql
 
 before_install: dpkg --compare-versions `npm -v` ge 6.0 || npm i -g npm@latest
 install:
-  - npm ci
+  - cd frontend && npm ci
+  - cd backend && npm ci
 
-# safelist
 branches:
   only:
   - master
@@ -23,7 +29,8 @@ jobs:
     - stage: publish
       script:
         # TODO use webpack config to manage this
-        # this first line might not be needed
+        - cd frontend
+        # this line might not be needed
         - find src -name '*.js' | xargs grep 'localhost' --files-with-matches | xargs sed --in-place 's|http://localhost:[0-9]*|http://api.trucktracker.net|'
         - npm run build
         - mkdir -p ~/.ssh
@@ -31,3 +38,12 @@ jobs:
         - chmod 600 ~/.ssh/id_rsa
         - cat .known_hosts > ~/.ssh/known_hosts
         - rsync -azP --delete build/ deploy@trucktracker.net:~/sites/frontend
+        # backend
+        - cd ../backend
+        - export NODE_ENV="development"
+        - export PGUSER="postgres"
+        - export PGPASSWORD=""
+        - psql -c "create database traffic_counter"
+        - npx knex migrate:latest
+        - npm run lint
+        - npm test
