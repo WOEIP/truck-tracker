@@ -58,10 +58,16 @@ class Menu extends Component {
     return itemsToRender;
   }
 
+  // This is a hack solving the problem that the hover effect is not
+  // working on an iPhone. Might be removed later.
+  emptyString () {
+      return "";
+  }
+
   render() {
     return (
       <div id="top-menu-container">
-         <nav id="top-menu">
+         <nav onClick={this.emptyString} id="top-menu">
            <div id="top-menu-icon"></div>
            <ul>
              {this.getMenuItems()}
