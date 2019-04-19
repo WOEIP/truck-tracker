@@ -14,7 +14,7 @@ import '../styles/report.scss';
 
 import truck from '../img/truck.png';
 
-const OSRMRootURL = 'http://api.trucktracker.net:5000/match/v1/driving/';
+const OSRMRootURL = 'http://127.0.0.1:5000/match/v1/driving/';
 
 class MapContainer extends Component {
 
