@@ -6,7 +6,6 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
 import Flatpickr from 'react-flatpickr';
-import axios from 'axios';
 var polyline = require('@mapbox/polyline'); //TODO -> import
 
 import Api from './../utils/Api.js';

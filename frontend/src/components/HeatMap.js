@@ -1,5 +1,6 @@
 //TODO: time arrays, function clean up
 //  also change checkbox triggerEvent
+// this could be the same component as MapContainer
 
 import axios from 'axios';
 import React, { Component } from 'react';
@@ -9,8 +10,6 @@ var polyline = require('@mapbox/polyline');
 import Api from '../utils/Api.js';
 
 import '../styles/leaflet/leaflet.css';
-
-const OSRMRootURL = 'https://router.project-osrm.org/match/v1/driving/';
 
 class HeatMap extends Component {
 
@@ -51,17 +50,24 @@ class HeatMap extends Component {
 
   componentDidUpdate(){
     if (this.state.data.length > 0) {
-      this.state.data.map( route => {
-        this.drawRoute(route.start, route.end);
+      let mostRecentRoute = this.state.data[this.state.data.length - 1];
+      let otherRoutes = this.state.data.slice(0, this.state.data.length - 1);
+
+      otherRoutes.map( route => {
+        this.drawRoute(route.start, route.end, 'blue');
       });
+
+      this.drawRoute(mostRecentRoute.start, mostRecentRoute.end, 'red');
     }
   }
 
-  drawRoute(start, end) {
-    let URL = OSRMRootURL + start.lon + ',' + start.lat + ';' + end.lon + ',' + end.lat;
-    axios.get(URL)
+  drawRoute(start, end, lineColor) {
+    let URL = 'osrm/getroute/' + start.lon + ',' + start.lat + ';' + end.lon + ',' + end.lat;
+    console.log(URL);
+    Api.get(URL)
         .then(response => {
-          response.data.matchings.map((m) => L.polyline(polyline.decode(m.geometry)).addTo(this.map));
+          response.data.matchings.map((m) =>
+          L.polyline(polyline.decode(m.geometry), {color: lineColor}).addTo(this.map));
           return response;
         }).catch(error => {
           console.log(error);
