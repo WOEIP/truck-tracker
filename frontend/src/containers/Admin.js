@@ -39,7 +39,8 @@ class Admin extends Component {
       itemsToRender.push(
         <p className='admin-row'
             key={user.id}>
-          <span className="user-name-in-overview">{user.firstName + ' ' + user.lastName}</span>
+          {/*<span className="user-name-in-overview">{user.firstName + ' ' + user.lastName}</span>*/}
+          <span className="user-name-in-overview">{user.username}</span>
           <button className='admin-button delete-button' onClick={() => this.deleteUser(user)}>
             Dismiss
           </button>
