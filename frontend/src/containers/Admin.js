@@ -39,7 +39,10 @@ class Admin extends Component {
       itemsToRender.push(
         <p className='admin-row'
             key={user.id}>
-          <span>{user.firstName + ' ' + user.lastName}</span>
+          <span className="user-name-in-overview">{user.firstName + ' ' + user.lastName}</span>
+          <button className='admin-button delete-button' onClick={() => this.deleteUser(user)}>
+            Dismiss
+          </button>
           <button className='admin-button' onClick={() => this.toggleUser(user)}>
             {buttonText}
           </button>
@@ -54,7 +57,7 @@ class Admin extends Component {
     return (
       <article id="mission-text">
         <Menu current="admin"/>
-        <h1 className="title">Admin settings</h1>
+        <h1 className="title">User overview</h1>
         <div>{this.userHtml()}</div>
       </article>
     );

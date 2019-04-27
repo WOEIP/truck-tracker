@@ -3,21 +3,38 @@
 //TODO generic button component
 .admin-button {
   float: right;
+  font-size: .8rem;
   transition: background-color 0.1s ease;
   border: 0 none;
   border-radius: 3px;
   background-color: $dark-blue;
   color: $light-grey;
-  letter-spacing: .2rem;
   padding: .5rem;
-  width: 10rem;
+  margin: 0 .5rem 0 0;
+  width: 6rem;
   &:hover {
       background-color: $generic-blue;
       color: white;
   }
 }
 
+.delete-button {
+  transition: background-color 0.1s ease;
+  color: $red;
+  &:hover {
+      background-color: $generic-blue;
+      color: $white;
+  }
+}
+
 .admin-row {
+    & .user-name-in-overview {
+        &:hover {
+            color: $light-grey;
+            cursor: pointer;
+        }
+    }
+
     & > span {
         padding-top: 10px; // TODO put something less ugly here
     }
