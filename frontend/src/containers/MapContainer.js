@@ -123,12 +123,14 @@ class MapContainer extends Component {
       this.state.markersArray[1]._latlng :
       {lat: 0, lng:0};
 
+    console.log(this.props);
+
     this.props.sendData(e,
       timeLastSeen,
       fromPos,
       toPos,
-      this.props.engineWasRunningP,
-      this.props.truckWasMovingP);
+      this.props.engineWasRunning,
+      this.props.truckWasMoving);
     this.cancel();
   }
 

@@ -59,6 +59,8 @@ class Report extends Component {
       truckWasMovingP: truckWasMovingP
     };
 
+    console.log(postData);
+
     Api.post('reports', postData);
 
     this.setState(prevState => ({
@@ -96,7 +98,8 @@ class Report extends Component {
                 props: {sendData: that.sendData,
                         goBack: that.goToMotionView,
                         truckKey: that.truckKey,
-                        truckWasMoving: this.state.truckWasMoving}};
+                        truckWasMoving: this.state.truckWasMoving,
+                        engineWasRunning: this.state.engineWasRunning}};
       case "idlingOrMoving":
         return {component: IdlingOrMoving,
                 props: {setMotion: that.goToMapView,
