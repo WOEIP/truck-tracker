@@ -73,7 +73,7 @@ class RegistrationPage extends Component {
                  value={this.state.username}
                  onChange={this.handleInputChange.bind(this, 'username')} />
           <label>Password</label>
-          <input type="text"
+          <input type="password"
                  value={this.state.password}
                  onChange={this.handleInputChange.bind(this, 'password')} />
           {/*<label>First name</label>

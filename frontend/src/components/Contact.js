@@ -62,19 +62,6 @@ class Contact extends Component {
           <button type="button"
                   onClick={this.sendMessage}>Send</button>
         </form>
-        {/*TODO ask Brian if we want social media buttons
-           <ul className="icons">
-               <li>
-                   <a href="" className="icon twitter">
-                       <span className="label">Twitter</span>
-                       </a>
-                       </li>
-                       <li>
-                           <a href="" className="icon facebook">
-                               <span className="label">Facebook</span>
-                               </a>
-                               </li>
-           </ul>*/}
       </article>
     );
   }

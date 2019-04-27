@@ -1,8 +1,6 @@
 @import "colors";
 
 #movement-button-container {
-    // width: 60%;
-    // margin: 0 auto;
     & button {
         border: 0 none;
         border-radius: 3px;
@@ -12,6 +10,9 @@
         padding: .5rem;
         margin: 1rem;
         width: 45%;
-        // max-width: 8rem;
+        &:hover {
+            background-color: $white;
+            color: $generic-blue;
+        }
     }
 }

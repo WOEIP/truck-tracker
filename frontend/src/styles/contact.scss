@@ -10,14 +10,14 @@ form {
         transition: background-color 0.1s ease;
         border: 0 none;
         border-radius: 3px;
-        background-color: $dark-blue;
-        color: $light-grey;
+        background-color: $light-grey;
+        color: $dark-blue;
         letter-spacing: .2rem;
         padding: .5rem;
         width: 8rem;
         &:hover {
-            background-color: $generic-blue;
-            color: white;
+            background-color: $white;
+            color: $generic-blue;
         }
     }
 }
