@@ -49,9 +49,10 @@ article {
     font-size: 1.2rem;
 }
 
-@media screen and (min-width: 35.5em) {
+// TODO is there a standard for these widths
+@media screen and (min-width: 48em) {
     article {
         padding: 3rem;
-        width: 70%;
+        width: 80%;
     }
 }
