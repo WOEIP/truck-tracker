@@ -5,11 +5,12 @@ import Menu from './../components/Menu.js';
 import '../styles/common.scss';
 import '../styles/report.scss';
 
-import TruckSelection from './../components/TruckSelection';
-import IdlingOrMoving from './../components/IdlingOrMoving';
+import ThankYouPage from '../components/ThankYouPage';
+import TruckSelection from '../components/TruckSelection';
+import IdlingOrMoving from '../components/IdlingOrMoving';
 import MapContainer from './MapContainer';
 
-import {SessionContext} from './../utils/Session.js';
+import {SessionContext} from '../utils/Session.js';
 
 class Report extends Component {
   constructor(props) {
@@ -59,6 +60,10 @@ class Report extends Component {
     };
 
     Api.post('reports', postData);
+
+    this.setState(prevState => ({
+      currentView: 'thankYouPage'
+    }));
   }
 
   goToMotionView(truck) {
@@ -99,6 +104,9 @@ class Report extends Component {
       case "truckSelection":
         return {component: TruckSelection,
                 props: {selectTruck: that.goToMotionView}};
+      case "thankYouPage":
+        return {component: ThankYouPage,
+                props: {}};
       default:
         return null;
     }
