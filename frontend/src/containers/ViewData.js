@@ -26,7 +26,7 @@ class Data extends Component {
     const ActiveContent = this.getActiveContent();
     return (
       <article id="data">
-        <Menu current="data"/>
+        <Menu current="view-data"/>
         <ActiveContent.component {...ActiveContent.props}/>
       </article>
     );
