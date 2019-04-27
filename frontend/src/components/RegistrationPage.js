@@ -18,7 +18,7 @@ class RegistrationPage extends Component {
       email: '',
       address: '',
       zipCode:'',
-      localResidentP: false
+      tosAccepted: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,7 +33,7 @@ class RegistrationPage extends Component {
       email: this.state.email,
       address: this.state.address,
       zipcode: this.state.zipCode,
-      localResidentP: this.state.localResidentP,
+      localResidentP: this.state.isLocal,
       activeP: false,
       pwHash: Auth.hashPassword(this.state.password),
       adminP: false,
@@ -76,14 +76,14 @@ class RegistrationPage extends Component {
           <input type="text"
                  value={this.state.password}
                  onChange={this.handleInputChange.bind(this, 'password')} />
-          <label>First name</label>
+          {/*<label>First name</label>
           <input type="text"
                  value={this.state.firstName}
                  onChange={this.handleInputChange.bind(this, 'firstName')} />
           <label>Last name</label>
           <input type="text"
                  value={this.state.lastName}
-                 onChange={this.handleInputChange.bind(this, 'lastName')} />
+                 onChange={this.handleInputChange.bind(this, 'lastName')} />*/}
           <label>Email (we won't give it to anyone)</label>
           <input type="text"
                  value={this.state.email}
@@ -91,7 +91,7 @@ class RegistrationPage extends Component {
           {/*<label>Are you a West Oakland resident?</label>
           <input type="checkbox"
                  value={this.state.isLocal}
-                 onChange={this.handleInputChange.bind(this, 'isLocal')} />*/}
+                 onChange={this.handleInputChange.bind(this, 'isLocal')} />
           <label>Address</label>
           <input type="text"
                  value={this.state.address}
@@ -99,10 +99,16 @@ class RegistrationPage extends Component {
           <label>Zip Code</label>
           <input type="text"
                  value={this.state.zipCode}
-                 onChange={this.handleInputChange.bind(this, 'zipCode')} />
+                 onChange={this.handleInputChange.bind(this, 'zipCode')} />*/}
+          <label htmlFor="tos-checkbox"><span>Accept our <a className="textLink" href="#tos">Terms of Service</a></span>
+          <input id='tos-checkbox'
+                 type="checkbox"
+                 value={this.state.tosAccepted}
+                 onChange={this.handleInputChange.bind(this, 'tosAccepted')} />
+          </label>
           <div className="actions">
             <button onClick={this.registerUser}>
-              Send data
+              Register
             </button>
           </div>
         </form>

@@ -7,6 +7,7 @@ import MainPage from './../components/MainPage';
 import Report from './../containers/Report';
 import ViewData from './../containers/ViewData';
 import Mission from './../components/Mission';
+import TermsOfService from './../components/TermsOfService.js';
 import Contact from './../components/Contact';
 import Admin from './../containers/Admin';
 
@@ -45,6 +46,8 @@ class App extends Component {
       return Report;
     case '#mission':
       return Mission;
+    case '#tos':
+      return TermsOfService;
     case '#contact':
       return Contact;
     case '#view-data':
