@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import L from 'leaflet';
 var polyline = require('@mapbox/polyline');
 
-import Api from './../utils/Api.js';
+import Api from '../utils/Api.js';
 
 import '../styles/leaflet/leaflet.css';
 

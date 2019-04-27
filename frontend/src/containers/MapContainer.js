@@ -7,14 +7,14 @@ import React, { Component } from 'react';
 import L from 'leaflet';
 import Flatpickr from 'react-flatpickr';
 import axios from 'axios';
-var polyline = require('@mapbox/polyline');
+var polyline = require('@mapbox/polyline'); //TODO -> import
+
+import Api from './../utils/Api.js';
 
 import '../styles/leaflet/leaflet.css';
 import '../styles/report.scss';
 
 import truck from '../img/truck.png';
-
-const OSRMRootURL = 'http://api.trucktracker.net:5000/match/v1/driving/';
 
 class MapContainer extends Component {
 
@@ -68,17 +68,17 @@ class MapContainer extends Component {
 
   drawRoute(start, end) {
     // TODO lat or lng, put drawRoute to utils or something
-    let URL = OSRMRootURL + start.lng + ',' + start.lat + ';' + end.lng + ',' + end.lat;
+    let URL = 'osrm/getroute/' + start.lng + ',' + start.lat + ';' + end.lng + ',' + end.lat;
     console.log(URL);
-    axios.get(URL)
-        .then(response => {
-          console.log(response);
-          response.data.matchings.map((r) => L.polyline(polyline.decode(r.geometry)).addTo(this.map));
-          return response;
-        }).catch(error => {
-          console.log(error);
-          throw error;
-        });
+    Api.get(URL)
+      .then(response => {
+        console.log(response);
+        response.data.matchings.map((r) => L.polyline(polyline.decode(r.geometry)).addTo(this.map));
+        return response;
+      }).catch(error => {
+        console.log(error);
+        throw error;
+      });
   }
 
   placeMarker(e) {
