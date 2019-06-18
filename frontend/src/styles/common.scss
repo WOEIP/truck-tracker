@@ -9,7 +9,6 @@
     color: $generic-blue;
 }
 
-
 *,
 .pure-g [class *= "pure-u"] {
     font-family: Rajdhani;
@@ -36,6 +35,7 @@ label, button {
 }
 
 article {
+    overflow: auto;
     & > .title {
         margin-top: 1rem;
     }

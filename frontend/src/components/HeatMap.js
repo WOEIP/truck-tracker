@@ -134,15 +134,8 @@ class HeatMap extends Component {
 
   render() {
     return (
-      <div id="jsx-needs-this">
-        <p className="map-instructions">
-          Here you can see our aggregated data from the submissions West Oakland
-          residents gave us.
-        </p>
-        <div id="map-wrapper">
-          <div id="inner-map-container" ref={(el) => this.mapTarget = el}>
-          </div>
-        </div>
+      <div id="map-wrapper">
+        <div id="inner-map-container" ref={(el) => this.mapTarget = el}></div>
       </div>
     );
   }

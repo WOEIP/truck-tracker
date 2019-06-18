@@ -1,0 +1,14 @@
+$map-width: 70%; //TODO user should be able to hide settings menu
+
+#heatmap {
+    width: $map-width;
+    float: left;
+}
+
+#heatmap-settings {
+    #settings-wrapper {
+        padding-left: 1rem;
+    }
+    width: 100% - $map-width;
+    float: right;
+}
