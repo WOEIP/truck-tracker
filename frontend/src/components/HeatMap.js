@@ -54,7 +54,7 @@ class HeatMap extends Component {
 
   componentDidUpdate(){
 
-    console.log(this.state.data[0]);
+    //console.log(this.state.data[0]);
     if (this.state.data.length > 0) {
       // sort is in-place?
       let orderedData = this.state.data.sort(this.compareReportTime);
@@ -98,7 +98,7 @@ class HeatMap extends Component {
       L.marker([start.lat, start.lon], {icon: truckIcon}).addTo(this.map);
     } else {
       let URL = 'osrm/getroute/' + start.lon + ',' + start.lat + ';' + end.lon + ',' + end.lat;
-      console.log(URL);
+      //console.log(URL);
       Api.get(URL)
           .then(response => {
             response.data.matchings.map((m) =>

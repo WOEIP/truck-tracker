@@ -15,6 +15,7 @@ import '../styles/truck-selection.scss';
 import '../styles/pure-release-1.0.0/pure-min.css';
 import '../styles/pure-release-1.0.0/grids-responsive.css';
 
+//TODO this should be configurable external data
 export const truckTypes = [
   {key: 'AC_BUS',
    tooltip:"AC bus",
@@ -54,18 +55,6 @@ export const truckTypes = [
    description:"A port container truck"}
 ];
 
-export function getImgOfTruck(truckKey) {
-    var i;
-    var truck;
-    for (i = 0; i < truckTypes.length; i++) {
-        truck = truckTypes[i];
-        if (truck.key === truckKey) {
-            return truck.img;
-        }
-    }
-    return truckTypes[0].img;
-}
-
 class TruckSelection extends Component {
 
   //TODO check if this optimization actually works (named callback)
@@ -80,7 +69,7 @@ class TruckSelection extends Component {
         <ul className="pure-g truck-grid">
           {truckTypes.map((item) =>
             <li key={item.key}
-                title={item.tooltip} //HTML tooltip with :hover?
+                title={item.tooltip} //TODO HTML tooltip with :hover?
                 className="pure-u-1 pure-u-sm-1-2 button-container">
           {/*TODO pure-u-sm-* dynamic based on no. of trucks?*/}
              <input  onClick={(e) => this.selectTruck(item)}
