@@ -4,6 +4,8 @@ import Menu from './../components/Menu.js';
 import '../styles/common.scss';
 import '../styles/view-data.scss';
 
+import Api from '../utils/Api.js';
+
 import HeatMap from './../components/HeatMap';
 import HeatMapSettings from './../components/HeatMapSettings';
 
@@ -15,22 +17,42 @@ class Data extends Component {
 
     this.updateTruck = this.updateTruck.bind(this);
     this.updateTime = this.updateTime.bind(this);
-    this.dataFilter = this.dataFilter.bind(this);
+    this.filterData = this.filterData.bind(this);
+    this.fetchData = this.fetchData.bind(this); // TODO a button for this
 
     var truckTypesToShow = truckTypes.map (truck => {
       return truck.key;
     });
 
     this.state = {
+      originalData: [],
+      data: [],
       truckTypesToShow: truckTypesToShow,
       timeFrom: 0,
       timeTo: 1
     };
   }
 
+  componentDidMount () {
+    this.fetchData();
+  }
+
+  filterData (truckTypesToShow, timeFrom, timeTo) {
+    return this.state.originalData.filter(elem => {
+      return truckTypesToShow.includes(elem.truckType);
+    });
+  }
+
+  fetchData () {
+    Api.get('reports').then(response => {
+      this.setState({data: response.data,
+                     originalData: response.data});
+    });
+  }
+
   updateTruck (truckKey, shouldWeShow) {
     var newTruckTypesToShow = this.state.truckTypesToShow;
-      console.log(shouldWeShow);
+
     if (shouldWeShow) {
       newTruckTypesToShow = newTruckTypesToShow.concat([truckKey]);
     } else {
@@ -39,8 +61,14 @@ class Data extends Component {
       });
     }
 
-    console.log(newTruckTypesToShow);
-    this.setState({truckTypesToShow: newTruckTypesToShow});
+    var newData = this.filterData(newTruckTypesToShow,
+      this.state.timeFrom,
+      this.state.timeTo);
+
+    this.setState({
+      data: newData,
+      truckTypesToShow: newTruckTypesToShow
+    });
   }
 
   updateTime () {
@@ -56,11 +84,11 @@ class Data extends Component {
           residents gave us.
         </p>
         <div id="heatmap">
-          <HeatMap dataFilter={this.dataFilter}></HeatMap>
+          <HeatMap data = {this.state.data}></HeatMap>
         </div>
         <div id="heatmap-settings">
-          <HeatMapSettings updateTruck={this.updateTruck}
-                           updateTime={this.updateTime}>
+          <HeatMapSettings updateTruck = {this.updateTruck}
+                           updateTime = {this.updateTime}>
           </HeatMapSettings>
         </div>
       </article>

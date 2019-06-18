@@ -103,7 +103,7 @@ class MapContainer extends Component {
     this.state.markersArray.map(marker => this.map.removeLayer(marker));
     this.setState({markersArray: []});
 
-    //Clear the map. TODO: find a mor elegant way
+    //Clear the map. TODO: find a more elegant way
     for(let i in this.map._layers) {
         if(this.map._layers[i]._path != undefined) {
           this.map.removeLayer(this.map._layers[i]);

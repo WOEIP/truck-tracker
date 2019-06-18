@@ -19,7 +19,6 @@ class HeatMap extends Component {
   constructor(props) {
     super(props);
 
-    this.getData = this.getData.bind(this);
     this.compareReportTime = this.compareReportTime.bind(this);
     this.loadMap = this.loadMap.bind(this);
     this.drawRoute = this.drawRoute.bind(this);
@@ -27,7 +26,6 @@ class HeatMap extends Component {
     this.map = null;
 
     this.state = {
-      data: [],
       viewLocation: {
         lat: 37.810652,
         lng: -122.291439
@@ -53,14 +51,19 @@ class HeatMap extends Component {
   }
 
   componentDidUpdate(){
+    //Clear the map. TODO: find a more elegant way
+    for(let i in this.map._layers) {
+        if(this.map._layers[i]._path != undefined) {
+          this.map.removeLayer(this.map._layers[i]);
+        }
+    }
 
-    //console.log(this.state.data[0]);
-    if (this.state.data.length > 0) {
+    if (this.props.data.length > 0) {
       // sort is in-place?
-      let orderedData = this.state.data.sort(this.compareReportTime);
+      let orderedData = this.props.data.sort(this.compareReportTime);
 
       let mostRecentRoute = orderedData[0];
-      let otherRoutes = orderedData.slice(1, this.state.data.length);
+      let otherRoutes = orderedData.slice(1, this.props.data.length);
 
       otherRoutes.map( route => {
         this.drawRoute(route.start, route.end, 'blue', route.engineWasRunningP);
@@ -101,20 +104,16 @@ class HeatMap extends Component {
       //console.log(URL);
       Api.get(URL)
           .then(response => {
-            response.data.matchings.map((m) =>
-            L.polyline(polyline.decode(m.geometry), {color: drawColor}).addTo(this.map));
+            response.data.matchings.map((m) => {
+              var pl = L.polyline(polyline.decode(m.geometry), {color: drawColor});
+              pl.addTo(this.map);
+            });
             return response;
           }).catch(error => {
             console.log(error);
             throw error;
           });
     }
-  }
-
-  getData () {
-    Api.get('reports').then(response => {
-      this.setState({data: response.data});
-    });
   }
 
   loadMap() {
@@ -126,8 +125,6 @@ class HeatMap extends Component {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
     }).addTo(map);
-
-    this.getData();
 
     return map;
   }
