@@ -28,8 +28,8 @@ class Data extends Component {
       originalData: [],
       data: [],
       truckTypesToShow: truckTypesToShow,
-      timeFrom: 0,
-      timeTo: 1
+      fromTime: new Date(new Date().setFullYear(new Date().getFullYear() - 1)), // wows
+      toTime: new Date()
     };
   }
 
@@ -37,9 +37,11 @@ class Data extends Component {
     this.fetchData();
   }
 
-  filterData (truckTypesToShow, timeFrom, timeTo) {
+  filterData (truckTypesToShow, fromTime, toTime) {
     return this.state.originalData.filter(elem => {
-      return truckTypesToShow.includes(elem.truckType);
+      return truckTypesToShow.includes(elem.truckType) &&
+        elem.truckSeenAt > fromTime.getTime() / 1000 &&
+        elem.truckSeenAt < toTime.getTime() / 1000;
     });
   }
 
@@ -62,8 +64,8 @@ class Data extends Component {
     }
 
     var newData = this.filterData(newTruckTypesToShow,
-      this.state.timeFrom,
-      this.state.timeTo);
+      this.state.fromTime,
+      this.state.toTime);
 
     this.setState({
       data: newData,
@@ -72,9 +74,19 @@ class Data extends Component {
   }
 
   updateTime (fromOrTo, time) {
-    console.log(fromOrTo);
-    console.log(time);
-    console.log('time update');
+    time = time[0] // Flatpickr...
+    var newFromTime = (fromOrTo === 'from') ? time : this.state.fromTime;
+    var newToTime = (fromOrTo === 'to') ? time : this.state.toTime;
+
+    var newData = this.filterData(this.state.truckTypesToShow,
+      newFromTime,
+      newToTime);
+
+    this.setState({
+      data: newData,
+      fromTime: newFromTime,
+      toTime: newToTime
+    });
   }
 
   render() {
@@ -90,7 +102,9 @@ class Data extends Component {
         </div>
         <div id="heatmap-settings">
           <HeatMapSettings updateTruck = {this.updateTruck}
-                           updateTime = {this.updateTime}>
+                           updateTime = {this.updateTime}
+                           defaultFromTime = {this.state.fromTime}
+                           defaultToTime = {this.state.toTime}>
           </HeatMapSettings>
         </div>
       </article>

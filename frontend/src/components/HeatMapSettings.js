@@ -30,14 +30,14 @@ class HeatMapSettings extends Component {
         <h3>Truck seen between</h3>
           <Flatpickr
             options={{
-              defaultDate: new Date(),
+              defaultDate: this.props.defaultFromTime,
               enableTime: true,
               dateFormat: "Y-m-d H:i"}}
             onChange = {time => { this.props.updateTime('from', time); }}/>
         <h4>and</h4>
           <Flatpickr
             options={{
-              defaultDate: new Date(),
+              defaultDate: this.props.defaultToTime,
               enableTime: true,
             dateFormat: "Y-m-d H:i"}}
             onChange = {time => { this.props.updateTime('to', time); }}/>
