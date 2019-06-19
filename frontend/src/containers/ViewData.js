@@ -71,7 +71,9 @@ class Data extends Component {
     });
   }
 
-  updateTime () {
+  updateTime (fromOrTo, time) {
+    console.log(fromOrTo);
+    console.log(time);
     console.log('time update');
   }
 
