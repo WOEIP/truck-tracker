@@ -28,11 +28,15 @@
 }
 
 .admin-row {
-    & .user-name-in-overview {
+    .user-name-in-overview {
         &:hover {
             color: $light-grey;
             cursor: pointer;
         }
+    }
+
+    .inactive {
+        color: $dark-grey;
     }
 
     & > span {

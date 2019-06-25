@@ -4,6 +4,7 @@ import Menu from './../components/Menu.js';
 
 import '../styles/registration-page.scss';
 
+// TODO make a message component
 class RegistrationSent extends Component {
   constructor() {
     super();

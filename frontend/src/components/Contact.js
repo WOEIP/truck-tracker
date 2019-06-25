@@ -28,6 +28,7 @@ class Contact extends Component {
                 this.state.name +
                 this.state.email +
                 this.state.message);
+    window.location.hash = '#messagesent';
   }
 
   render() {

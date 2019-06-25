@@ -9,7 +9,9 @@ import ViewData from './../containers/ViewData';
 import Mission from './../components/Mission';
 import TermsOfService from './../components/TermsOfService.js';
 import Contact from './../components/Contact';
+import MessageSent from './../components/MessageSent.js';
 import Admin from './../containers/Admin';
+import Contributing from './../components/Contributing';
 
 import SessionProvider from './../utils/Session.js';
 
@@ -50,10 +52,14 @@ class App extends Component {
       return TermsOfService;
     case '#contact':
       return Contact;
+    case '#messagesent':
+      return MessageSent;
     case '#view-data':
       return ViewData;
     case '#admin':
       return Admin;
+    case '#contributing':
+      return Contributing;
     default:
       return MainPage;
     }
