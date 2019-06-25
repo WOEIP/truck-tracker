@@ -14,7 +14,7 @@ class Contributing extends Component {
       <article id="mission-text">
         <Menu current="mission"/>
         <h1 className="title">Help us creating a tool for empowerment!</h1>
-        <p> Collecting and visalizing data is an efficient method to influence
+        <p> Collecting and visualizing data is an efficient method to influence
             policymakers who can make decisions to create a better living
             environment. By managing truck data we hope to give underrepresented
             commmunities a voice and make it possible to stand up for themselves.
