@@ -1,3 +1,5 @@
+@import "colors";
+
 $map-width: 70%; //TODO user should be able to hide settings menu
 
 #heatmap {
@@ -6,9 +8,16 @@ $map-width: 70%; //TODO user should be able to hide settings menu
 }
 
 #heatmap-settings {
+    width: 100% - $map-width;
+    float: right;
     #settings-wrapper {
         padding-left: 1rem;
     }
-    width: 100% - $map-width;
-    float: right;
+    .flatpickr-input {
+        background-color: $dark-blue;
+        border: none;
+        border-radius: 5px;
+        width: 9rem;
+        text-align: center;
+    }
 }
