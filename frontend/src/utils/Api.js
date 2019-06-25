@@ -9,6 +9,7 @@ let Api = {
           // We keep this here, generic API stuff can go here
           return response;
         }).catch(error => {
+          console.log('Error on endpoint: ' + endPoint);
           console.log(error);
           throw error;
         });

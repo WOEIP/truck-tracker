@@ -104,10 +104,7 @@ class HeatMap extends Component {
       //console.log(URL);
       Api.get(URL)
           .then(response => {
-            response.data.matchings.map((m) => {
-              var pl = L.polyline(polyline.decode(m.geometry), {color: drawColor});
-              pl.addTo(this.map);
-            });
+            response.data.matchings.map((m) => L.polyline(polyline.decode(m.geometry), {color: drawColor}).addTo(this.map));
             return response;
           }).catch(error => {
             console.log(error);
