@@ -16,7 +16,7 @@ class Contributing extends Component {
         <h1 className="title">Help us creating a tool for empowerment!</h1>
         <p> Collecting and visualizing data is an efficient method to influence
             policymakers who can make decisions to create a better living
-            environment. By collecting truck data and making it available,
+            environment. By making truck traffic data available,
             we hope to give underrepresented
             communities a voice and make it possible to stand up for themselves.
             For more details on this, check out our <a className="textlink"
