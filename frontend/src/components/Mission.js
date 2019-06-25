@@ -7,6 +7,10 @@ import aerial from '../img/info_aerial.jpg';
 import truck from '../img/info_truck.jpg';
 
 class Mission extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     return (
       <article id="mission-text">
@@ -64,6 +68,8 @@ class Mission extends Component {
           Oakland, enforce legal truck routes, identify the locations and
           duration of truck idling activity, and reduce the vehicle miles
           travelled for trucks within the study area.</p>
+        <p>If you're a programmer and you'd like to help us, please
+        <a className="textlink" href="#contributing"> read about how!</a></p>
       </article>
     );
   }
