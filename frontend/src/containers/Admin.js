@@ -24,9 +24,16 @@ class Admin extends Component {
     });
   }
 
-  toggleUser(user) {
-    console.log('Does not work yet');
-    console.log(user);
+  toggleUser(toggledUser) {
+    // TODO: to the actual API call
+    let newUsers = this.state.users.map( user => {
+      if (user.id === toggledUser.id) {
+        user.activeP = !user.activeP;
+      }
+      return user;
+    });
+
+    this.setState({users: newUsers});
   }
 
   userHtml() {
@@ -34,13 +41,15 @@ class Admin extends Component {
     let itemsToRender = [];
     for (let i = 0; i < users.length; i++) {
       let user = users[i];
-      console.log(user);
       let buttonText = user.activeP ? "Deactivate" : "Activate";
+      let userNameToShow = (user.firstName || user.lastName)
+          ? user.firstName + ' ' + user.lastName
+          : user.username;
+      let userActiveClass = user.activeP ? ' active' : ' inactive';
       itemsToRender.push(
         <p className='admin-row'
             key={user.id}>
-          {/*<span className="user-name-in-overview">{user.firstName + ' ' + user.lastName}</span>*/}
-          <span className="user-name-in-overview">{user.username}</span>
+          <span className={'user-name-in-overview' + userActiveClass}>{userNameToShow}</span>
           <button className='admin-button delete-button' onClick={() => this.deleteUser(user)}>
             Dismiss
           </button>
