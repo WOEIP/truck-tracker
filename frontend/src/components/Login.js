@@ -21,6 +21,7 @@ class Login extends Component {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.goToRegistration = this.goToRegistration.bind(this);
     this.login = this.login.bind(this);
+    this.renderErrors = this.renderErrors.bind(this); 
   }
 
   login() {
@@ -37,6 +38,9 @@ class Login extends Component {
        }
     }).catch(() => {
         console.log('unauthorized login');
+        this.setState({
+          error: 'Username or Password are incorrect'
+        })
     });
   }
 
@@ -56,6 +60,14 @@ class Login extends Component {
     });
   }
 
+  renderErrors(){
+    return (
+      <p id="login-error">
+        {this.state.error}
+      </p>
+    )
+  }
+
   render() {
     return (
       <article id="login-page">
@@ -72,6 +84,7 @@ class Login extends Component {
           <input type="password"
                  value={this.state.password}
                  onChange={this.handlePassChange} />
+          {this.renderErrors()}
           <div className="actions">
             <button onClick={this.login}>
               Login
