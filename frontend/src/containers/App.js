@@ -69,9 +69,7 @@ class App extends Component {
     const ActiveContent = this.getActiveContent();
     return (
       <SessionProvider>
-        <div id="bground">
           <ActiveContent/>
-        </div>
      </SessionProvider>
     );
   }

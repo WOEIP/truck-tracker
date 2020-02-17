@@ -29,6 +29,7 @@ class MainPage extends Component {
           <a className="pure-u-1 pure-u-sm-1-4" href="#mission">Mission</a>
           <a className="pure-u-1 pure-u-sm-1-4" href="#contact">Contact</a>
         </nav>
+        <div className="vert-space short"></div>
       </div>
     );
   }
