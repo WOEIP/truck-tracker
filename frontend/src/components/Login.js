@@ -6,6 +6,7 @@ import Api from './../utils/Api.js';
 import Auth from './../utils/Auth.js';
 import Menu from './../components/Menu.js';
 
+import ErrorDisplay from './ErrorDisplay';
 import {SessionContext} from './../utils/Session.js';
 
 class Login extends Component {
@@ -21,7 +22,6 @@ class Login extends Component {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.goToRegistration = this.goToRegistration.bind(this);
     this.login = this.login.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   login() {
@@ -59,18 +59,15 @@ class Login extends Component {
     });
   }
 
-  renderErrors(){
-    return (
-      <p id="login-error">
-        {this.state.error}
-      </p>
-    )
-  }
-
   render() {
+    const errors = (this.state.error !== '') ?
+      <ErrorDisplay message={this.state.error} /> :
+      null
+
     return (
       <article id="login-page">
         <Menu current="login"/>
+        {errors}
         <p>
           Please log in to report an incident!
         </p>
@@ -83,7 +80,6 @@ class Login extends Component {
           <input type="password"
                  value={this.state.password}
                  onChange={this.handlePassChange} />
-          {this.renderErrors()}
           <div className="actions">
             <button onClick={this.login}>
               Login

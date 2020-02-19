@@ -1,14 +1,14 @@
 import React from 'react';
 import '../styles/error.scss';
 
-function Error(props){
+function ErrorDisplay(props){
     return (
         <div id="error-message-container">
             <p>
-                {props.error}
+                {props.message}
             </p>
         </div>
     )
 }
 
-export default Error;
+export default ErrorDisplay;
