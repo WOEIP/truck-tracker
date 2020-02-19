@@ -12,7 +12,7 @@ class Menu extends Component {
     // TODO these could be components
      let menuItems = [];
 
-    if (session.data.loggedIn) {
+    if (session.data.loggedInUser) {
       menuItems = [
         {id: "report", text: "Report"},
         {id: "view-data", text: "View data"},
@@ -20,8 +20,8 @@ class Menu extends Component {
         {id: "contact", text: "Contact"},
         {id: "logout", text: "Sign out"}
       ];
-      // TODO implement admin flag
-      if (!session.data.isAdmin) {
+      // TODO implement session mapping: admin_p -> isAdmin
+      if (!session.data.loggedInUser.admin_p) {
         menuItems.push (
           {id: "admin", text: "Admin"}
         )

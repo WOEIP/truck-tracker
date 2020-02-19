@@ -31,24 +31,28 @@ class Report extends Component {
 
   shouldComponentUpdate() {
     let session = this.context;
-    return session.data.loggedIn;
+    return session.data.loggedInUser;
   }
 
   componentWillMount() {
     let session = this.context;
-    if (!session.data.loggedIn) {
+        console.log(session);
+    if (!session.data.loggedInUser) {
       window.location.hash = '#login';
     }
   }
 
   sendData(e, timeSeen, fromPos, toPos, engineWasRunningP, truckWasMovingP) {
+    // TODO I don't like that we have to reference session like this.
+    let session = this.context;
+
     // TODO lon or lng??
     let start = {lat: fromPos.lat, lon: fromPos.lng},
         end = {lat: toPos.lat, lon: toPos.lng};
 
     let postData = {
       truckType: this.state.truckKey,
-      reporterId: 'a578bf68-ef1b-4cbf-9a48-bf5a47980598',
+      reporterId: session.data.loggedInUser.id,
       start: start,
       end: end,
       reportedAt: timeSeen.getTime() / 1000, // unix epoch

@@ -3,7 +3,7 @@ import React from 'react';
 import merge from 'lodash/merge'
 
 const DEFAULT_SESSION_DATA =  {
-        loggedIn: false
+        loggedInUser: null
 };
 
 export const SessionContext = React.createContext(DEFAULT_SESSION_DATA);
@@ -31,9 +31,7 @@ export default class SessionProvider extends React.Component {
 
   render() {
     return (
-      <SessionContext.Provider
-        value={this.state}
-      >
+      <SessionContext.Provider value={this.state}>
         {this.props.children}
       </SessionContext.Provider>
     );
