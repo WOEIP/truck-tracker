@@ -36,7 +36,6 @@ class Report extends Component {
 
   componentWillMount() {
     let session = this.context;
-        console.log(session);
     if (!session.data.loggedInUser) {
       window.location.hash = '#login';
     }
