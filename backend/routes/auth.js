@@ -13,9 +13,10 @@ const parsers = {
 
 const auth = new Router();
 
-auth.get('/', parsers.json, async ctx => {
-    ctx.body = { loggedIn: ctx.isAuthenticated() };
-});
+// TODO we currently don't use the root endpoint. Do we need to?
+// auth.get('/', parsers.json, async ctx => {
+//     ctx.body = { loggedIn: ctx.isAuthenticated() };
+// });
 
 auth.post('/login', parsers.json, async ctx => {
   return passport.authenticate('local', (err, user, info, status) => {
@@ -23,7 +24,7 @@ auth.post('/login', parsers.json, async ctx => {
       ctx.login(user);
       ctx.status = 200;
       console.log(ctx.isAuthenticated());
-      ctx.body = 'Login successful';
+      ctx.body = user;
     } else {
       ctx.status = 400;
       ctx.body = 'Bummer!';

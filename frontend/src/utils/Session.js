@@ -3,7 +3,7 @@ import React from 'react';
 import merge from 'lodash/merge'
 
 const DEFAULT_SESSION_DATA =  {
-        loggedIn: false
+        loggedInUser: null
 };
 
 export const SessionContext = React.createContext(DEFAULT_SESSION_DATA);
@@ -11,8 +11,9 @@ export const SessionContext = React.createContext(DEFAULT_SESSION_DATA);
 export default class SessionProvider extends React.Component {
   constructor(props) {
     super(props);
+    let sessionData = JSON.parse(localStorage.getItem( 'sessionData'));
     this.state = {
-      data: DEFAULT_SESSION_DATA,
+      data:  sessionData || DEFAULT_SESSION_DATA,
       update: this.updateSession.bind(this) // we need this bind, right...?
     }
   }
@@ -24,16 +25,14 @@ export default class SessionProvider extends React.Component {
   }
 
   updateSession (updaterObject) { // TODO add callback here
-    this.setState(prevState => {
-      return merge(prevState, {data: updaterObject});
-    });
+    let newSession = merge(this.state, {data: updaterObject});
+    localStorage.setItem( 'sessionData', JSON.stringify(newSession.data));
+    this.setState(newSession);
   };
 
   render() {
     return (
-      <SessionContext.Provider
-        value={this.state}
-      >
+      <SessionContext.Provider value={this.state}>
         {this.props.children}
       </SessionContext.Provider>
     );
