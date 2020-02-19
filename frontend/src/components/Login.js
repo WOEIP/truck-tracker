@@ -21,7 +21,7 @@ class Login extends Component {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.goToRegistration = this.goToRegistration.bind(this);
     this.login = this.login.bind(this);
-    this.renderErrors = this.renderErrors.bind(this); 
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   login() {
@@ -37,7 +37,6 @@ class Login extends Component {
          window.location.hash = '#report';
        }
     }).catch(() => {
-        console.log('unauthorized login');
         this.setState({
           error: 'Username or Password are incorrect'
         })
