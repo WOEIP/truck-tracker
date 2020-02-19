@@ -1,0 +1,31 @@
+@import "colors";
+
+#error-message-container {
+    animation: fadeInDown 500ms ease-in-out;
+    width: 60%;
+    margin: 1rem 0 1rem 0;
+    background-color: rgba($red, 0.4);
+    border-style: solid;
+    border-color: white;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    & > p {
+        text-align: center;
+        font-size: 1rem;
+        color: white;
+    }
+
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
