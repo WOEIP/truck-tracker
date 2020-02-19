@@ -6,6 +6,7 @@ import Api from './../utils/Api.js';
 import Auth from './../utils/Auth.js';
 import Menu from './../components/Menu.js';
 
+import ErrorDisplay from './ErrorDisplay';
 import {SessionContext} from './../utils/Session.js';
 
 class Login extends Component {
@@ -36,7 +37,9 @@ class Login extends Component {
          window.location.hash = '#report';
        }
     }).catch(() => {
-        console.log('unauthorized login');
+        this.setState({
+          error: 'Username or Password are incorrect'
+        })
     });
   }
 
@@ -57,9 +60,14 @@ class Login extends Component {
   }
 
   render() {
+    const errors = (this.state.error !== '') ?
+      <ErrorDisplay message={this.state.error} /> :
+      null
+
     return (
       <article id="login-page">
         <Menu current="login"/>
+        {errors}
         <p>
           Please log in to report an incident!
         </p>
