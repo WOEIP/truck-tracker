@@ -55,6 +55,26 @@
     }
 }
 
+// Temporary, obviously.
+#beta-testing-message-container {
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgba($red, 0.4);
+    border-style: solid;
+    border-color: white;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    & > p {
+        font-weight: 700;
+        text-align: center;
+        font-size: 2vw;
+        color: white;
+    }
+
+}
+
 .main-menu{
     width: 30%;
     margin: 0 auto;
@@ -89,6 +109,11 @@
 @media screen and (min-width: 35.5em) {
     #inner-title {
         margin: 0 auto;
+        width: 60%;
+    }
+
+    // Temporary, obviously
+    #beta-testing-message-container {
         width: 60%;
     }
 
