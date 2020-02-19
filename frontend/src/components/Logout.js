@@ -22,7 +22,7 @@ class Logout extends Component {
     Api.post('auth/logout',{}).catch(() => {
         console.log('There was a backend error but we don\'t care!');
     }).then(() => {
-      session.update({loggedIn: false});
+      session.update({loggedInUser: null});
     });
   }
 
