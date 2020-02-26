@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Menu from './../components/Menu.js';
 import '../styles/common.scss';
 import '../styles/mission.scss';
-import chicken from '../img/mission_chicken.jpg';
 import aerial from '../img/info_aerial.jpg';
 import truck from '../img/info_truck.jpg';
 
@@ -48,9 +47,6 @@ class Mission extends Component {
           dock, trucking, and bus garage workers exposed to high levels of
           diesel exhaust over many years consistently demonstrate a 20 to 50
           percent increase in the risk of lung cancer or mortality.</p>
-        {/*
-           no chicken picture for now
-           <span className="image main"><img src={chicken} alt="" /></span> */}
         <p><b>Our project intention is to empower all communities that suffer
           the impacts of trucking and the freight industry.</b> Our truck
           traffic survey tool allows community residents to document truck
