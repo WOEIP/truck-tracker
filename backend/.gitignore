@@ -6,6 +6,11 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
+# Secrets
+config/secret
+#get stuff from secrets later, for now this will do
+config/development.json
+
 # Packages
 node_modules
 

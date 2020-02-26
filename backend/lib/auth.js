@@ -29,8 +29,6 @@ passport.use(new LocalStrategy(strategyOptions, (username, password, done) => {
     if (password === user.pw_hash) {
       return done(null, user);
     } else {
-      console.log(password);
-      console.log(user.pw_hash);
       console.log(bcrypt.compareSync(password, user.pw_hash));
       return done(null, false);
     }
@@ -46,4 +44,4 @@ Auth.doLogin = function () {
   return 0;
 }
 
-module.export = Auth;
+module.exports = Auth;
