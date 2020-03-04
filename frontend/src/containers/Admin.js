@@ -33,15 +33,25 @@ class Admin extends Component {
   }
 
   toggleUser(toggledUser) {
-    // TODO: to the actual API call
-    let newUsers = this.state.users.map( user => {
-      if (user.id === toggledUser.id) {
-        user.activeP = !user.activeP;
-      }
-      return user;
-    });
+    let session = this.context;
 
-    this.setState({users: newUsers});
+    if (session.data.loggedInUser.admin_p === true){
+
+      Api.patch(`users/${toggledUser.id}`,
+        {
+          activeP: !toggledUser.activeP
+        }
+      )
+
+      let newUsers = this.state.users.map( user => {
+        if (user.id === toggledUser.id) {
+          user.activeP = !user.activeP;
+        }
+        return user;
+      });
+
+      this.setState({users: newUsers});
+    }
   }
 
   userHtml() {

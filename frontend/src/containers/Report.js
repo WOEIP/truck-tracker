@@ -62,8 +62,6 @@ class Report extends Component {
       truckWasMovingP: truckWasMovingP
     };
 
-    console.log(postData);
-
     Api.post('reports', postData);
 
     this.setState(prevState => ({
