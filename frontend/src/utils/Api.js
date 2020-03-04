@@ -24,7 +24,18 @@ let Api = {
           console.log(error);
           throw error;
         });
-  }
+  },
+
+  patch: function (endPoint, postObject) {
+    return axios.patch(urlRoot + endPoint, postObject, { withCredentials: true })
+      .then(response => {
+        // We keep this here, generic API stuff can go here
+        return response;
+      }).catch(error => {
+        console.log(error);
+        throw error;
+      });
+  },
 };
 
 export default Api;

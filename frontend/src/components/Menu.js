@@ -20,8 +20,8 @@ class Menu extends Component {
         {id: "contact", text: "Contact"},
         {id: "logout", text: "Sign out"}
       ];
-      // TODO implement session mapping: admin_p -> isAdmin
-      if (!session.data.loggedInUser.admin_p) {
+
+      if (session.data.loggedInUser.admin_p) {
         menuItems.push (
           {id: "admin", text: "Admin"}
         )

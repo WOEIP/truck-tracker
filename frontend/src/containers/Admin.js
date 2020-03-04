@@ -3,6 +3,7 @@ import Api from './../utils/Api.js';
 import Menu from './../components/Menu.js';
 
 import '../styles/admin.scss';
+import { SessionContext } from './../utils/Session.js';
 
 class Admin extends Component {
     constructor(props) {
@@ -18,6 +19,13 @@ class Admin extends Component {
     this.getUsers();
   }
 
+  componentWillUpdate(){
+    let session = this.context;
+      if (!session.data.loggedInUser || session.data.loggedInUser.admin_p !== true){
+        window.location.hash = "#report"
+      }
+  }
+
   getUsers() {
     Api.get('users').then(response => {
       this.setState({users: response.data});
@@ -25,15 +33,25 @@ class Admin extends Component {
   }
 
   toggleUser(toggledUser) {
-    // TODO: to the actual API call
-    let newUsers = this.state.users.map( user => {
-      if (user.id === toggledUser.id) {
-        user.activeP = !user.activeP;
-      }
-      return user;
-    });
+    let session = this.context;
 
-    this.setState({users: newUsers});
+    if (session.data.loggedInUser.admin_p === true){
+
+      Api.patch(`users/${toggledUser.id}`,
+        {
+          activeP: !toggledUser.activeP
+        }
+      )
+
+      let newUsers = this.state.users.map( user => {
+        if (user.id === toggledUser.id) {
+          user.activeP = !user.activeP;
+        }
+        return user;
+      });
+
+      this.setState({users: newUsers});
+    }
   }
 
   userHtml() {
@@ -73,5 +91,7 @@ class Admin extends Component {
     );
   }
 }
+
+Admin.contextType = SessionContext;
 
 export default Admin;
