@@ -18,6 +18,7 @@ import SessionProvider from './../utils/Session.js';
 class App extends Component {
   constructor(props) {
     super(props);
+
   }
 
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
   }
 
   getActiveContent(){
+
     switch(window.location.hash) {
     case '#register':
       return RegistrationPage;
@@ -62,6 +64,7 @@ class App extends Component {
 
   render() {
     const ActiveContent = this.getActiveContent();
+
     return (
       <SessionProvider>
           <ActiveContent/>

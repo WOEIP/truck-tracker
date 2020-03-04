@@ -3,6 +3,7 @@ import Api from './../utils/Api.js';
 import Menu from './../components/Menu.js';
 
 import '../styles/admin.scss';
+import { SessionContext } from './../utils/Session.js';
 
 class Admin extends Component {
     constructor(props) {
@@ -16,6 +17,13 @@ class Admin extends Component {
 
   componentDidMount() {
     this.getUsers();
+  }
+
+  componentWillUpdate(){
+    let session = this.context;
+      if (!session.data.loggedInUser || session.data.loggedInUser.admin_p !== true){
+        window.location.hash = "#report"
+      }
   }
 
   getUsers() {
@@ -73,5 +81,7 @@ class Admin extends Component {
     );
   }
 }
+
+Admin.contextType = SessionContext;
 
 export default Admin;
