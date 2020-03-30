@@ -18,6 +18,7 @@ auth.get('/', parsers.json, async ctx => {
 });
 
 auth.post('/login', parsers.json, async ctx => {
+  console.log('hey')
   return passport.authenticate('local', (err, user, info, status) => {
     if (user) {
       ctx.login(user);

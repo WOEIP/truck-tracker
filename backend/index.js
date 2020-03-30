@@ -38,7 +38,8 @@ app.use(router.allowedMethods());
  * We only want to start listening if this is the first file loaded
  */
 if (!module.parent) {
-  app.listen(config.get('port'));
+  const port = process.env.PORT || 5000;
+  app.listen(port, () => console.log(`Server is running on port ${port}`));
 }
 
 module.exports = app;

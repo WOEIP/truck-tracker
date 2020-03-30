@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js --env development",
+    "dev-debug": "nodemon --inspect index.js",
     "lint": "xo",
     "test": "ava"
   },

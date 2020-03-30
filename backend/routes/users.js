@@ -29,8 +29,18 @@ users.get('/:id', async ctx => {
 
 users.patch('/:id', parsers.json, async (ctx, next) => {
   // TODO
-  ctx.body = 'updated users' + ctx.params.id;
-  await next();
+  const { id } = ctx.params;
+
+  const changedUser = await Users.query().patch(ctx.request.body).where({ id });
+  if (!changedUser){
+    ctx.throw(409, { data: { message: "Couldn't Update That User."} })
+  }
+
+  ctx.status = 200;
+
+  // ctx.body = await Users.query()
+  //   .where({ id: ctx.params.id })
+  //   .update(ctx.request.body, ['id', 'active_p'])
 });
 
 module.exports = users;

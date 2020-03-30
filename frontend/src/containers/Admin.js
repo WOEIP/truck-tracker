@@ -41,7 +41,9 @@ class Admin extends Component {
         {
           activeP: !toggledUser.activeP
         }
-      )
+      ).then(response => {
+        console.log(response.data)
+      })
 
       let newUsers = this.state.users.map( user => {
         if (user.id === toggledUser.id) {
