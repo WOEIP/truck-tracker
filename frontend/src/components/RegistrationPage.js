@@ -108,7 +108,7 @@ class RegistrationPage extends Component {
           </label>
           <div className="actions">
             <button onClick={this.registerUser}>
-              Register
+              Sign Up
             </button>
           </div>
         </form>

@@ -85,7 +85,7 @@ class Login extends Component {
               Login
             </button>
             <button onClick={this.goToRegistration}>
-              Register
+              Sign Up
             </button>
           </div>
         </form>
