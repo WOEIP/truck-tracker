@@ -36,22 +36,11 @@ class MapContainer extends Component {
       }, //Oakland
       zoom: 17
     };
-
-    //TODO: HTTPS is needed I guess
-    // if (navigator && navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(pos => {
-    //     userLocation = {
-    //       lat: pos.coords.latitude,
-    //       lng: pos.coords.longitude
-    //     };
-    //   }),
-    //   err => {console.log(`ERROR(${err.code}): ${err.message}`);};
-    // };
-
   }
 
   componentDidMount(){
       this.map = this.loadMap();
+      this.map.locate({setView: true});
   }
 
   componentDidUpdate() {

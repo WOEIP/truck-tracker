@@ -43,7 +43,6 @@ class HeatMap extends Component {
     //   }),
     //   err => {console.log(`ERROR(${err.code}): ${err.message}`);};
     // };
-
   }
 
   componentDidMount(){
