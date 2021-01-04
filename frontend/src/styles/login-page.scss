@@ -8,6 +8,12 @@
                 border: 1px solid $light-grey;
             }
         }
+        p.password-reset {
+            margin: 0;
+            & a {
+                color: $generic-blue;
+            }
+        }
         div.actions {
             button {
                 border: 0 none;
@@ -26,4 +32,3 @@
         }
     }
 }
-

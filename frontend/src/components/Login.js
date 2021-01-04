@@ -80,6 +80,9 @@ class Login extends Component {
           <input type="password"
                  value={this.state.password}
                  onChange={this.handlePassChange} />
+          <p className="password-reset">
+            <a href="#passwordreset">Forgot your password?</a>
+          </p>
           <div className="actions">
             <button onClick={this.login}>
               Login

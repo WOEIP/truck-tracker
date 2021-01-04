@@ -12,6 +12,7 @@ import Contact from './../components/Contact';
 import MessageSent from './../components/MessageSent.js';
 import Admin from './../containers/Admin';
 import Contributing from './../components/Contributing';
+import PasswordReset from './../components/PasswordReset';
 
 import SessionProvider from './../utils/Session.js';
 
@@ -57,6 +58,8 @@ class App extends Component {
       return Admin;
     case '#contributing':
       return Contributing;
+    case '#passwordreset':
+      return PasswordReset;
     default:
       return MainPage;
     }
