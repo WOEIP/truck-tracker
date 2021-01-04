@@ -5,6 +5,7 @@ import Auth from './../utils/Auth.js';
 import Menu from './../components/Menu.js';
 
 import '../styles/registration-page.scss';
+import { SessionContext } from "./../utils/Session.js";
 
 class RegistrationPage extends Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class RegistrationPage extends Component {
   }
 
   registerUser () {
+    let session = this.context;
+
     let postData = {
       username: this.state.username,
       firstName: this.state.firstName,
@@ -43,11 +46,23 @@ class RegistrationPage extends Component {
       updatedAt: Math.floor(Date.now() / 1000)
     };
 
-    console.log(postData.dateRegistered);
-
     Api.post('users', postData).then(response => {
        if (response.status === 200) {
-         window.location.hash = '#registerdone';
+         debugger
+         Api.post("auth/login", {username: postData.username, password: postData.pwHash})
+           .then((logInResponse) => {
+             debugger
+             if (logInResponse.status === 200) {
+               debugger
+               session.update({ loggedInUser: logInResponse.data });
+               window.location.hash = "#report";
+             }
+           })
+           .catch(() => {
+             this.setState({
+               error: "Username or Password are incorrect",
+             });
+           });
        }
     }).catch(() => {
         console.log('registration failed');
@@ -116,5 +131,6 @@ class RegistrationPage extends Component {
     );
   }
 }
+RegistrationPage.contextType = SessionContext;
 
 export default RegistrationPage;
