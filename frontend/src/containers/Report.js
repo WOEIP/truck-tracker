@@ -43,7 +43,6 @@ class Report extends Component {
   }
 
   componentDidMount() {
-    debugger
     let session = this.context;
 
     //if an account was newly registered, change the newlyRegistered flag to false

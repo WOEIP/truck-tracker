@@ -3,8 +3,10 @@ import React, {Component} from 'react';
 import Api from './../utils/Api.js';
 import Auth from './../utils/Auth.js';
 import Menu from './../components/Menu.js';
+import MessagingDisplay from "./MessagingDisplay";
 
 import '../styles/registration-page.scss';
+
 import { SessionContext } from "./../utils/Session.js";
 
 class RegistrationPage extends Component {
@@ -17,6 +19,7 @@ class RegistrationPage extends Component {
       lastName: '',
       isLocal: true,
       email: '',
+      error: '',
       address: '',
       zipCode:'',
       tosAccepted: false
@@ -46,24 +49,46 @@ class RegistrationPage extends Component {
       updatedAt: Math.floor(Date.now() / 1000)
     };
 
-    Api.post('users', postData).then(response => {
-       if (response.status === 200) {
-         Api.post("auth/login", {username: postData.username, password: postData.pwHash})
-           .then((logInResponse) => {
-             if (logInResponse.status === 200) {
-               session.update({ loggedInUser: logInResponse.data, newlyRegistered: true });
-               window.location.hash = "#report";
-             }
-           })
-           .catch(() => {
-             this.setState({
-               error: "Username or Password are incorrect",
-             });
-           });
-       }
-    }).catch(() => {
-        console.log('registration failed');
-    });
+    if (
+      postData.username === "" ||
+      this.state.password === "" ||
+      postData.email === ""
+    ) {
+      this.setState({
+        error: "All fields must be complete to create an account"
+      })
+    } else {
+      Api.post("users", postData)
+        .then((response) => {
+          if (response.status === 200) {
+            Api.post("auth/login", {
+              username: postData.username,
+              password: postData.pwHash,
+            })
+              .then((logInResponse) => {
+                if (logInResponse.status === 200) {
+                  session.update({
+                    loggedInUser: logInResponse.data,
+                    newlyRegistered: true,
+                  });
+                  window.location.hash = "#report";
+                }
+              })
+              .catch(() => {
+                this.setState({
+                  error: "Login Error",
+                });
+              });
+          }
+        })
+        .catch((error) => {
+          error = {body: "Email Already Exists"}
+
+          this.setState({
+            error: error.body,
+          });
+        });
+    }
   }
 
   handleInputChange(inputField, evt) {
@@ -73,21 +98,29 @@ class RegistrationPage extends Component {
   };
 
   render() {
+    const errors =
+      this.state.error !== '' ? (
+        <MessagingDisplay message={this.state.error} />
+      ) : null;
+
     return (
       <article id="registration-page">
-        <Menu current="login"/>
-        <p>
-          Please fill in your data and then send it for verification!
-        </p>
+        <Menu current="login" />
+        {errors}
+        <p>Please fill in your data and then send it for verification!</p>
         <form>
           <label>Username</label>
-          <input type="text"
-                 value={this.state.username}
-                 onChange={this.handleInputChange.bind(this, 'username')} />
+          <input
+            type="text"
+            value={this.state.username}
+            onChange={this.handleInputChange.bind(this, "username")}
+          />
           <label>Password</label>
-          <input type="password"
-                 value={this.state.password}
-                 onChange={this.handleInputChange.bind(this, 'password')} />
+          <input
+            type="password"
+            value={this.state.password}
+            onChange={this.handleInputChange.bind(this, "password")}
+          />
           {/*<label>First name</label>
           <input type="text"
                  value={this.state.firstName}
@@ -97,9 +130,11 @@ class RegistrationPage extends Component {
                  value={this.state.lastName}
                  onChange={this.handleInputChange.bind(this, 'lastName')} />*/}
           <label>Email (we won't give it to anyone)</label>
-          <input type="text"
-                 value={this.state.email}
-                 onChange={this.handleInputChange.bind(this, 'email')} />
+          <input
+            type="text"
+            value={this.state.email}
+            onChange={this.handleInputChange.bind(this, "email")}
+          />
           {/*<label>Are you a West Oakland resident?</label>
           <input type="checkbox"
                  value={this.state.isLocal}
@@ -112,16 +147,22 @@ class RegistrationPage extends Component {
           <input type="text"
                  value={this.state.zipCode}
                  onChange={this.handleInputChange.bind(this, 'zipCode')} />*/}
-          <label htmlFor="tos-checkbox"><span>Accept our <a className="textLink" href="#tos">Terms of Service</a></span>
-          <input id='tos-checkbox'
-                 type="checkbox"
-                 value={this.state.tosAccepted}
-                 onChange={this.handleInputChange.bind(this, 'tosAccepted')} />
+          <label htmlFor="tos-checkbox">
+            <span>
+              Accept our{" "}
+              <a className="textLink" href="#tos">
+                Terms of Service
+              </a>
+            </span>
+            <input
+              id="tos-checkbox"
+              type="checkbox"
+              value={this.state.tosAccepted}
+              onChange={this.handleInputChange.bind(this, "tosAccepted")}
+            />
           </label>
           <div className="actions">
-            <button onClick={this.registerUser}>
-              Sign Up
-            </button>
+            <button onClick={this.registerUser}>Sign Up</button>
           </div>
         </form>
       </article>

@@ -1,9 +1,9 @@
 import React from 'react';
-import '../styles/error.scss';
+import '../styles/messaging.scss';
 
 function MessagingDisplay(props){
     return (
-        <div id="error-message-container">
+        <div id="message-display-container">
             <p>
                 {props.message}
             </p>
