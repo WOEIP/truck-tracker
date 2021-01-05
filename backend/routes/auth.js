@@ -22,7 +22,6 @@ auth.post('/login', parsers.json, async ctx => {
     if (user) {
       ctx.login(user);
       ctx.status = 200;
-      console.log(ctx.isAuthenticated());
       ctx.body = user;
     } else {
       ctx.status = 400;

@@ -15,8 +15,6 @@ OSRM.getRoute = async coordinates => {
 
         // The whole response has been received.
         resp.on('end', () => {
-          console.log('HO');
-          console.log(data);
           resolve(data);
         });
       });

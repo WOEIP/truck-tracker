@@ -48,7 +48,6 @@ test('GET', async t => {
 
   res.forEach(incident => {
     if (!ids.includes(incident.id)) return; // ignore any records we did not create
-    console.log(incident);
     t.regex(incident.id, UUID_REGEX);
     t.is(incident.truckType, 'BOBTAIL');
     t.is(incident.start.lat, 1);

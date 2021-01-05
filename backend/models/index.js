@@ -10,6 +10,10 @@ class BaseModel extends Model {
     return [__dirname];
   }
 
+  /**
+     * In the code we use camel case, in the db field names snake case
+     * https://vincit.github.io/objection.js/api/model/static-properties.html#static-columnnamemappers
+  **/
   static get columnNameMappers() {
     return snakeCaseMappers();
   }
