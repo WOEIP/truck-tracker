@@ -1,6 +1,6 @@
 @import "colors";
 
-#message-display-container {
+#message-display-container-small {
     animation: fadeInDown 500ms ease-in-out;
     width: 60%;
     margin: 1rem 0 1rem 0;
@@ -18,6 +18,27 @@
     }
 
 }
+
+#message-display-container-large {
+    animation: fadeInDown 500ms ease-in-out;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    background-color: rgba(0, 258, 0, 0.4);
+    border-style: solid;
+    border-color: white;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    & > p {
+        text-align: center;
+        font-size: 1rem;
+        color: white;
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+}
+
 
 @-webkit-keyframes fadeInDown {
     0% {
