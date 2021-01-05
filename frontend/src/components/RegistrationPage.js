@@ -48,13 +48,10 @@ class RegistrationPage extends Component {
 
     Api.post('users', postData).then(response => {
        if (response.status === 200) {
-         debugger
          Api.post("auth/login", {username: postData.username, password: postData.pwHash})
            .then((logInResponse) => {
-             debugger
              if (logInResponse.status === 200) {
-               debugger
-               session.update({ loggedInUser: logInResponse.data });
+               session.update({ loggedInUser: logInResponse.data, newlyRegistered: true });
                window.location.hash = "#report";
              }
            })
