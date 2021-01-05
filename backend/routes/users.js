@@ -28,16 +28,9 @@ users.get('/:id', async ctx => {
 });
 
 users.patch('/:id', parsers.json, async (ctx, next) => {
-<<<<<<< Updated upstream
-  // TODO
-  ctx.body = 'updated users' + ctx.params.id;
-  await next();
-=======
-
   ctx.body = await Users.query()
     .findById(ctx.params.id)
     .patch({ activeP: true })
->>>>>>> Stashed changes
 });
 
 module.exports = users;
