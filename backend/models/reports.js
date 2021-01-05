@@ -10,11 +10,19 @@ const {BaseModel} = require('.');
 const ONE_DAY = 60 * 24; // 60 minute/hour * 24 hour/day
 const UNIX_EPOCH_MAX = 2147483647; // 2^31 - 1
 
+/**
+ * This is the Objection model for the table
+ * Useful overview: https://vincit.github.io/objection.js/api/model/overview.html#model-data-lifecycle
+**/
 class Reports extends BaseModel {
   static get tableName() {
     return 'reports';
   }
 
+  /**
+   * Every time a model instance is created, it's validated agains the jsonSchema.
+   * https://vincit.github.io/objection.js/api/model/static-properties.html#static-jsonschema
+   **/
   static get jsonSchema() {
     return {
       type: 'object',
@@ -48,6 +56,10 @@ class Reports extends BaseModel {
     };
   }
 
+  /**
+   *  This is called when a model is converted to database format.
+   *  https://vincit.github.io/objection.js/api/model/instance-methods.html#formatdatabasejson
+   **/
   $formatDatabaseJson(json) {
     json = super.$formatDatabaseJson(json);
 
@@ -82,6 +94,10 @@ class Reports extends BaseModel {
     return formatted;
   }
 
+  /**
+   *  This is called when a model instance is created from a database JSON object.
+   *  https://vincit.github.io/objection.js/api/model/instance-methods.html#parsedatabasejson
+   **/
   $parseDatabaseJson(json) {
     json = super.$parseDatabaseJson(json);
 

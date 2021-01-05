@@ -6,7 +6,7 @@ async function up(knex) {
     table.uuid('requester_id').references('users.id');
     table.string('requester_email').notNullable();
     table.string('reset_hash').notNullable();
-    table.timestamp('timestamp').notNullable();
+    table.timestamp('requested_at').notNullable();
     table.boolean('is_done').notNullable().defaultTo(false);
     table.timestamps(true, true);
   });

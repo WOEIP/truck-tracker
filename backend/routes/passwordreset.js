@@ -20,13 +20,15 @@ passwordReset.get('/', async ctx => {
 });
 
 passwordReset.post('/', parsers.json, async ctx => {
-  ctx.body = await PasswordReset.query()
-    .insert(ctx.request.body)
-    .returning('*');
+   var entryToInsert = ctx.request.body;
+   entryToInsert.resetHash = 'dummyhashfornow';
+   ctx.body = await PasswordReset.query()
+   .insert(entryToInsert)
+   .returning('*');
 });
 
 passwordReset.get('/:id', async ctx => {
   ctx.body = await PasswordReset.query().findById(ctx.params.id);
 });
 
-module.exports = passwordreset;
+module.exports = passwordReset;
