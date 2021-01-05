@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/error.scss';
 
-function ErrorDisplay(props){
+function MessagingDisplay(props){
     return (
         <div id="error-message-container">
             <p>
@@ -11,4 +11,4 @@ function ErrorDisplay(props){
     )
 }
 
-export default ErrorDisplay;
+export default MessagingDisplay;

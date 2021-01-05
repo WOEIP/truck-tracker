@@ -8,7 +8,7 @@ import "../styles/report.scss";
 import ThankYouPage from "../components/ThankYouPage";
 import TruckSelection from "../components/TruckSelection";
 import IdlingOrMoving from "../components/IdlingOrMoving";
-import ErrorDisplay from "../components/ErrorDisplay";
+import MessagingDisplay from "../components/MessagingDisplay";
 import MapContainer from "./MapContainer";
 
 import { SessionContext } from "../utils/Session.js";
@@ -143,9 +143,9 @@ class Report extends Component {
     const ActiveContent = this.getActiveContent();
 
     const registrationMessage = this.context.data.newlyRegistered ? (
-      <ErrorDisplay
+      <MessagingDisplay
         message={
-          'Thank you for making an account! You are now able to make TruckTracker reports. If you have any questions, you can email info@ewoeip.org'
+          'Thank you for making an account! You are now able to make TruckTracker reports. If you have any questions, you can email info@woeip.org'
         }
       />
     ) : null;

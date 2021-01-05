@@ -6,7 +6,7 @@ import Api from './../utils/Api.js';
 import Auth from './../utils/Auth.js';
 import Menu from './../components/Menu.js';
 
-import ErrorDisplay from './ErrorDisplay';
+import MessagingDisplay from './MessagingDisplay';
 import {SessionContext} from './../utils/Session.js';
 
 class Login extends Component {
@@ -61,7 +61,7 @@ class Login extends Component {
 
   render() {
     const errors = (this.state.error !== '') ?
-      <ErrorDisplay message={this.state.error} /> :
+      <MessagingDisplay message={this.state.error} /> :
       null
 
     return (
