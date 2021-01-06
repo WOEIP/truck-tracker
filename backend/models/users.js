@@ -75,6 +75,10 @@ class Users extends BaseModel {
     return formatted;
   }
 
+  /**
+   *  This is called when a model instance is created from a database JSON object.
+   *  https://vincit.github.io/objection.js/api/model/instance-methods.html#parsedatabasejson
+   **/
   $parseDatabaseJson(json) {
     json = super.$parseDatabaseJson(json);
 

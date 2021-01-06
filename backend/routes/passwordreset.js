@@ -2,7 +2,8 @@
 
 const Router = require('koa-router');
 const parser = require('koa-body');
-
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const knex = require('knex');
 const PasswordReset = require('../models/passwordreset');
 
@@ -20,8 +21,11 @@ passwordReset.get('/', async ctx => {
 });
 
 passwordReset.post('/', parsers.json, async ctx => {
-   var entryToInsert = ctx.request.body;
-   entryToInsert.resetHash = 'dummyhashfornow';
+   let entryToInsert = ctx.request.body;
+   let resetToken = crypto.randomBytes(128).toString('hex');
+   // TODO secret salt
+   const salt = '$2a$10$arjAldmQvHFfmUeL1/GCm.';
+   entryToInsert.resetHash = bcrypt.hashSync(resetToken, salt);
    ctx.body = await PasswordReset.query()
    .insert(entryToInsert)
    .returning('*');

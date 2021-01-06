@@ -30,7 +30,7 @@ class PasswordReset extends BaseModel {
         requesterEmail: {type: 'string'},
         resetHash: {type: 'string'},
         isDone: {type: 'boolean'},
-        requestedAt: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
+        expirationTime: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
       },
     };
   }
@@ -51,7 +51,7 @@ class PasswordReset extends BaseModel {
     ]);
 
     // convert unix timestamps into ISO 8601 strings for postgres
-    formatted.requested_at = moment.unix(json.requested_at);
+    formatted.expiration_time = moment.unix(json.expiration_time);
     formatted.created_at = moment.unix(json.created_at);
     formatted.updated_at = moment.unix(json.updated_at);
     /* eslint-enable */
@@ -72,7 +72,7 @@ class PasswordReset extends BaseModel {
       'resetHash',
       'isDone']);
 
-    formatted.requestedAt = moment(json.requestedAt).unix();
+    formatted.expirationTime = moment(json.expirationTime).unix();
     formatted.createdAt = moment(json.createdAt).unix();
     formatted.updatedAt = moment(json.updatedAt).unix();
 

@@ -5,8 +5,8 @@ async function up(knex) {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.uuid('requester_id').references('users.id');
     table.string('requester_email').notNullable();
-    table.string('reset_hash').notNullable();
-    table.timestamp('requested_at').notNullable();
+    table.text('reset_hash').notNullable();
+    table.timestamp('expiration_time').notNullable();
     table.boolean('is_done').notNullable().defaultTo(false);
     table.timestamps(true, true);
   });

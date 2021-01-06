@@ -18,9 +18,13 @@ users.get('/', async ctx => {
 });
 
 users.post('/', parsers.json, async ctx => {
-  ctx.body = await Users.query()
+  try{ctx.body = await Users.query()
     .insert(ctx.request.body)
-    .returning('*');
+    .returning('*')}
+  catch(err){
+      ctx.status = 400;
+      ctx.body = ("Didn't Work")
+    }
 });
 
 users.get('/:id', async ctx => {
