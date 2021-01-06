@@ -18,10 +18,11 @@ class PasswordReset extends Component {
   }
 
   resetPassword () {
-    let now = new Date();
+    let aDayFromNow = new Date();
+    aDayFromNow.setDate(aDayFromNow.getDate() + 1);
     let postData = {
         requesterEmail: this.state.email,
-        requestedAt: now.getTime() / 1000, // unix epoch
+        expirationTime: aDayFromNow.getTime() / 1000, // unix epoch
         createdAt: Math.floor(Date.now() / 1000),
         updatedAt: Math.floor(Date.now() / 1000)
     }
