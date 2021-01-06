@@ -20,8 +20,10 @@ class PasswordReset extends Component {
   resetPassword () {
     let now = new Date();
     let postData = {
-        reporterEmail: this.state.email,
-        timestamp: now.getTime() / 1000, // unix epoch
+        requesterEmail: this.state.email,
+        requestedAt: now.getTime() / 1000, // unix epoch
+        createdAt: Math.floor(Date.now() / 1000),
+        updatedAt: Math.floor(Date.now() / 1000)
     }
 
     Api.post('passwordreset', postData).then(response => {

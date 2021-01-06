@@ -29,7 +29,6 @@ passport.use(new LocalStrategy(strategyOptions, (username, password, done) => {
     if (password === user.pw_hash) {
       return done(null, user);
     } else {
-      console.log(bcrypt.compareSync(password, user.pw_hash));
       return done(null, false);
     }
   })
