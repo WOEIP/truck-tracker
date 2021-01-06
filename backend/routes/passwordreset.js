@@ -42,12 +42,22 @@ passwordReset.post('/', parsers.json, async ctx => {
         }
     });
 
+    let resetLink = 'https://trucktracker.net/#passwordresetlanding?token=' + resetToken;
+
+    let htmlBody =
+      '<p>You requested a password reset for your Truck Tracker account. To confirm your request, please click on the link below, or copy and paste the entire link into your browser.</p>' +
+      '<p>' +
+        '<a href="' + resetLink + '">' + resetLink + '</a>' +
+     '<\p>'+
+     '<p>Please note that this confirmation link expires in 24 hours and may require your immediate attention if you wish to access your online account in the future.</p>' +
+     '<p><strong>/>PLEASE DO NOT REPLY TO THIS MESSAGE</strong></p>';
+
     let info = await transporter.sendMail({
         from: config.exposed.get('email.noreply_email'),
         to: ctx.request.body.requesterEmail,
-        subject: "Hello ✔",
-        text: "Pw reset",
-        html: "<b>Pw reset test</b>"
+        subject: "Truck Tracker password reset",
+        text: "",
+        html: htmlBody
     });
 
     console.log("Message sent: %s", info.messageId);
