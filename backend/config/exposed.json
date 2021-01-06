@@ -9,7 +9,7 @@
   },
   "email": {
       "smtp_host": "smtp.dreamhost.com",
-      "smtp_port": 645,
+      "smtp_port": 465,
       "noreply_email": "noreply@woeip.org"
   }
 }
