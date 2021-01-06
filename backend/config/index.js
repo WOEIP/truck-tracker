@@ -1,11 +1,9 @@
 'use strict';
 
-//TODO .pgpass auth
-
 const path = require('path');
 const convict = require('convict');
 
-const config = convict({
+const exposed = convict({
   env: {
     doc: 'The application environment.',
     format: ['production', 'development'],
@@ -39,34 +37,71 @@ const config = convict({
       default: null,
       env: 'PGUSER',
     },
-    password: {
-      doc: 'password for the database user',
-      format: String,
-      default: null,
-      env: 'PGPASSWORD',
-    },
-    database: {
+    dev_database: {
       doc: 'name of the database to use on the database server',
       format: String,
       default: null,
       env: 'PGDATABASE',
     },
+    prod_database: {
+      doc: 'name of the database to use on the database server',
+      format: String,
+      default: null,
+      env: 'PGDATABASE',
+    }
   },
+  email: {
+    smtp_host: {
+      doc: 'SMTP host',
+      format: String,
+      default: null,
+      env: 'SMTP_HOST',
+    },
+    smtp_port: {
+      doc: 'SMTP port',
+      format: 'port',
+      default: null,
+      env: 'SMTP_PORT',
+    },
+    noreply_email: {
+      doc: 'Outbound email address',
+      format: String,
+      default: null,
+      env: 'NOREPLY_EMAIL',
+    }
+  }
 });
 
-//const configFile = `${config.get('env')}.json`;
+const secrets = convict({
+    development_db_password: {
+        doc: 'dev postgres PW',
+        format: String,
+        default: null,
+        env: 'DEV_DB_PW',
+    },
+    production_db_password: {
+        doc: 'prod postgres PW',
+        format: String,
+        default: null,
+        env: 'PROD_DB_PW',
+    },
+    dreamhost_smtp_password: {
+        doc: 'For sending emails',
+        format: String,
+        default: null,
+        env: 'EMAIL_PW',
+    }
+})
 
-const configFile = 'development.json';
+exposed.loadFile(path.resolve(__dirname, 'exposed.json'));
+secrets.loadFile(path.resolve(__dirname, 'secrets.json'));
 
-config.loadFile(path.resolve(__dirname, configFile));
+exposed.validate({allowed: 'strict'});
+secrets.validate({allowed: 'strict'});
 
-try {
-  config.loadFile(path.resolve(__dirname, 'secret', configFile));
-} catch (e) {
-  // ignore no such file errors, secrets might be passed via env args
-  if (e.code !== 'ENOENT') throw e;
+const config = {
+    exposed: exposed,
+    secret: secrets
 }
-
-config.validate({allowed: 'strict'});
 
 module.exports = config;
