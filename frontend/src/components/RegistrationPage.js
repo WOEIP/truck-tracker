@@ -99,7 +99,7 @@ class RegistrationPage extends Component {
 
   render() {
     const errors =
-      this.state.error !== '' ? (
+      this.state.error ? (
         <MessagingDisplay message={this.state.error} />
       ) : null;
 

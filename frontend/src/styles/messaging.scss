@@ -1,6 +1,6 @@
 @import "colors";
 
-#message-display-container-small {
+.message-display-container-error {
     animation: fadeInDown 500ms ease-in-out;
     width: 60%;
     margin: 1rem 0 1rem 0;
@@ -19,7 +19,7 @@
 
 }
 
-#message-display-container-large {
+.message-display-container-success {
     animation: fadeInDown 500ms ease-in-out;
     width: 100%;
     margin: 1rem 0 1rem 0;
