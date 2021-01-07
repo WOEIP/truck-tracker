@@ -3,20 +3,27 @@ import React, {Component} from 'react';
 import Api from './../utils/Api.js';
 import Menu from './../components/Menu.js';
 
-import '../styles/password-reset.scss';
+import '../styles/password-reset-landing.scss';
 
-class PasswordReset extends Component {
+class PasswordResetLanding extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ''
+        password: '',
+        passwordConfirm: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.resetPassword = this.resetPassword.bind(this);
+    this.setPassword = this.setPassword.bind(this);
   }
 
-  resetPassword () {
+  componentDidMount() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const resetToken = urlParams.get('token');
+    console.log(resetToken);
+  }
+
+  setPassword () {
     let aDayFromNow = new Date();
     aDayFromNow.setDate(aDayFromNow.getDate() + 1);
     let postData = {
@@ -44,18 +51,19 @@ class PasswordReset extends Component {
 
   render() {
     return (
-      <article id="password-reset">
+      <article id="password-reset-landing">
         <Menu current="login"/>
-        <p>
-          Please give your email address and we'll send you a reset link!
-        </p>
         <form>
-          <label>Email</label>
-          <input type="text"
-                 value={this.state.email}
-                 onChange={this.handleInputChange.bind(this, 'email')} />
+          <label>New password</label>
+          <input type="password"
+                 value={this.state.password}
+                 onChange={this.handleInputChange.bind(this, 'password')} />
+          <label>Confirm new password</label>
+          <input type="password"
+                 value={this.state.passwordConfirm}
+                 onChange={this.handleInputChange.bind(this, 'passwordConfirm')} />
           <div className="actions">
-            <button onClick={this.resetPassword}>
+            <button onClick={this.setPassword}>
               Send
             </button>
           </div>
@@ -65,4 +73,4 @@ class PasswordReset extends Component {
   }
 }
 
-export default PasswordReset;
+export default PasswordResetLanding;
