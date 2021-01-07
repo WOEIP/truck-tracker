@@ -1,0 +1,10 @@
+{
+    "port": 8080,
+    "database": {
+        "host": "localhost",
+        "port": 5432,
+        "user": "postgres",
+        "password": "hEwGvkznY4^%q6t2G2@MwgCe&rKZzJ*95rGQmPZM^y2@A5dq#&j^V",
+        "database": "truck_tracker_dev"
+    }
+}
