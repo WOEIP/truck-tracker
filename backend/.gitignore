@@ -7,10 +7,7 @@ ehthumbs.db
 Desktop.ini
 
 # Secrets
-config/secret
-#get stuff from secrets later, for now this will do
-config/production.json
-config/development.json
+config/secrets.json
 
 # Packages
 node_modules

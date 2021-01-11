@@ -38,7 +38,7 @@ app.use(router.allowedMethods());
  * We only want to start listening if this is the first file loaded
  */
 if (!module.parent) {
-  app.listen(config.get('port'));
+  app.listen(config.exposed.get('port'));
 }
 
 module.exports = app;
