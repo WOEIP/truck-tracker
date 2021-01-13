@@ -23,7 +23,7 @@ users.post('/', parsers.json, async ctx => {
     .returning('*')}
   catch(err){
       ctx.status = 400;
-      ctx.body = ("Didn't Work")
+      ctx.body = ("Username or Email Already Exist")
     }
 });
 
