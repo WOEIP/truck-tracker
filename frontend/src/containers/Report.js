@@ -144,7 +144,7 @@ class Report extends Component {
 
         const registrationMessage = this.context.data.newlyRegistered ? (
             <MessagingDisplay
-                message="Thank you for making an account! You are now able to make TruckTracker reports. If you have any questions, you can email info@woeip.org"
+                message="Thank you for making an account! You are now able to make TruckTracker reports. If you have any questions, you can email info@woeip.org."
                 successDisplay="true"
             />
         ) : null;

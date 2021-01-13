@@ -55,7 +55,7 @@ class RegistrationPage extends Component {
             postData.email === ""
         ) {
             this.setState({
-                error: "All fields must be complete to create an account",
+                error: "All fields must be complete to create an account.",
             });
         } else {
             Api.post("users", postData)
@@ -82,7 +82,7 @@ class RegistrationPage extends Component {
                     }
                 })
                 .catch((error) => {
-                    error = { body: "Email already exists" };
+                    error = { body: "Username or Email already registered." };
 
                     this.setState({
                         error: error.body,
