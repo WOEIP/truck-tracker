@@ -2,13 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
-
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const CopyWebpackPluginConfig = new CopyWebpackPlugin([{from: 'sounds/**'}]);
-const ExtractTextPluginConfig = new ExtractTextPlugin({filename: 'main.css'});
+const MiniCssExtractPluginConfig = new MiniCssExtractPlugin({filename: 'main.css'});
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/src/index.html',
   filename: 'index.html',
@@ -30,9 +27,8 @@ module.exports = {
   },
   plugins: [
     NamedModulesPlugin,
-    ExtractTextPluginConfig,
-    HTMLWebpackPluginConfig,
-    CopyWebpackPluginConfig,
+    MiniCssExtractPluginConfig,
+    HTMLWebpackPluginConfig
   ],
   module: {
     rules: [
@@ -43,10 +39,7 @@ module.exports = {
       },
       {
         test: /\.(s*)css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader', 'sass-loader']
-        })
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)(\?v=\d+\.\d+\.\d+)?$/,

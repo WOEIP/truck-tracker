@@ -1,10 +1,10 @@
-#TODO: fix this file up
+version: ~> 1
 
 language:
   - node_js
 
 node_js:
-  - 8
+  - 14
 
 cache:
   directories:
@@ -28,15 +28,14 @@ jobs:
   include:
     - stage: publish
       script:
-        # - cd ../frontend
-        # - find src -name '*.js' | xargs grep 'localhost' --files-with-matches | xargs sed --in-place 's|http://localhost:[0-9]*|http://api.trucktracker.net|'
-        # - npm run build
+        - cd ../frontend
+        - npm run build
         # backend
-        - cd ../backend
-        - export NODE_ENV="development"
-        - export PGUSER="postgres"
-        - export PGPASSWORD=""
-        - psql -c "create database traffic_counter"
-        - npx knex migrate:latest
-        - npm run lint
-        - npm test
+         #- cd ../backend
+         #- export NODE_ENV="development"
+         #- export PGUSER="postgres"
+         #- export PGPASSWORD=""
+         #- psql -c "create database traffic_counter"
+         #- npx knex migrate:latest
+         #- npm run lint
+         #- npm test
