@@ -17,6 +17,12 @@ module.exports = {
     port: 8083
   },
   devtool: 'source-map',
+  devServer: {
+      hot: true,
+      host: '127.0.0.1',
+      port: '7373',
+      open: true
+  },
   entry: {
     main: ['babel-polyfill', 'react-hot-loader/patch', './src/index']
   },

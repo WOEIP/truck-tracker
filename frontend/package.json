@@ -8,7 +8,7 @@
     "url": "https://github.com/WOEIP/truck-tracker-frontend"
   },
   "scripts": {
-    "dev": "webpack-dev-server --host 127.0.0.1 --hot --history-api-fallback --open",
+    "dev": "webpack serve",
     "build": "webpack --mode=production",
     "test-all": "test/run-tests.sh"
   },
