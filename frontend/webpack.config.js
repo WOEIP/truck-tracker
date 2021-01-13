@@ -11,7 +11,6 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
-const NamedModulesPlugin = new webpack.NamedModulesPlugin();
 
 module.exports = {
   devServer: {
@@ -23,13 +22,16 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: ''
   },
   plugins: [
-    NamedModulesPlugin,
     MiniCssExtractPluginConfig,
     HTMLWebpackPluginConfig
   ],
+  optimization: {
+      moduleIds: 'named'
+  },
   module: {
     rules: [
       {
