@@ -40,7 +40,7 @@ class Login extends Component {
             })
             .catch(() => {
                 this.setState({
-                    error: "Username or Password are incorrect",
+                    error: "Username or Password are incorrect.",
                 });
             });
     }
