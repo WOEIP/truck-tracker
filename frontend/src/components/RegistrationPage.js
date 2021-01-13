@@ -82,7 +82,7 @@ class RegistrationPage extends Component {
                     }
                 })
                 .catch((error) => {
-                    error = { body: "Email already exists" };
+                    error = { body: "Username or Email already registered" };
 
                     this.setState({
                         error: error.body,
