@@ -2,7 +2,7 @@
 
 .message-display-container-error {
     animation: fadeInDown 500ms ease-in-out;
-    width: 60%;
+    width: 70%;
     margin: 1rem 0 1rem 0;
     background-color: rgba($red, 0.4);
     border-style: solid;
@@ -46,5 +46,12 @@
     100% {
         opacity: 1;
         -webkit-transform: translateY(0);
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .message-display-container-error {
+        width: 100%;
+        color: black;
     }
 }
