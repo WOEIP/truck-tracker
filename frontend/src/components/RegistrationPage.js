@@ -40,7 +40,7 @@ class RegistrationPage extends Component {
             address: this.state.address,
             zipcode: this.state.zipCode,
             localResidentP: this.state.isLocal,
-            activeP: false,
+            isVerified: false,
             pwHash: Auth.hashPassword(this.state.password),
             adminP: false,
             dateRegistered: Math.floor(Date.now() / 1000),
