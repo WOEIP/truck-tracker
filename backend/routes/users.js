@@ -34,7 +34,7 @@ users.get('/:id', async ctx => {
 users.patch('/:id', parsers.json, async (ctx, next) => {
   ctx.body = await Users.query()
     .findById(ctx.params.id)
-    .patch({ activeP: true })
+    .patch({ isVerified: true })
 });
 
 module.exports = users;

@@ -33,7 +33,7 @@ class Users extends BaseModel {
         zipcode: {type: 'string'},
         address: {type: 'string'},
         localResidentP: {type: 'boolean'},
-        activeP: {type: 'boolean'},
+        isVerified: {type: 'boolean'},
         pwHash: {type: 'string'},
         adminP: {type: 'boolean'},
         dateRegistered: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
@@ -60,7 +60,7 @@ class Users extends BaseModel {
       'zipcode',
       'address',
       'local_resident_p',
-      'active_p',
+      'is_verified',
       'pw_hash',
       'admin_p',
     ]);
@@ -91,7 +91,7 @@ class Users extends BaseModel {
       'zipcode',
       'address',
       'localResidentP',
-      'activeP',
+      'isVerified',
       'pwHash',
       'adminP']);
 
