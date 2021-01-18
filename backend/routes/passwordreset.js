@@ -38,7 +38,7 @@ passwordReset.post('/', parsers.json, async ctx => {
         secure: true,
         auth: {
             user: config.exposed.get('email.noreply_email'),
-            pass: config.secret.get('dreamhost_smtp_password')
+            pass: config.secrets.get('dreamhost_smtp_password')
         }
     });
 

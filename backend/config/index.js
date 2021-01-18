@@ -90,6 +90,12 @@ const secrets = convict({
         format: String,
         default: null,
         env: 'EMAIL_PW',
+    },
+    koa_session_key: {
+        doc: 'Session cookie key',
+        format: String,
+        default: null,
+        env: 'KOA_SESSION_KEY',
     }
 })
 
@@ -101,7 +107,7 @@ secrets.validate({allowed: 'strict'});
 
 const config = {
     exposed: exposed,
-    secret: secrets
+    secrets: secrets
 }
 
 module.exports = config;
