@@ -78,21 +78,6 @@ class Users extends BaseModel {
     $formatDatabaseJson(json) {
         json = super.$formatDatabaseJson(json);
 
-<<<<<<< HEAD
-    /* eslint-disable camelcase */
-    const formatted = _.pick(json, [
-      'username',
-      'first_name',
-      'last_name',
-      'email',
-      'zipcode',
-      'address',
-      'local_resident_p',
-      'is_verified',
-      'pw_hash',
-      'admin_p',
-    ]);
-=======
         /* eslint-disable camelcase */
         const formatted = _.pick(json, [
             'username',
@@ -106,7 +91,6 @@ class Users extends BaseModel {
             'pw_algorithm',
             'is_admin',
         ]);
->>>>>>> master
 
         // convert unix timestamps into ISO 8601 strings for postgres
         formatted.date_registered = moment.unix(json.date_registered);
