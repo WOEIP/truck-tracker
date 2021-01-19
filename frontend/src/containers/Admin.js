@@ -39,13 +39,13 @@ class Admin extends Component {
 
       Api.patch(`users/${toggledUser.id}`,
         {
-          activeP: !toggledUser.activeP
+          isVerified: !toggledUser.isVerified
         }
       )
 
       let newUsers = this.state.users.map( user => {
         if (user.id === toggledUser.id) {
-          user.activeP = !user.activeP;
+          user.isVerified = !user.isVerified;
         }
         return user;
       });
@@ -59,11 +59,11 @@ class Admin extends Component {
     let itemsToRender = [];
     for (let i = 0; i < users.length; i++) {
       let user = users[i];
-      let buttonText = user.activeP ? "Deactivate" : "Activate";
+      let buttonText = user.isVerified ? "Deactivate" : "Activate";
       let userNameToShow = (user.firstName || user.lastName)
           ? user.firstName + ' ' + user.lastName
           : user.username;
-      let userActiveClass = user.activeP ? ' active' : ' inactive';
+      let userActiveClass = user.isVerified ? ' active' : ' inactive';
       itemsToRender.push(
         <p className='admin-row'
             key={user.id}>

@@ -2,6 +2,7 @@
 
 const Router = require('koa-router');
 const parser = require('koa-body');
+const knex = require('knex');
 
 const Users = require('../models/users');
 
@@ -31,10 +32,13 @@ users.get('/:id', async ctx => {
   ctx.body = await Users.query().findById(ctx.params.id);
 });
 
-users.patch('/:id', parsers.json, async (ctx, next) => {
-  ctx.body = await Users.query()
-    .findById(ctx.params.id)
-    .patch({ activeP: true })
+users.patch('/:id', parsers.json, async (ctx) => {
+  try{ctx.body = await Users.query()
+    .patch({isVerified: true})
+    .findById(ctx.params.id)}
+  catch (err){
+    ctx.body = err
+  }
 });
 
 module.exports = users;
