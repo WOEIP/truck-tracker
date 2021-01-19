@@ -28,7 +28,7 @@ class Login extends Component {
         let session = this.context;
         let postData = {
             username: this.state.username,
-            password: Auth.hashPassword(this.state.password),
+            password: this.state.password,
         };
 
         Api.post("auth/login", postData)

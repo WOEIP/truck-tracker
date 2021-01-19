@@ -45,7 +45,7 @@ class RegistrationPage extends Component {
                     if (response.status === 200) {
                         Api.post("auth/login", {
                             username: postData.username,
-                            password: postData.pwHash,
+                            password: postData.password,
                         })
                             .then((logInResponse) => {
                                 if (logInResponse.status === 200) {
