@@ -1,7 +1,6 @@
 const passport = require('koa-passport');
 const LocalStrategy = require('passport-local').Strategy;
 const knex = require('../lib/knex.js');
-const bcrypt = require('bcryptjs');
 
 //Passport functions
 passport.serializeUser((user, done) => {
