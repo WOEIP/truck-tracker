@@ -14,13 +14,8 @@ class RegistrationPage extends Component {
         this.state = {
             username: "",
             password: "",
-            firstName: "",
-            lastName: "",
-            isLocal: true,
             email: "",
             error: "",
-            address: "",
-            zipCode: "",
             tosAccepted: false,
         };
 
@@ -33,25 +28,13 @@ class RegistrationPage extends Component {
 
         let postData = {
             username: this.state.username,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
             email: this.state.email,
-            address: this.state.address,
-            zipcode: this.state.zipCode,
-            localResidentP: this.state.isLocal,
-            isVerified: false,
-            pwHash: this.state.password,
-            adminP: false,
-            dateRegistered: Math.floor(Date.now() / 1000),
-            lastLogin: Math.floor(Date.now() / 1000),
-            createdAt: Math.floor(Date.now() / 1000),
-            updatedAt: Math.floor(Date.now() / 1000),
+            password: this.state.password,
         };
 
-        if (
-            postData.username === "" ||
-            this.state.password === "" ||
-            postData.email === ""
+        if (!postData.username ||
+            !postData.password ||
+            !postData.email
         ) {
             this.setState({
                 error: "All fields must be complete to create an account.",
@@ -121,32 +104,12 @@ class RegistrationPage extends Component {
                         value={this.state.password}
                         onChange={this.handleInputChange.bind(this, "password")}
                     />
-                    {/*<label>First name</label>
-          <input type="text"
-                 value={this.state.firstName}
-                 onChange={this.handleInputChange.bind(this, 'firstName')} />
-          <label>Last name</label>
-          <input type="text"
-                 value={this.state.lastName}
-                 onChange={this.handleInputChange.bind(this, 'lastName')} />*/}
                     <label>Email (we won't give it to anyone)</label>
                     <input
                         type="text"
                         value={this.state.email}
                         onChange={this.handleInputChange.bind(this, "email")}
                     />
-                    {/*<label>Are you a West Oakland resident?</label>
-          <input type="checkbox"
-                 value={this.state.isLocal}
-                 onChange={this.handleInputChange.bind(this, 'isLocal')} />
-          <label>Address</label>
-          <input type="text"
-                 value={this.state.address}
-                 onChange={this.handleInputChange.bind(this, 'address')} />
-          <label>Zip Code</label>
-          <input type="text"
-                 value={this.state.zipCode}
-                 onChange={this.handleInputChange.bind(this, 'zipCode')} />*/}
                     <label htmlFor="tos-checkbox">
                         <span>
                             Accept our{" "}
