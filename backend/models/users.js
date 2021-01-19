@@ -30,11 +30,11 @@ class Users extends BaseModel {
                 firstName: {type: 'string'},
                 lastName: {type: 'string'},
                 email: {type: 'string'},
-                isLocalResident: {type: 'boolean'},
+                isLocalResident: {type: 'string'},
                 isVerified: {type: 'boolean'},
                 pwHash:{ type: 'string'},
                 pwSalt: {type: 'string'},
-                pwAlgoritm: {type: 'string'},
+                pwAlgorithm: {type: 'string'},
                 isAdmin: {type: 'boolean'},
                 dateRegistered: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
                 lastLogin: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
@@ -55,7 +55,7 @@ class Users extends BaseModel {
             'first_name',
             'last_name',
             'email',
-            'local_resident_p',
+            'is_local_resident',
             'is_verified',
             'pw_hash',
             'pw_salt',
@@ -65,7 +65,9 @@ class Users extends BaseModel {
 
         // convert unix timestamps into ISO 8601 strings for postgres
         formatted.date_registered = moment.unix(json.date_registered);
-        formatted.last_login = moment.unix(json.last_login);
+        formatted.last_login = json.last_login
+            ? moment.unix(json.last_login)
+            : null;
         /* eslint-enable */
 
         return formatted;
@@ -92,7 +94,9 @@ class Users extends BaseModel {
             'isAdmin']);
 
         formatted.dateRegistered = moment(json.dateRegistered).unix();
-        formatted.lastLogin = moment(json.lastLogin).unix();
+        formatted.lastLogin = json.lastLogin
+            ? moment(json.lastLogin).unix()
+            : null;
 
         return formatted;
     }

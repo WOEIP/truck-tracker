@@ -7,7 +7,7 @@ const crypto = require('crypto');
 const nodemailer = require("nodemailer");
 const config = require('../config');
 const knex = require('knex');
-const PasswordReset = require('../models/passwordreset');
+const PwResets = require('../models/pwresets');
 
 //TODO parsers?
 const parsers = {
@@ -19,7 +19,7 @@ const parsers = {
 const passwordReset = new Router();
 
 passwordReset.get('/', async ctx => {
-  ctx.body = await PasswordReset.query();
+  ctx.body = await PwResets.query();
 });
 
 passwordReset.post('/', parsers.json, async ctx => {
@@ -28,7 +28,7 @@ passwordReset.post('/', parsers.json, async ctx => {
     // TODO secret salt
     const salt = '$2a$10$arjAldmQvHFfmUeL1/GCm.';
     entryToInsert.resetHash = bcrypt.hashSync(resetToken, salt);
-    ctx.body = await PasswordReset.query()
+    ctx.body = await PwResets.query()
         .insert(entryToInsert)
         .returning('*');
 
@@ -64,7 +64,7 @@ passwordReset.post('/', parsers.json, async ctx => {
  });
 
 passwordReset.get('/:id', async ctx => {
-  ctx.body = await PasswordReset.query().findById(ctx.params.id);
+  ctx.body = await PwResets.query().findById(ctx.params.id);
 });
 
 module.exports = passwordReset;

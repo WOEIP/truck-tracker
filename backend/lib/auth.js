@@ -2,6 +2,7 @@ const passport = require('koa-passport');
 const LocalStrategy = require('passport-local').Strategy;
 const knex = require('../lib/knex.js');
 const bcrypt = require('bcryptjs');
+const PwResets = require('../models/pwresets');
 
 //Passport functions
 passport.serializeUser((user, done) => {
@@ -35,11 +36,9 @@ passport.use(new LocalStrategy(strategyOptions, (username, password, done) => {
   .catch((err) => { return done(err); });
 }));
 
-// Custom auth functions
 let Auth = {};
 
 Auth.doLogin = function () {
-  // Do a bunch of cool stuff after passport authentication.
   return 0;
 }
 

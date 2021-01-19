@@ -3,42 +3,73 @@
 const Router = require('koa-router');
 const parser = require('koa-body');
 const knex = require('knex');
+const bcrypt = require('bcryptjs');
 
 const Users = require('../models/users');
 
 const parsers = {
-  query: parser({urlencoded: true, multipart: false, json: false}),
-  form: parser({urlencoded: false, multipart: true, json: false}),
-  json: parser({urlencoded: false, multipart: false, json: true}),
+    query: parser({urlencoded: true, multipart: false, json: false}),
+    form: parser({urlencoded: false, multipart: true, json: false}),
+    json: parser({urlencoded: false, multipart: false, json: true}),
 };
 
 const users = new Router();
 
+const LOCAL_RESIDENT_OPTIONS = {
+    yes: 'yes',
+    no: 'no',
+    unknown: 'unknown'
+}
+
 users.get('/', async ctx => {
-  ctx.body = await Users.query();
+    ctx.body = await Users.query();
 });
 
 users.post('/', parsers.json, async ctx => {
-  try{ctx.body = await Users.query()
-    .insert(ctx.request.body)
-    .returning('*')}
-  catch(err){
-      ctx.status = 400;
-      ctx.body = ("Username or Email Already Exist")
+    let newUser = createUser(ctx.request.body);
+    let response = {};
+    try {
+        let insertedUsername = await Users.query()
+            .insert(newUser)
+            .returning('username');
+        response.result = 'success';
+        response.username = insertedUsername;
+        ctx.body = JSON.stringify(response);
+    }
+    catch(err){
+        console.error(err);
+        response.result = 'error';
+        response.error = 'Generic error at user creation';
+        ctx.status = 400;
+        ctx.body = JSON.stringify(response);
     }
 });
 
 users.get('/:id', async ctx => {
-  ctx.body = await Users.query().findById(ctx.params.id);
+    ctx.body = await Users.query().findById(ctx.params.id);
 });
 
 users.patch('/:id', parsers.json, async (ctx) => {
-  try{ctx.body = await Users.query()
-    .patch({isVerified: true})
-    .findById(ctx.params.id)}
-  catch (err){
-    ctx.body = err
-  }
+    try{ctx.body = await Users.query()
+        .patch({isVerified: true})
+        .findById(ctx.params.id)}
+    catch (err){
+        ctx.body = err
+    }
 });
+
+function createUser (userParams) {
+    let newUser = userParams;
+    let saltRounds = 10;
+    newUser.pwSalt = bcrypt.genSaltSync(saltRounds);
+    newUser.pwHash = bcrypt.hashSync(userParams.password, newUser.pwSalt);
+    newUser.pwAlgorithm = 'bcrypt,' + saltRounds;
+    newUser.isVerified = false;
+    newUser.isAdmin = false;
+    newUser.dateRegistered = Math.floor(Date.now() / 1000);
+    newUser.lastLogin = 0; // We cannot leave it empty, because the ORM connector chokes on it.
+    newUser.isLocalResident = LOCAL_RESIDENT_OPTIONS.unknown;
+    return newUser;
+}
 
 module.exports = users;
