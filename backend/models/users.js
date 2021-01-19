@@ -17,34 +17,6 @@ class Users extends BaseModel {
         return 'users';
     }
 
-<<<<<<< HEAD
-  /**
-   * Every time a model instance is created, it's validated agains the jsonSchema.
-   * https://vincit.github.io/objection.js/api/model/static-properties.html#static-jsonschema
-   **/
-  static get jsonSchema() {
-    return {
-      type: 'object',
-      required: ['username', 'pwHash'],
-      properties: {
-        username: {type: 'string'},
-        firstName: {type: 'string'},
-        lastName: {type: 'string'},
-        email: {type: 'string'},
-        zipcode: {type: 'string'},
-        address: {type: 'string'},
-        localResidentP: {type: 'boolean'},
-        isVerified: {type: 'boolean'},
-        pwHash: {type: 'string'},
-        adminP: {type: 'boolean'},
-        dateRegistered: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
-        lastLogin: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
-        createdAt: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
-        updatedAt: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
-      },
-    };
-  }
-=======
     /**
      * Every time a model instance is created, it's validated agains the jsonSchema.
      * https://vincit.github.io/objection.js/api/model/static-properties.html#static-jsonschema
@@ -69,7 +41,6 @@ class Users extends BaseModel {
             },
         };
     }
->>>>>>> master
 
     /**
      *  This is called when a model is converted to database format.
@@ -107,20 +78,6 @@ class Users extends BaseModel {
     $parseDatabaseJson(json) {
         json = super.$parseDatabaseJson(json);
 
-<<<<<<< HEAD
-    const formatted = _.pick(json, [
-      'id',
-      'username',
-      'firstName',
-      'lastName',
-      'email',
-      'zipcode',
-      'address',
-      'localResidentP',
-      'isVerified',
-      'pwHash',
-      'adminP']);
-=======
         const formatted = _.pick(json, [
             'id',
             'username',
@@ -133,7 +90,6 @@ class Users extends BaseModel {
             'pwSalt',
             'pwAlgoritm',
             'isAdmin']);
->>>>>>> master
 
         formatted.dateRegistered = moment(json.dateRegistered).unix();
         formatted.lastLogin = moment(json.lastLogin).unix();

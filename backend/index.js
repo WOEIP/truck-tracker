@@ -24,12 +24,7 @@ app.use(passport.session());
 
 app.use(
   cors({
-<<<<<<< HEAD
-    // TODO this should probably be in config
-          origin: false,
-=======
     origin: false,
->>>>>>> master
     credentials: true,
     allowHeaders: ['Origin', 'Content-Type'],
   }),
