@@ -7,6 +7,7 @@ const serve = require('koa-static');
 const cors = require('@koa/cors');
 const session = require('koa-session');
 const passport = require('koa-passport');
+const KeyGrip = require('keygrip');
 
 const config = require('./config');
 const router = require('./routes');
@@ -14,7 +15,7 @@ const validationErrorHandler = require('./lib/middleware/validation-error-handle
 
 const app = new Koa();
 
-app.keys = ['TODO put a secret key here'];
+app.keys = new KeyGrip([config.secrets.get('koa_session_key')], 'sha256');
 app.use(session(app));
 
 require('./lib/auth.js');
@@ -23,8 +24,12 @@ app.use(passport.session());
 
 app.use(
   cors({
+<<<<<<< HEAD
     // TODO this should probably be in config
           origin: false,
+=======
+    origin: false,
+>>>>>>> master
     credentials: true,
     allowHeaders: ['Origin', 'Content-Type'],
   }),

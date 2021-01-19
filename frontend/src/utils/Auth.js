@@ -6,11 +6,6 @@ let Auth = {
     createUUID: function (inputString) {
       return uuidv5(inputString, MY_NAMESPACE);
     },
-
-    // TODO no need for it actually
-    hashPassword: function (pw) {
-        return pw;
-    }
 };
 
 export default Auth;

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import Api from "./../utils/Api.js";
-import Auth from "./../utils/Auth.js";
 import Menu from "./../components/Menu.js";
 import MessagingDisplay from "./MessagingDisplay";
 
@@ -41,7 +40,7 @@ class RegistrationPage extends Component {
             zipcode: this.state.zipCode,
             localResidentP: this.state.isLocal,
             isVerified: false,
-            pwHash: Auth.hashPassword(this.state.password),
+            pwHash: this.state.password,
             adminP: false,
             dateRegistered: Math.floor(Date.now() / 1000),
             lastLogin: Math.floor(Date.now() / 1000),
