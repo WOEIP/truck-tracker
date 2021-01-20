@@ -35,6 +35,7 @@ class Login extends Component {
             .then((response) => {
                 if (response.status === 200) {
                     session.update({ loggedInUser: response.data });
+                    debugger
                     window.location.hash = "#report";
                 }
             })

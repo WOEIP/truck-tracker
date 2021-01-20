@@ -21,7 +21,7 @@ class Admin extends Component {
 
   componentWillUpdate(){
     let session = this.context;
-      if (!session.data.loggedInUser || session.data.loggedInUser.admin_p !== true){
+      if (!session.data.loggedInUser || session.data.loggedInUser.is_admin !== true){
         window.location.hash = "#report"
       }
   }
@@ -35,7 +35,7 @@ class Admin extends Component {
   toggleUser(toggledUser) {
     let session = this.context;
 
-    if (session.data.loggedInUser.admin_p === true){
+    if (session.data.loggedInUser.is_admin === true){
 
       Api.patch(`users/${toggledUser.id}`,
         {
