@@ -14,7 +14,22 @@ const parsers = {
 const verifiedUsers = new Router();
 
 verifiedUsers.get('/', async ctx => {
-  ctx.body = "you hit the endpoint!"
+   let response = {};
+    try {
+        let verifiedUsers = await Users.query()
+            .where('is_verified', true)
+            .returning('id')
+        response.result = 'success';
+        response.verifiedIds = verifiedIds.id
+        ctx.body = JSON.stringify(response);
+    }
+    catch(err){
+        console.error(err);
+        response.result = 'error';
+        response.error = 'Could not fetch verified IDs';
+        ctx.status = 400;
+        ctx.body = JSON.stringify(response);
+    }
 });
 
 module.exports = verifiedUsers;

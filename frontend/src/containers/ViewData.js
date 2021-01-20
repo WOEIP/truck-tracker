@@ -10,6 +10,7 @@ import HeatMap from './../components/HeatMap';
 import HeatMapSettings from './../components/HeatMapSettings';
 
 import { truckTypes } from '../components/TruckSelection';
+import { SessionContext } from "../utils/Session.js";
 
 class Data extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Data extends Component {
     this.state = {
       originalData: [],
       data: [],
+      verifiedUsers: [],
       truckTypesToShow: truckTypesToShow,
       fromTime: new Date(new Date().setFullYear(new Date().getFullYear() - 1)), // wows
       toTime: new Date()
@@ -46,14 +48,25 @@ class Data extends Component {
   }
 
   fetchData () {
+    //fetches verified user ids
+    let verifiedUsers;
     Api.get('verifiedusers').then(response => {
-      console.log(response)
-    })
+      verifiedUsers = response.data.verifiedIds
 
-    Api.get('reports').then(response => {
-      this.setState({data: response.data,
-                     originalData: response.data});
-    });
+      //fetches reports
+      let reportData;
+      Api.get('reports').then(response => {
+        reportData = response.data
+
+        //sets state data to filtered out reports
+        let session = this.context;
+        debugger
+        this.setState({
+          data: reportData.filter(report => verifiedUsers.includes(report.reporterId) || report.reporterId === session.data.loggedInUser.id),
+          originalData: reportData.filter(report => verifiedUsers.includes(report.reporterId) || report.reporterId === session.data.loggedInUser.id)
+        })
+      });
+    })
   }
 
   updateTruck (truckKey, shouldWeShow) {
@@ -115,5 +128,7 @@ class Data extends Component {
     );
   }
 }
+
+Data.contextType = SessionContext;
 
 export default Data;

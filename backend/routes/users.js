@@ -74,26 +74,6 @@ users.patch('/:id', parsers.json, async (ctx) => {
     }
 });
 
-users.get('/verifiedusers/', parsers.json, async ctx => {
-    ctx.body = "received request!!!"
-    // let response = {};
-    // try {
-    //     let verifiedIds = await Users.query()
-    //         .where('isVerified', true)
-    //         .returning('id')
-    //     response.result = 'success';
-    //     response.verifiedIds = verifiedIds
-    //     ctx.body = JSON.stringify(response);
-    // }
-    // catch(err){
-    //     console.error(err);
-    //     response.result = 'error';
-    //     response.error = 'Could not fetch verified IDs';
-    //     ctx.status = 400;
-    //     ctx.body = JSON.stringify(response);
-    // }
-});
-
 function createUser (userParams) {
     let newUser = userParams;
     let saltRounds = 10;
