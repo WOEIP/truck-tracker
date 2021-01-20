@@ -46,6 +46,10 @@ class Data extends Component {
   }
 
   fetchData () {
+    // Api.get('users/verifiedusers').then(response => {
+    //   console.log(response)
+    // })
+
     Api.get('reports').then(response => {
       this.setState({data: response.data,
                      originalData: response.data});

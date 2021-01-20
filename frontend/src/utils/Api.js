@@ -26,8 +26,8 @@ let Api = {
         });
   },
 
-  patch: function (endPoint, postObject) {
-    return axios.patch(urlRoot + endPoint, postObject, { withCredentials: true })
+  patch: function (endPoint, patchObject) {
+    return axios.patch(urlRoot + endPoint, patchObject, { withCredentials: true })
       .then(response => {
         // We keep this here, generic API stuff can go here
         return response;
