@@ -25,6 +25,7 @@ auth.post('/login', parsers.json, async ctx => {
             response.result = 'success';
             response.username = user.username;
             response.is_admin = user.is_admin
+            response.id = user.id
             ctx.body = JSON.stringify(response);
         } else {
             ctx.status = 400;
