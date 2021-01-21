@@ -63,11 +63,11 @@ users.patch('/:id', parsers.json, async (ctx) => {
         .patch(patchedPayload)
         .findById(ctx.params.id)
 
-        response.result = 'success';
+        response.result = 'User object successfuly modified';
         ctx.body = JSON.stringify(response);
     }
     catch (err){
-        response.result = 'error';
+        response.result = 'Could not modify user object';
         response.error = err
         ctx.status = 400;
         ctx.body = JSON.stringify(response);
