@@ -50,11 +50,29 @@ users.get('/:id', async ctx => {
 });
 
 users.patch('/:id', parsers.json, async (ctx) => {
-    try{ctx.body = await Users.query()
-        .patch({isVerified: true})
-        .findById(ctx.params.id)}
+    let response = {}
+    try{
+        let targetUser = await Users.query()
+        .findById(ctx.params.id)
+
+        //currently, we have to have dateRegistered and lastLogin in patch request or it won't work
+        let patchedPayload = Object.assign(ctx.request.body, {dateRegistered: targetUser.dateRegistered, lastLogin: 0})
+
+        //actual patch request
+        await Users.query()
+        .patch(patchedPayload)
+        .findById(ctx.params.id)
+
+        response.status = 'User object successfully modified'
+        ctx.body = JSON.stringify(response);
+    }
     catch (err){
-        ctx.body = err
+        response.status = 'error'
+        response.errorText = 'Could not modify user object';
+        response.originalError = err
+        ctx.status = 400;
+        ctx.status = 200;
+        ctx.body = JSON.stringify(response);
     }
 });
 

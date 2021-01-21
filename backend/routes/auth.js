@@ -22,13 +22,18 @@ auth.post('/login', parsers.json, async ctx => {
         if (user) {
             ctx.login(user);
             ctx.status = 200;
-            response.result = 'success';
-            response.username = user.username;
+            let data = {
+            username: user.username,
+            is_admin: user.is_admin,
+            id: user.id
+            }
+            response.status = 'success';
+            response.data = data;
             ctx.body = JSON.stringify(response);
         } else {
             ctx.status = 400;
-            response.result = 'error';
-            response.error = 'Generic error at login';
+            response.status = 'error';
+            response.errorText = 'Generic error at login';
             ctx.body = JSON.stringify(response);
         }
     })(ctx);
