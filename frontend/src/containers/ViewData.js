@@ -51,7 +51,7 @@ class Data extends Component {
     //Fetches verified user ids
     let validUsers;
     Api.get('verifiedusers').then(response => {
-      validUsers = response.data.verifiedIds
+      validUsers = response.data.data.verifiedIds
 
       //Adds current user to reports we want to show
       let session = this.context;

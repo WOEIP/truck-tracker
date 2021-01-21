@@ -19,14 +19,19 @@ verifiedUsers.get('/', async ctx => {
         let verifiedUsers = await Users.query()
             .select('id')
             .where('is_verified', true)
-        response.result = 'success';
-        response.verifiedIds = idHash(verifiedUsers)
+
+        let data = {
+            verifiedIds: idHash(verifiedUsers)
+        }
+        response.status = 'success';
+        response.data = data
         ctx.body = JSON.stringify(response);
     }
     catch(err){
         console.error(err);
-        response.result = 'error';
-        response.error = 'Could not fetch verified IDs';
+        response.status = "error";
+        response.errorText = 'Could not fetch verified IDs';
+        response.originalError = err;
         ctx.status = 400;
         ctx.body = JSON.stringify(response);
     }
