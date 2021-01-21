@@ -59,18 +59,18 @@ class Admin extends Component {
     let itemsToRender = [];
     for (let i = 0; i < users.length; i++) {
       let user = users[i];
-      let buttonText = user.isVerified ? "Deactivate" : "Activate";
+      let buttonText = user.isVerified ? "Unverify" : "Verify";
       let userNameToShow = (user.firstName || user.lastName)
           ? user.firstName + ' ' + user.lastName
           : user.username;
-      let userActiveClass = user.isVerified ? ' active' : ' inactive';
+      let userActiveClass = user.isVerified ? ' verified' : ' inactive';
       itemsToRender.push(
         <p className='admin-row'
             key={user.id}>
           <span className={'user-name-in-overview' + userActiveClass}>{userNameToShow}</span>
-          <button className='admin-button delete-button' onClick={() => this.deleteUser(user)}>
+          {/* <button className='admin-button delete-button' onClick={() => this.deleteUser(user)}>
             Dismiss
-          </button>
+          </button> */}
           <button className='admin-button' onClick={() => this.toggleUser(user)}>
             {buttonText}
           </button>
