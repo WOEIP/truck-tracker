@@ -17,10 +17,10 @@ verifiedUsers.get('/', async ctx => {
    let response = {};
     try {
         let verifiedUsers = await Users.query()
+            .select('id')
             .where('is_verified', true)
-            .returning('id')
         response.result = 'success';
-        response.verifiedIds = verifiedIds.id
+        response.verifiedIds = idHash(verifiedUsers)
         ctx.body = JSON.stringify(response);
     }
     catch(err){
@@ -31,5 +31,15 @@ verifiedUsers.get('/', async ctx => {
         ctx.body = JSON.stringify(response);
     }
 });
+
+function idHash(users){
+    let result = {}
+
+    for(let i=0; i < users.length; i++){
+        result[users[i].id] = true
+    }
+
+    return result;
+}
 
 module.exports = verifiedUsers;

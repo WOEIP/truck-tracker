@@ -52,18 +52,21 @@ class Data extends Component {
     let verifiedUsers;
     Api.get('verifiedusers').then(response => {
       verifiedUsers = response.data.verifiedIds
-
+      let session = this.context;
+      //adds current user to reports we want to show
+      if (session.data.loggedInUser){
+        verifiedUsers[session.data.loggedInUser.id] = true
+      }
+      
       //fetches reports
       let reportData;
       Api.get('reports').then(response => {
         reportData = response.data
 
         //sets state data to filtered out reports
-        let session = this.context;
-        debugger
         this.setState({
-          data: reportData.filter(report => verifiedUsers.includes(report.reporterId) || report.reporterId === session.data.loggedInUser.id),
-          originalData: reportData.filter(report => verifiedUsers.includes(report.reporterId) || report.reporterId === session.data.loggedInUser.id)
+          data: reportData.filter(report => verifiedUsers[report.reporterId]),
+          originalData: reportData.filter(report => verifiedUsers[report.reporterId])
         })
       });
     })
