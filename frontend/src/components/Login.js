@@ -24,7 +24,9 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
-    login() {
+    login(e) {
+        e.preventDefault();
+        
         let session = this.context;
         let postData = {
             username: this.state.username,

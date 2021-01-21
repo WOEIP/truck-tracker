@@ -52,14 +52,14 @@ class HeatMap extends Component {
   componentDidUpdate(){
     //Clear the map. TODO: find a more elegant way
     for(let i in this.map._layers) {
-        // console.log(this.map._layers[i]);
-        // console.log(i);
+        console.log(this.map._layers[i]);
+        console.log(i);
         if(this.map._layers[i]._path != undefined ||
            this.map._layers[i]._latlng != undefined) {
           this.map.removeLayer(this.map._layers[i]);
         } else {
-            // console.log(this.map._layers[i]);
-            // console.log(i);
+            console.log(this.map._layers[i]);
+            console.log(i);
         }
     }
 
