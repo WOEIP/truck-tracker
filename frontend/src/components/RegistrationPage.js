@@ -50,7 +50,7 @@ class RegistrationPage extends Component {
                             .then((logInResponse) => {
                                 if (logInResponse.status === 200) {
                                     session.update({
-                                        loggedInUser: logInResponse.data,
+                                        loggedInUser: logInResponse.data.data,
                                         newlyRegistered: true,
                                     });
                                     window.location.hash = "#report";
