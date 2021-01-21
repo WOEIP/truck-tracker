@@ -33,7 +33,6 @@ class Login extends Component {
 
         Api.post("auth/login", postData)
             .then((response) => {
-                debugger
                 if (response.status === 200) {
                     session.update({ loggedInUser: response.data.data });
                     window.location.hash = "#report";
