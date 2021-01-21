@@ -63,7 +63,7 @@ class Admin extends Component {
       let userNameToShow = (user.firstName || user.lastName)
           ? user.firstName + ' ' + user.lastName
           : user.username;
-      let userActiveClass = user.isVerified ? ' verified' : ' inactive';
+      let userActiveClass = user.isVerified ? ' verified' : ' unverified';
       itemsToRender.push(
         <p className='admin-row'
             key={user.id}>
