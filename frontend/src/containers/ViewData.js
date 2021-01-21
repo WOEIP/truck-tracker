@@ -48,25 +48,26 @@ class Data extends Component {
   }
 
   fetchData () {
-    //fetches verified user ids
-    let verifiedUsers;
+    //Fetches verified user ids
+    let validUsers;
     Api.get('verifiedusers').then(response => {
-      verifiedUsers = response.data.verifiedIds
+      validUsers = response.data.verifiedIds
+
+      //Adds current user to reports we want to show
       let session = this.context;
-      //adds current user to reports we want to show
       if (session.data.loggedInUser){
-        verifiedUsers[session.data.loggedInUser.id] = true
+        validUsers[session.data.loggedInUser.id] = true
       }
-      
-      //fetches reports
+
+      //Fetches reports
       let reportData;
       Api.get('reports').then(response => {
         reportData = response.data
 
-        //sets state data to filtered out reports
+        //Sets state data to filtered out reports
         this.setState({
-          data: reportData.filter(report => verifiedUsers[report.reporterId]),
-          originalData: reportData.filter(report => verifiedUsers[report.reporterId])
+          data: reportData.filter(report => validUsers[report.reporterId]),
+          originalData: reportData.filter(report => validUsers[report.reporterId])
         })
       });
     })
