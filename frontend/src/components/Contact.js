@@ -93,7 +93,7 @@ class Contact extends Component {
                 </div>
                 <div className="form-element">
                     <label htmlFor="message">Your message or question</label>
-                    <p className="smaller-text">If you're submitting a bug report please include your device brand, model, and operating system
+                    <p className="helptext">If you're submitting a bug report please include your device brand, model, and operating system
                       (e.g. "iPhone SE 10.14" or "Samsung Galaxy, Android 10"), and a detailed description of what you
                       were trying to do and what went wrong.
                     </p>
