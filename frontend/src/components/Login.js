@@ -26,7 +26,7 @@ class Login extends Component {
 
     login(e) {
         e.preventDefault();
-        
+
         let session = this.context;
         let postData = {
             username: this.state.username,

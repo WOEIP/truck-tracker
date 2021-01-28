@@ -8,6 +8,7 @@ import "../styles/report.scss";
 import ThankYouPage from "../components/ThankYouPage";
 import TruckSelection from "../components/TruckSelection";
 import IdlingOrMoving from "../components/IdlingOrMoving";
+import DotPage from "../components/Dot.js";
 import MessagingDisplay from "../components/MessagingDisplay";
 import MapContainer from "./MapContainer";
 
@@ -76,10 +77,10 @@ class Report extends Component {
             truckWasMovingP: truckWasMovingP,
         };
 
-        Api.post("reports", postData);
+        // Api.post("reports", postData);
 
         this.setState((prevState) => ({
-            currentView: "thankYouPage",
+            currentView: "dot",
         }));
     }
 
@@ -131,6 +132,10 @@ class Report extends Component {
                 return {
                     component: TruckSelection,
                     props: { selectTruck: that.goToMotionView },
+                };
+            case "dot":
+                return {
+                    component: DotPage
                 };
             case "thankYouPage":
                 return { component: ThankYouPage, props: {} };

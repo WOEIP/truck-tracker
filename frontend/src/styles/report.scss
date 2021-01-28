@@ -135,3 +135,18 @@ input[type=number] {
         }
     }
 }
+
+.helptext{
+    font-size: 1rem;
+}
+
+.skip-step{
+    color: rgb(221, 221, 221);
+    text-decoration: underline;
+}
+
+@media only screen and (max-width : 480px) {
+    .dot-actions{
+        text-align: center;
+    }
+}
