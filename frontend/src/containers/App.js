@@ -6,7 +6,6 @@ import Logout from './../components/Logout';
 import MainPage from './../components/MainPage';
 import Report from './../containers/Report';
 import ViewData from './../containers/ViewData';
-import DOT from './../components/Dot';
 import Mission from './../components/Mission';
 import TermsOfService from './../components/TermsOfService.js';
 import Contact from './../components/Contact';
@@ -58,8 +57,6 @@ class App extends Component {
         return MessageSent;
       case '#view-data':
         return ViewData;
-      case '#dot':
-        return DOT;
       case '#admin':
         return Admin;
       case '#contributing':

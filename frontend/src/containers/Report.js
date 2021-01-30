@@ -9,6 +9,7 @@ import ThankYouPage from "../components/ThankYouPage";
 import TruckSelection from "../components/TruckSelection";
 import IdlingOrMoving from "../components/IdlingOrMoving";
 import DotPage from "../components/Dot.js";
+import PhotoUpload from "../components/PhotoUpload";
 import MessagingDisplay from "../components/MessagingDisplay";
 import MapContainer from "./MapContainer";
 
@@ -22,6 +23,7 @@ class Report extends Component {
         this.goToMotionView = this.goToMotionView.bind(this);
         this.goToMapView = this.goToMapView.bind(this);
         this.sendData = this.sendData.bind(this);
+        this.addDotNumber = this.addDotNumber.bind(this);
 
         this.state = {
             currentView: "truckSelection",
@@ -84,6 +86,13 @@ class Report extends Component {
         }));
     }
 
+    addDotNumber(num) {
+
+        this.setState((prevState) => ({
+            currentView: "photoUpload",
+        }));
+    }
+
     goToMotionView(truck) {
         this.setState((prevState) => ({
             currentView: "idlingOrMoving",
@@ -135,7 +144,12 @@ class Report extends Component {
                 };
             case "dot":
                 return {
-                    component: DotPage
+                    component: DotPage,
+                    props: { addDotNumber: that.addDotNumber }
+                };
+            case "photoUpload":
+                return {
+                    component: PhotoUpload,
                 };
             case "thankYouPage":
                 return { component: ThankYouPage, props: {} };

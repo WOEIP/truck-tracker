@@ -2,9 +2,21 @@ import React, { Component } from "react";
 
 class DotPage extends Component {
 
-    // selectTruck(truck) {
-    //     return this.props.selectTruck(truck);
-    // }
+    constructor(props){
+        super(props);
+
+        this.state = {
+            dotNumber: null
+        }
+
+        this.addDotNumber = this.addDotNumber.bind(this);
+    }
+
+    addDotNumber(e){
+        e.preventDefault();
+
+        this.props.addDotNumber()
+    }
 
     render() {
         return (
@@ -17,7 +29,7 @@ class DotPage extends Component {
                         usually found on the driver's side door of the truck.
                     </p>
                     <div className="dot-actions">
-                        <button>Confirm</button>
+                        <button onClick={this.addDotNumber}>Confirm</button>
                         <p className="skip-step">Skip this step</p>
                     </div>
                 </form>
