@@ -2,105 +2,77 @@
 
 const path = require('path');
 const convict = require('convict');
+const fs = require('fs');
+
+var appEnvironment = fs.readFileSync(__dirname + '/app-environment', 'utf8').trim();
+if (appEnvironment !== 'development' && appEnvironment !== 'production') {
+    console.error('No config env file found!');
+}
 
 const exposed = convict({
-  env: {
-    doc: 'The application environment.',
-    format: ['production', 'development'],
-    default: 'production',
-    env: 'NODE_ENV',
-    arg: 'env',
-  },
-  port: {
-    doc: 'The port for the http server to listen on.',
-    format: 'port',
-    default: -1,
-    env: 'PORT',
-    arg: 'port',
-  },
-  database: {
-    host: {
-      doc: 'hostname for the database server',
-      format: String,
-      default: null,
-      env: 'PGHOST',
-    },
     port: {
-      doc: 'port for the database server',
-      format: 'port',
-      default: null,
-      env: 'PGPORT',
+        format: 'port',
+        default: -1,
     },
-    user: {
-      doc: 'user to connect to database server as',
-      format: String,
-      default: null,
-      env: 'PGUSER',
+    database: {
+        host: {
+            format: String,
+            default: null,
+        },
+        port: {
+            format: 'port',
+            default: null,
+        },
+        user: {
+            format: String,
+            default: null,
+        },
+        database: {
+            format: String,
+            default: null,
+        }
     },
-    dev_database: {
-      doc: 'name of the database to use on the database server',
-      format: String,
-      default: null,
-      env: 'PGDATABASE',
-    },
-    prod_database: {
-      doc: 'name of the database to use on the database server',
-      format: String,
-      default: null,
-      env: 'PGDATABASE',
+    email: {
+        smtp_host: {
+            format: String,
+            default: null,
+        },
+        smtp_port: {
+            format: 'port',
+            default: null,
+        },
+        noreply_email: {
+            format: String,
+            default: null,
+        }
     }
-  },
-  email: {
-    smtp_host: {
-      doc: 'SMTP host',
-      format: String,
-      default: null,
-      env: 'SMTP_HOST',
-    },
-    smtp_port: {
-      doc: 'SMTP port',
-      format: 'port',
-      default: null,
-      env: 'SMTP_PORT',
-    },
-    noreply_email: {
-      doc: 'Outbound email address',
-      format: String,
-      default: null,
-      env: 'NOREPLY_EMAIL',
-    }
-  }
 });
 
 const secrets = convict({
-    development_db_password: {
-        doc: 'dev postgres PW',
-        format: String,
-        default: null,
-        env: 'DEV_DB_PW',
-    },
-    production_db_password: {
-        doc: 'prod postgres PW',
-        format: String,
-        default: null,
-        env: 'PROD_DB_PW',
+    database: {
+        password: {
+            format: String,
+            default: null,
+        }
     },
     dreamhost_smtp_password: {
-        doc: 'For sending emails',
         format: String,
         default: null,
-        env: 'EMAIL_PW',
     },
     koa_session_key: {
-        doc: 'Session cookie key',
         format: String,
         default: null,
-        env: 'KOA_SESSION_KEY',
     }
 })
 
-exposed.loadFile(path.resolve(__dirname, 'exposed.json'));
-secrets.loadFile(path.resolve(__dirname, 'secrets.json'));
+if (appEnvironment === 'production') {
+    exposed.loadFile(path.resolve(__dirname, 'prod_exposed.json'));
+    secrets.loadFile(path.resolve(__dirname, 'prod_secrets.json'));
+} else {
+    exposed.loadFile(path.resolve(__dirname, 'dev_exposed.json'));
+    secrets.loadFile(path.resolve(__dirname, 'dev_secrets.json'));
+}
+
 
 exposed.validate({allowed: 'strict'});
 secrets.validate({allowed: 'strict'});

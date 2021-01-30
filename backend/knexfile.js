@@ -9,7 +9,7 @@ module.exports = {
     host: config.exposed.get('database.host'),
     port: config.exposed.get('database.port'),
     user: config.exposed.get('database.user'),
-    password: config.secrets.get('development_db_password'),
-    database: config.exposed.get('database.dev_database'),
+    password: config.secrets.get('database.password'),
+    database: config.exposed.get('database.database'),
   },
 };
