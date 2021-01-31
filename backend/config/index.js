@@ -55,6 +55,10 @@ const secrets = convict({
             default: null,
         }
     },
+    salt: {
+        format: String,
+        default: null,
+    },
     dreamhost_smtp_password: {
         format: String,
         default: null,

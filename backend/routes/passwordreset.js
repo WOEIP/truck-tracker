@@ -11,22 +11,21 @@ const PwResets = require('../models/pwresets');
 
 //TODO parsers?
 const parsers = {
-  query: parser({urlencoded: true, multipart: false, json: false}),
-  form: parser({urlencoded: false, multipart: true, json: false}),
-  json: parser({urlencoded: false, multipart: false, json: true}),
+    query: parser({urlencoded: true, multipart: false, json: false}),
+    form: parser({urlencoded: false, multipart: true, json: false}),
+    json: parser({urlencoded: false, multipart: false, json: true}),
 };
 
 const passwordReset = new Router();
 
 passwordReset.get('/', async ctx => {
-  ctx.body = await PwResets.query();
+    ctx.body = await PwResets.query();
 });
 
 passwordReset.post('/', parsers.json, async ctx => {
-   let entryToInsert = ctx.request.body;
-   let resetToken = crypto.randomBytes(128).toString('hex');
-    // TODO secret salt
-    const salt = '$2a$10$arjAldmQvHFfmUeL1/GCm.';
+    let entryToInsert = ctx.request.body;
+    let resetToken = crypto.randomBytes(128).toString('hex');
+    const salt = config.secrets.get('salt');
     entryToInsert.resetHash = bcrypt.hashSync(resetToken, salt);
     ctx.body = await PwResets.query()
         .insert(entryToInsert)
@@ -45,12 +44,12 @@ passwordReset.post('/', parsers.json, async ctx => {
     let resetLink = 'https://trucktracker.net/#passwordresetlanding?token=' + resetToken;
 
     let htmlBody =
-      '<p>You requested a password reset for your Truck Tracker account. To confirm your request, please click on the link below, or copy and paste the entire link into your browser.</p>' +
-      '<p>' +
+        '<p>You requested a password reset for your Truck Tracker account. To confirm your request, please click on the link below, or copy and paste the entire link into your browser.</p>' +
+        '<p>' +
         '<a href="' + resetLink + '">' + resetLink + '</a>' +
-     '<\p>'+
-     '<p>Please note that this confirmation link expires in 24 hours and may require your immediate attention if you wish to access your online account in the future.</p>' +
-     '<p><strong>/>PLEASE DO NOT REPLY TO THIS MESSAGE</strong></p>';
+        '<\p>'+
+        '<p>Please note that this confirmation link expires in 24 hours and may require your immediate attention if you wish to access your online account in the future.</p>' +
+        '<p><strong>/>PLEASE DO NOT REPLY TO THIS MESSAGE</strong></p>';
 
     let info = await transporter.sendMail({
         from: config.exposed.get('email.noreply_email'),
@@ -61,10 +60,10 @@ passwordReset.post('/', parsers.json, async ctx => {
     });
 
     console.log("Message sent: %s", info.messageId);
- });
+});
 
 passwordReset.get('/:id', async ctx => {
-  ctx.body = await PwResets.query().findById(ctx.params.id);
+    ctx.body = await PwResets.query().findById(ctx.params.id);
 });
 
 module.exports = passwordReset;
