@@ -30,7 +30,7 @@ class About extends Component {
         <p>There are plenty of ways you can help West Oakland advocate for cleaner air:
         <ul><li>Create a free Truck Tracker account and <a href="#report">report illegal truck activity</a> when you see it.</li>
         <li>Learn about <a href="https://woeip.org/featured-work/owning-our-air/">Owning Our Air</a>, WOIEP's initiative to hold the City and County accountable for reducing toxic air exposure in West Oakland.</li>
-        <li>Contribute your coding, research, or other skills to the work we're doing. Just <a href="#contact">send us a note</a> to let us know what you're most interested in.
+        <li>Contribute your coding, research, or other skills to the work we're doing. Just <a href="#contact">send us a note</a> to let us know what you're most interested in.</li></ul></p>
 
       </article>
     );
