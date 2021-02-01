@@ -14,58 +14,24 @@ class About extends Component {
     return (
       <article id="about-text">
         <Menu current="about"/>
-        <h1 className="title">Mission</h1>
+        <h1 className="title">About Truck Tracker</h1>
         <span className="image main"><img src={aerial} alt="" /></span>
-        <p>West Oakland is situated adjacent to the Port of Oakland,
-          bounded by three major freeways (I-580, I-880, and I-980), and home
-          to a major U.S. Postal Service Distribution Center. <b>West Oakland
-          residents are exposed to high concentrations of diesel particulate
-          matter — almost three times higher than the average background levels
-          in the Bay Area.</b> Trucks remain the single highest sources of
-          diesel emissions in West Oakland. Diesel-powered vehicles and
-          equipment account for nearly half of all nitrogen oxides (NOx) and
-          more than two-thirds of all particulate matter (PM) emissions from US
-          transportation sources. </p>
+        <p>West Oakland is surrounded by three major freeways, sits next to the Port of Oakland, and is home to a major U.S. Postal Service Distribution Center. This brings a <i>lot</i> of trucks into the neighborhood day in and day out. These trucks expose our neighborhood to high concentrations of diesel particulate matter—almost three times higher than the Bay Area average. Trucks remain the single highest source of diesel emissions here. <b>Truck Tracker enables West Oakland residents to monitor truck traffic, so we can better understand trucking patterns’ impact on our community, hold violators accountable, and advocate for better air.</b></p>
         <span className="image main"><img src={truck} alt="" /></span>
-        <p>Particulate matter or soot is created during the incomplete
-          combustion of diesel fuel. Its composition often includes hundreds of
-          chemical elements, including sulfates, ammonium, nitrates, elemental
-          carbon, condensed organic compounds, and even carcinogenic compounds
-          and heavy metals such as arsenic, selenium, cadmium and zinc. Though
-          just a fraction of the width of a human hair, particulate matter
-          varies in size from coarse particulates (less than 10 microns in
-          diameter) to fine particulates (less than 2.5 microns) to ultrafine
-          particulates (less than 0.1 microns). Ultrafine particulates, which
-          are small enough to penetrate the cells of the lungs, make up 80-95%
-          of diesel soot pollution. </p>
-        <p>Diesel exhaust has been classified a potential human carcinogen by
-          the U.S. Environmental Protection Agency (EPA) and the International
-          Agency for Researchd on Cancer. Exposure to high levels of diesel
-          exhaust has been shown to cause lung tumors in rats, and studies of
-          humans routinely exposed to diesel fumes indicate a greater risk of
-          lung cancer. For example, occupational health studies of railroad,
-          dock, trucking, and bus garage workers exposed to high levels of
-          diesel exhaust over many years consistently demonstrate a 20 to 50
-          percent increase in the risk of lung cancer or mortality.</p>
-        <p><b>Our project intention is to empower all communities that suffer
-          the impacts of trucking and the freight industry.</b> Our truck
-          traffic survey tool allows community residents to document truck
-          traffic volumes and directions, and maps that data for later analysis
-          and advocacy. Our mission is to give residents the tools and the power
-          to get toxic truck emission off of their streets and out of their
-          neighborhoods.</p>
-        <p>The tools we create can be used to survey surface streets for
-          estimated traffic volumes and routes of medium duty and heavy duty
-          trucks along residential streets in West Oakland in order to improve
-          the spatial representation of roadway emissions and differentiate the
-          contribution of Port versus non-Port trucks. This data will aid
-          residents who advocate for the control of medium heavy-duty (MHD) and
-          heavy heavy-duty (HHD) truck traffic on residential streets of West
-          Oakland, enforce legal truck routes, identify the locations and
-          duration of truck idling activity, and reduce the vehicle miles
-          travelled for trucks within the study area.</p>
-        <p>If you're a programmer and you'd like to help us, please
-        <a className="textlink" href="#contributing"> read about how!</a></p>
+        <p>The Truck tracker tool is a project of the <a href="https://woeip.org/">West Oakland Environmental Indicators Project</a>. WOEIP is a resident led, community-based environmental justice organization dedicated to achieving healthy homes, healthy jobs, and healthy neighborhoods for all who live, work, learn, and play in West Oakland, California. Built by <a href="https://github.com/motching">Attila Motching</a> with support from <a href="https://openoakland.org">OpenOakland</a> volunteers, we hope to continue expanding the tool so it can be adopted by other communities. We welcome <a href"#contributing">contributions</a> of all kinds.</p>
+
+
+        <h2>The impact of diesel trucks on the community</h2>
+        <p>Many of the commercial trucks that operate in West Oakland rely on diesel engines that produce soot (“particulate matter”) when operating. This particulate matter includes hundreds of chemical elements, including sulfates, ammonium, nitrates, elemental carbon, condensed organic compounds, and even carcinogenic compounds and heavy metals such as arsenic, selenium, cadmium and zinc. These particulates can’t really be seen, but they can be breathed in by the people living and working in the neighborhood. Ultrafine particulates, which are small enough to penetrate the cells of the lungs, make up 80-95% of diesel soot pollution.</p>
+
+        <p>Diesel exhaust has been classified a potential human carcinogen by the U.S. Environmental Protection Agency (EPA) and the International Agency for Research on Cancer. Exposure to high levels of diesel exhaust has been shown to cause lung tumors in rats, and studies of humans routinely exposed to diesel fumes indicate a greater risk of lung cancer. For example, occupational health studies of railroad, dock, trucking, and bus garage workers exposed to high levels of diesel exhaust over many years consistently demonstrate a 20 to 50 percent increase in the risk of lung cancer or mortality.</p>
+
+        <h2>Get involved</h2>
+        <p>There are plenty of ways you can help West Oakland advocate for cleaner air:
+        <ul><li>Create a free Truck Tracker account and <a href="#report">report illegal truck activity</a> when you see it.</li>
+        <li>Learn about <a href="https://woeip.org/featured-work/owning-our-air/">Owning Our Air</a>, WOIEP's initiative to hold the City and County accountable for reducing toxic air exposure in West Oakland.</li>
+        <li>Contribute your coding, research, or other skills to the work we're doing. Just <a href="#contact">send us a note</a> to let us know what you're most interested in.
+
       </article>
     );
   }

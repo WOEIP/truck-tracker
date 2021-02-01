@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './../components/Menu.js';
 import '../styles/common.scss';
-import '../styles/mission.scss';
+import '../styles/about.scss';
 
 // TODO if this stays, make it a generic component
 class Contributing extends Component {

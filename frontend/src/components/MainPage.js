@@ -26,7 +26,7 @@ class MainPage extends Component {
         <nav className="pure-g main-menu">
           <a className="pure-u-1 pure-u-sm-1-4" href="#report">Report</a>
           <a className="pure-u-1 pure-u-sm-1-4" href="#view-data">View data</a>
-          <a className="pure-u-1 pure-u-sm-1-4" href="#mission">Mission</a>
+          <a className="pure-u-1 pure-u-sm-1-4" href="#about">About</a>
           <a className="pure-u-1 pure-u-sm-1-4" href="#contact">Contact</a>
         </nav>
         <div className="vert-space short"></div>

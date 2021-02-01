@@ -16,7 +16,7 @@ class Menu extends Component {
       menuItems = [
         {id: "report", text: "Report"},
         {id: "view-data", text: "View data"},
-        {id: "mission", text: "Mission"},
+        {id: "about", text: "About"},
         {id: "contact", text: "Contact"},
         {id: "logout", text: "Sign out"}
       ];
@@ -29,7 +29,7 @@ class Menu extends Component {
     } else {
       menuItems = [
         {id: "view-data", text: "View data"},
-        {id: "mission", text: "Mission"},
+        {id: "about", text: "About"},
         {id: "contact", text: "Contact"},
         {id: "login", text: "Sign in"}
       ];
