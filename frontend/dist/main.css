@@ -1984,6 +1984,19 @@ input[type=number] {
       background-color: #8aa4d0;
       color: white; }
 
+.helptext {
+  font-size: 1rem;
+  font-weight: lighter;
+  margin-top: 0; }
+
+.skip-step {
+  color: #dddddd;
+  text-decoration: underline; }
+
+@media only screen and (max-width: 480px) {
+  .dot-actions {
+    text-align: center; } }
+
 .truck-grid {
   width: 70%;
   margin: 0 auto; }
@@ -2722,6 +2735,30 @@ article#mission-text > p {
 @media screen and (max-width: 480px) {
   .image.main {
     margin: 1.5rem 0; } }
+
+.address-box p {
+  font-size: 1rem; }
+
+.address-bold {
+  margin: 0;
+  font-weight: bold; }
+
+.smaller-text {
+  margin-top: 0;
+  font-weight: lighter; }
+
+.form-element-inquiry-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.contact-dropdown {
+  color: #222;
+  margin: .1rem 0 1rem 0; }
 
 form input, form textarea {
   color: #222;
