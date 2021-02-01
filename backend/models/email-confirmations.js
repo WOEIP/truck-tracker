@@ -11,7 +11,7 @@ const UNIX_EPOCH_MAX = 2147483647; // 2^31 - 1
  * This is the Objection model for the table
  * Useful overview: https://vincit.github.io/objection.js/api/model/overview.html#model-data-lifecycle
  **/
-class PasswordReset extends BaseModel {
+class EmailConfirmations extends BaseModel {
     static get tableName() {
         return 'email_confirmations';
     }
@@ -75,4 +75,4 @@ class PasswordReset extends BaseModel {
     }
 }
 
-module.exports = PasswordReset;
+module.exports = EmailConfirmations;

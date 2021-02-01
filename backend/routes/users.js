@@ -50,7 +50,7 @@ users.post('/', parsers.json, async ctx => {
             .insert(entryToInsert)
             .returning('*'); // TODO probably not needed
 
-        let confirmationLink = 'https://trucktracker.net/#login?token=' + confirmationToken;
+        let confirmationLink = 'https://trucktracker.net/?token=' + confirmationToken + '#login';
 
         Emailer.sendEmailConfirmationLink(ctx.request.body.email, confirmationLink);
 
@@ -98,7 +98,7 @@ users.patch('/:id', parsers.json, async (ctx) => {
     }
 });
 
-function createUser (userParams) {
+const createUser = userParams => {
     let newUser = userParams;
     let saltRounds = 10;
     newUser.pwSalt = bcrypt.genSaltSync(saltRounds);
