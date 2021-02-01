@@ -44,30 +44,10 @@ class RegistrationPage extends Component {
         } else {
             Api.post("users", postData)
                 .then((response) => {
-                    if (response.status === 200) {
-                        Api.post("auth/login", {
-                            username: postData.username,
-                            password: postData.password,
-                        })
-                            .then((logInResponse) => {
-                                if (logInResponse.status === 200) {
-                                    session.update({
-                                        loggedInUser: logInResponse.data.data,
-                                        newlyRegistered: true,
-                                    });
-                                    window.location.hash = "#report";
-                                }
-                            })
-                            .catch(() => {
-                                this.setState({
-                                    error: "Login Error",
-                                });
-                            });
-                    }
+                    window.location.hash = "#registerdone";
                 })
                 .catch((error) => {
                     error = { body: "Username or Email already registered." };
-
                     this.setState({
                         error: error.body,
                     });

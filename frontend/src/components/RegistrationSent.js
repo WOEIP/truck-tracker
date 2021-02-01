@@ -15,7 +15,10 @@ class RegistrationSent extends Component {
       <article id="registration-sent">
         <Menu current="login"/>
         <p>
-          Thank you for taking the time to make Oakland air quality better! Your data has been sent for verification. We will be in touch with you shortly. In the meantime please feel free to look at the <a className="textlink" href="#view-data">data we already have!</a>
+            We have sent you an email with an account confirmation. Please use the link in there to log in the first time.
+        </p>
+        <p>
+            Thank you for taking the time to make Oakland air quality better!
         </p>
        </article>
     );

@@ -24,6 +24,12 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
+    componentDidMount() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const confirmationToken = urlParams.get('token');
+        console.log(confirmationToken);
+    }
+
     login(e) {
         e.preventDefault();
 
@@ -36,11 +42,13 @@ class Login extends Component {
         Api.post("auth/login", postData)
             .then((response) => {
                 if (response.status === 200) {
-                    session.update({ loggedInUser: response.data.data });
+                    let user = response.data.data;
+                    session.update({ loggedInUser: user });
                     window.location.hash = "#report";
                 }
             })
-            .catch(() => {
+            .catch((response) => {
+                let errorText = "Error at login";
                 this.setState({
                     error: "Username or Password are incorrect.",
                 });
