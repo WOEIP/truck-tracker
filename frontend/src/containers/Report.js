@@ -31,7 +31,7 @@ class Report extends Component {
             truckKey: null,
             truckWasMoving: false,
             engineWasRunning: false,
-            postData: null
+            postData: null,
         };
     }
 
@@ -60,8 +60,14 @@ class Report extends Component {
         }
     }
 
-    createPostData(e, timeSeen, fromPos, toPos, engineWasRunningP, truckWasMovingP) {
-
+    createPostData(
+        e,
+        timeSeen,
+        fromPos,
+        toPos,
+        engineWasRunningP,
+        truckWasMovingP
+    ) {
         // TODO I don't like that we have to reference session like this.
         let session = this.context;
 
@@ -84,7 +90,7 @@ class Report extends Component {
 
         this.setState((prevState) => ({
             postData: postData,
-            currentView: "dot"
+            currentView: "dot",
         }));
     }
 
@@ -99,8 +105,12 @@ class Report extends Component {
         });
     }
 
-    sendData(){
+    sendData() {
         Api.post("reports", this.state.postData);
+
+        this.setState((prevState) => ({
+            currentView: "thankYouPage",
+        }));
     }
 
     goToMotionView(truck) {
@@ -155,12 +165,12 @@ class Report extends Component {
             case "dot":
                 return {
                     component: DotPage,
-                    props: { addDotNumber: that.addDotNumber }
+                    props: { addDotNumber: that.addDotNumber },
                 };
             case "photoUpload":
                 return {
                     component: PhotoUpload,
-                    props: { sendData: that.sendData }
+                    props: { sendData: that.sendData },
                 };
             case "thankYouPage":
                 return { component: ThankYouPage, props: {} };
