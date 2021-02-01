@@ -1,11 +1,10 @@
 {
-  "port": 8080,
+  "port": 8777,
   "database": {
     "host": "localhost",
     "port": 5432,
     "user":"postgres",
-    "dev_database": "truck_tracker_dev",
-    "prod_database": "truck_tracker_prod"
+    "database": "truck_tracker_prod"
   },
   "email": {
       "smtp_host": "smtp.dreamhost.com",

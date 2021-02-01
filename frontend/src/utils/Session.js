@@ -3,7 +3,7 @@ import React from 'react';
 import merge from 'lodash/merge'
 
 const DEFAULT_SESSION_DATA =  {
-        loggedInUser: null
+    loggedInUser: null
 };
 
 export const SessionContext = React.createContext(DEFAULT_SESSION_DATA);

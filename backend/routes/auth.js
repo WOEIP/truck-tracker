@@ -23,9 +23,9 @@ auth.post('/login', parsers.json, async ctx => {
             ctx.login(user);
             ctx.status = 200;
             let data = {
-            username: user.username,
-            is_admin: user.is_admin,
-            id: user.id
+                username: user.username,
+                is_admin: user.is_admin,
+                id: user.id
             }
             response.status = 'success';
             response.data = data;

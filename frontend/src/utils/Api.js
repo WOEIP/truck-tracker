@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const urlRoot = 'https://api.trucktracker.net/';
+let useDevApi = location.hostname.split('.')[0] === 'dev' || location.hostname.split('.')[0] === '127';
+
+const urlRoot = useDevApi
+    ? 'https://dev.api.trucktracker.net/'
+    : 'https://api.trucktracker.net/';
 
 let Api = {
     get: function (endPoint) {

@@ -7,7 +7,8 @@ ehthumbs.db
 Desktop.ini
 
 # Secrets
-config/secrets.json
+config/*secrets.json
+app-environment
 
 # Packages
 node_modules

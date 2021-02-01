@@ -2780,7 +2780,7 @@ form button {
   .admin-row .user-name-in-overview:hover {
     color: #ddd;
     cursor: pointer; }
-  .admin-row .inactive {
+  .admin-row .unverified {
     color: #222; }
   .admin-row > span {
     padding-top: 10px; }
