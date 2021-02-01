@@ -20,20 +20,26 @@ auth.post('/login', parsers.json, async ctx => {
     return passport.authenticate('local', (err, user, info, status) => {
         let response = {};
         if (user) {
-            ctx.login(user);
-            ctx.status = 200;
-            let data = {
-                username: user.username,
-                is_admin: user.is_admin,
-                id: user.id
+            if (user.is_email_verified) {
+                ctx.login(user);
+                ctx.status = 200;
+                let data = {
+                    username: user.username,
+                    isAdmin: user.is_admin,
+                    id: user.id
+                }
+                response.status = 'success';
+                response.data = data;
+            } else {
+                ctx.status = 400;
+                response.status = 'error';
+                response.errorCode = 'err_email_not_verified';
             }
-            response.status = 'success';
-            response.data = data;
             ctx.body = JSON.stringify(response);
         } else {
             ctx.status = 400;
             response.status = 'error';
-            response.errorText = 'Generic error at login';
+            response.errorCode = 'err_user_not_found';
             ctx.body = JSON.stringify(response);
         }
     })(ctx);

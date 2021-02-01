@@ -4,8 +4,12 @@ const Router = require('koa-router');
 const parser = require('koa-body');
 const knex = require('knex');
 const bcrypt = require('bcryptjs');
+const config = require('../config');
+const crypto = require('crypto');
+const Emailer = require('../lib/emailer.js');
 
 const Users = require('../models/users');
+const EmailConfirmations = require('../models/email-confirmations');
 
 const parsers = {
     query: parser({urlencoded: true, multipart: false, json: false}),
@@ -29,11 +33,29 @@ users.post('/', parsers.json, async ctx => {
     let newUser = createUser(ctx.request.body);
     let response = {};
     try {
-        let insertedUsername = await Users.query()
-            .insert(newUser)
-            .returning('username');
+        let insertedUser = await Users.query().insert(newUser);
+
+        let confirmationToken = crypto.randomBytes(128).toString('hex');
+        const salt = config.secrets.get('salt');
+
+        let entryToInsert = {
+            requesterId: insertedUser.id,
+            requesterEmail: ctx.request.body.email,
+            confirmationHash: bcrypt.hashSync(confirmationToken, salt),
+            isDone: false,
+            expirationTime: 0 // Not checking for now
+        };
+
+        ctx.body = await EmailConfirmations.query()
+            .insert(entryToInsert)
+            .returning('*'); // TODO probably not needed
+
+        let confirmationLink = 'https://trucktracker.net/#login?token=' + confirmationToken;
+
+        Emailer.sendEmailConfirmationLink(ctx.request.body.email, confirmationLink);
+
         response.result = 'success';
-        response.username = insertedUsername;
+        response.username = insertedUser.username;
         ctx.body = JSON.stringify(response);
     }
     catch(err){
@@ -83,6 +105,7 @@ function createUser (userParams) {
     newUser.pwHash = bcrypt.hashSync(userParams.password, newUser.pwSalt);
     newUser.pwAlgorithm = 'bcrypt,' + saltRounds;
     newUser.isVerified = false;
+    newUser.isEmailVerified = false;
     newUser.isAdmin = false;
     newUser.dateRegistered = Math.floor(Date.now() / 1000);
     newUser.lastLogin = 0; // We cannot leave it empty, because the ORM connector chokes on it.

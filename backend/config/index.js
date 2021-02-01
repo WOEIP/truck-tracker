@@ -44,6 +44,10 @@ const exposed = convict({
         noreply_email: {
             format: String,
             default: null,
+        },
+        trucktracker_main_email: {
+            format: String,
+            default: null,
         }
     }
 });
