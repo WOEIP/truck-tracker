@@ -13,8 +13,8 @@ let Api = {
                 // We keep this here, generic API stuff can go here
                 return response;
             }).catch(error => {
-                console.log(error);
-                return error;
+                console.error(error.response);
+                return Promise.reject(error.response.data);
             });
     },
 
@@ -24,8 +24,8 @@ let Api = {
                 // We keep this here, generic API stuff can go here
                 return response;
             }).catch(error => {
-                console.log(error);
-                return error;
+                console.error(error.response);
+                return Promise.reject(error.response.data);
             });
     },
 
@@ -35,8 +35,8 @@ let Api = {
                 // We keep this here, generic API stuff can go here
                 return response;
             }).catch(error => {
-                console.log(error);
-                return error;
+                console.error(error.response);
+                return Promise.reject(error.response.data);
             });
     },
 };

@@ -24,20 +24,22 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
-    componentDidMount() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const confirmationToken = urlParams.get('token');
-        console.log(confirmationToken);
-    }
-
     login(e) {
         e.preventDefault();
 
         let session = this.context;
+
         let postData = {
             username: this.state.username,
             password: this.state.password,
         };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const confirmationToken = urlParams.get('token');
+
+        if (confirmationToken) {
+            postData.confirmationToken = confirmationToken;
+        }
 
         Api.post("auth/login", postData)
             .then((response) => {
@@ -47,10 +49,21 @@ class Login extends Component {
                     window.location.hash = "#report";
                 }
             })
-            .catch((response) => {
-                let errorText = "Error at login";
+            .catch((errorData) => {
+                let errorText = "";
+                switch (errorData.errorCode) {
+                    case "err_user_not_found":
+                        errorText = "Username or Password are incorrect.";
+                        break;
+                    case "err_email_not_verified":
+                        errorText = "This address hasn't been verified. Please check your email!"; // TODO resend link
+                        break;
+                    default:
+                        errorText = "Error at login";
+                        break;
+                }
                 this.setState({
-                    error: "Username or Password are incorrect.",
+                    error: errorText
                 });
             });
     }
