@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 
 class PhotoPage extends Component {
-    // selectTruck(truck) {
-    //     return this.props.selectTruck(truck);
-    // }
+
+    constructor(props){
+        super(props);
+
+        this.sendData = this.sendData.bind(this);
+    }
+
+    sendData(e){
+        e.preventDefault();
+
+        this.props.sendData();
+    }
 
     render() {
         return (
@@ -14,7 +23,7 @@ class PhotoPage extends Component {
                         Coming soon...
                     </p>
                     <div className="dot-actions">
-                        <button>Submit</button>
+                        <button onClick={this.sendData}>Submit</button>
                     </div>
                 </form>
             </div>

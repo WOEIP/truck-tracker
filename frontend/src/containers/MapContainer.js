@@ -106,15 +106,15 @@ class MapContainer extends Component {
   }
 
   confirmDataSubmission(e) {
+    e.preventDefault();
+
     let timeLastSeen = this.state.truckSeenTime;
     let fromPos = this.state.markersArray[0]._latlng;
     let toPos = this.props.truckWasMoving ?
       this.state.markersArray[1]._latlng :
       {lat: 0, lng:0};
 
-    console.log(this.props);
-
-    this.props.sendData(e,
+    this.props.createPostData(e,
       timeLastSeen,
       fromPos,
       toPos,

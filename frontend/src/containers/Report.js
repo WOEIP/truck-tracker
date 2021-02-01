@@ -22,14 +22,16 @@ class Report extends Component {
         this.goToTruckSelection = this.goToTruckSelection.bind(this);
         this.goToMotionView = this.goToMotionView.bind(this);
         this.goToMapView = this.goToMapView.bind(this);
-        this.sendData = this.sendData.bind(this);
+        this.createPostData = this.createPostData.bind(this);
         this.addDotNumber = this.addDotNumber.bind(this);
+        this.sendData = this.sendData.bind(this);
 
         this.state = {
             currentView: "truckSelection",
             truckKey: null,
             truckWasMoving: false,
             engineWasRunning: false,
+            postData: null
         };
     }
 
@@ -58,7 +60,8 @@ class Report extends Component {
         }
     }
 
-    sendData(e, timeSeen, fromPos, toPos, engineWasRunningP, truckWasMovingP) {
+    createPostData(e, timeSeen, fromPos, toPos, engineWasRunningP, truckWasMovingP) {
+
         // TODO I don't like that we have to reference session like this.
         let session = this.context;
 
@@ -79,18 +82,25 @@ class Report extends Component {
             truckWasMovingP: truckWasMovingP,
         };
 
-        // Api.post("reports", postData);
-
         this.setState((prevState) => ({
-            currentView: "dot",
+            postData: postData,
+            currentView: "dot"
         }));
     }
 
-    addDotNumber(num) {
+    addDotNumber(dotNumber) {
+        this.setState((prevState) => {
+            let newPostData = Object.assign({}, prevState.postData);
+            newPostData.dotNumber = dotNumber;
+            return {
+                postData: newPostData,
+                currentView: "photoUpload",
+            };
+        });
+    }
 
-        this.setState((prevState) => ({
-            currentView: "photoUpload",
-        }));
+    sendData(){
+        Api.post("reports", this.state.postData);
     }
 
     goToMotionView(truck) {
@@ -122,7 +132,7 @@ class Report extends Component {
                 return {
                     component: MapContainer,
                     props: {
-                        sendData: that.sendData,
+                        createPostData: that.createPostData,
                         goBack: that.goToMotionView,
                         truckKey: that.truckKey,
                         truckWasMoving: this.state.truckWasMoving,
@@ -150,6 +160,7 @@ class Report extends Component {
             case "photoUpload":
                 return {
                     component: PhotoUpload,
+                    props: { sendData: that.sendData }
                 };
             case "thankYouPage":
                 return { component: ThankYouPage, props: {} };

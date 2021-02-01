@@ -21,7 +21,6 @@ class Contact extends Component {
 
   handleTextChange(e) {
     this.setState({[e.target.name]: e.target.value});
-    console.log(this.state.inquiryType)
   }
 
   //this is better suited to be in a container in the long run
