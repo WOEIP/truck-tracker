@@ -24,8 +24,8 @@ class RegistrationPage extends Component {
     }
 
     registerUser(e) {
-        e.preventDefault(); 
-        
+        e.preventDefault();
+
         let session = this.context;
 
         let postData = {

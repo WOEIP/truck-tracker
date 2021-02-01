@@ -1,5 +1,31 @@
 @import "colors";
 
+.address-box {
+    p {
+        font-size: 1rem;
+    }
+}
+
+.address-bold {
+    margin: 0;
+    font-weight: bold;
+}
+
+.smaller-text {
+    margin-top: 0;
+    font-weight: lighter
+}
+
+.form-element-inquiry-type{
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-dropdown{
+    color: #222;
+    margin: .1rem 0 1rem 0;
+}
+
 form {
     & input, textarea {
         color: $dark-grey;
