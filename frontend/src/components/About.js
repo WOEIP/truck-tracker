@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Menu from './../components/Menu.js';
 import '../styles/common.scss';
-import '../styles/mission.scss';
+import '../styles/about.scss';
 import aerial from '../img/info_aerial.jpg';
 import truck from '../img/info_truck.jpg';
 
-class Mission extends Component {
+class About extends Component {
   componentDidMount() {
     window.scrollTo(0, 0)
   }
 
   render() {
     return (
-      <article id="mission-text">
-        <Menu current="mission"/>
+      <article id="about-text">
+        <Menu current="about"/>
         <h1 className="title">Mission</h1>
         <span className="image main"><img src={aerial} alt="" /></span>
         <p>West Oakland is situated adjacent to the Port of Oakland,
@@ -71,4 +71,4 @@ class Mission extends Component {
   }
 }
 
-export default Mission;
+export default About;
