@@ -11,8 +11,8 @@ class Contributing extends Component {
 
   render() {
     return (
-      <article id="mission-text">
-        <Menu current="mission"/>
+      <article id="about-text">
+        <Menu current="about"/>
         <h1 className="title">Help us creating a tool for empowerment!</h1>
         <p> Collecting and visualizing data is an efficient method to influence
             policymakers who can make decisions to create a better living
@@ -20,7 +20,7 @@ class Contributing extends Component {
             we hope to give underrepresented
             communities a voice and make it possible to stand up for themselves.
             For more details on this, check out our <a className="textlink"
-            href="#mission">mission description.</a>
+            href="#about">mission description.</a>
         </p>
         <p> Because we receive no funding for this project, we rely heavily on
             volunteer work. Right now we're looking for a person who can help
