@@ -17,15 +17,13 @@ class PasswordReset extends Component {
   }
 
   resetPassword () {
-    let aDayFromNow = new Date();
-    aDayFromNow.setDate(aDayFromNow.getDate() + 1);
+    const urlParams = new URLSearchParams(window.location.search);
+    const confirmationToken = urlParams.get('token');
     let postData = {
-        requesterEmail: this.state.email,
-        expirationTime: aDayFromNow.getTime() / 1000, // unix epoch
-        createdAt: Math.floor(Date.now() / 1000),
-        updatedAt: Math.floor(Date.now() / 1000)
+        email: this.state.email,
     }
 
+    let resetUrl = 'passwordreset/' + confirmationToken;
     Api.post('passwordreset', postData).then(response => {
        if (response.status === 200) {
            // TODO handle it
