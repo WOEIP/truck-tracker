@@ -4,6 +4,7 @@ const Router = require('koa-router');
 const parser = require('koa-body');
 const knex = require('knex');
 const bcrypt = require('bcryptjs');
+const passport = require('koa-passport');
 const config = require('../config');
 const crypto = require('crypto');
 const DbUtils = require('../utils/db');
@@ -27,7 +28,9 @@ const LOCAL_RESIDENT_OPTIONS = {
 }
 
 users.get('/', async ctx => {
+    return passport.authenticate('local', async (err, user, info, status) => {
     ctx.body = await Users.query();
+    })
 });
 
 users.post('/', parsers.json, async ctx => {

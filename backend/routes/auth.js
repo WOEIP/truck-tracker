@@ -62,7 +62,7 @@ auth.post('/logout', parsers.json, async ctx => {
     }
 });
 
-const checkEmailVerification = async (userData, emailConfirmationToken) => {
+const checkEmailVerification = async (userData, confirmationToken) => {
     if (userData.is_email_verified) { return true; }
 
     let user = await Users.query().findById(userData.id);
