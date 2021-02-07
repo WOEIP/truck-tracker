@@ -24,7 +24,7 @@ auth.post('/login', parsers.json, async ctx => {
     return passport.authenticate('local', async (err, user, info, status) => {
         let response = {};
         if (user) {
-            let emailVerified = await checkEmailVerification(user, ctx.request.body);
+            let emailVerified = await checkEmailVerification(user, ctx.request.body.confirmationToken);
             if (emailVerified) {
                 DbUtils.patchById(Users, user.id, {isEmailVerified: true});
 
@@ -42,13 +42,12 @@ auth.post('/login', parsers.json, async ctx => {
                 response.status = 'error';
                 response.errorCode = 'err_email_not_verified';
             }
-            ctx.body = JSON.stringify(response);
         } else {
             ctx.status = 400;
             response.status = 'error';
             response.errorCode = 'err_user_not_found';
-            ctx.body = JSON.stringify(response);
         }
+        ctx.body = JSON.stringify(response);
     })(ctx);
 });
 
@@ -63,7 +62,7 @@ auth.post('/logout', parsers.json, async ctx => {
     }
 });
 
-const checkEmailVerification = async (userData, requestParams) => {
+const checkEmailVerification = async (userData, emailConfirmationToken) => {
     if (userData.is_email_verified) { return true; }
 
     let user = await Users.query().findById(userData.id);
@@ -75,7 +74,7 @@ const checkEmailVerification = async (userData, requestParams) => {
     if (!emailConfirmationRecord.length) { return false; };
 
     const salt = config.secrets.get('salt');
-    let receivedHash = await bcrypt.hash(requestParams.confirmationToken, salt);
+    let receivedHash = await bcrypt.hash(confirmationToken, salt);
 
     return receivedHash === emailConfirmationRecord[0].confirmationHash;
 }

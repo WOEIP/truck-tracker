@@ -51,8 +51,6 @@ class PasswordReset extends BaseModel {
 
         // convert unix timestamps into ISO 8601 strings for postgres
         formatted.expiration_time = moment.unix(json.expiration_time);
-        formatted.created_at = moment.unix(json.created_at);
-        formatted.updated_at = moment.unix(json.updated_at);
         /* eslint-enable */
 
         return formatted;
@@ -72,8 +70,6 @@ class PasswordReset extends BaseModel {
             'isDone']);
 
         formatted.expirationTime = moment(json.expirationTime).unix();
-        formatted.createdAt = moment(json.createdAt).unix();
-        formatted.updatedAt = moment(json.updatedAt).unix();
 
         return formatted;
     }
