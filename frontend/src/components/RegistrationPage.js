@@ -69,63 +69,55 @@ class RegistrationPage extends Component {
         ) : null;
 
         return (
-            <article id="registration-page">
-                <Menu current="login" />
-                {errors}
-                <p>
-                    Please fill in your data and then send it for verification!
-                </p>
-                <form>
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleInputChange.bind(this, "username")}
-                    />
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleInputChange.bind(this, "password")}
-                    />
-                    <label>Confirm Password</label>
-                    <input
-                        type="password"
-                        value={this.state.passwordConfirm}
-                        onChange={this.handleInputChange.bind(
-                            this,
-                            "passwordConfirm"
-                        )}
-                    />
-                    <label>Email (we won't give it to anyone)</label>
-                    <input
-                        type="text"
-                        value={this.state.email}
-                        onChange={this.handleInputChange.bind(this, "email")}
-                    />
-                    <label htmlFor="tos-checkbox">
-                        <span>
-                            Accept our{" "}
-                            <a className="textLink" href="#tos">
-                                Terms of Service
-                            </a>
-                        </span>
-                        <input
-                            id="tos-checkbox"
-                            type="checkbox"
-                            value={this.state.tosAccepted}
-                            onChange={this.handleInputChange.bind(
-                                this,
-                                "tosAccepted"
-                            )}
-                        />
-                    </label>
-                    <div className="actions">
-                        <button onClick={this.registerUser}>Sign Up</button>
-                    </div>
-                </form>
-            </article>
-        );
+					<article id="registration-page">
+						<Menu current="login" />
+						{errors}
+						<p>Please fill in your data and then send it for verification!</p>
+						<form>
+							<label>Username</label>
+							<input
+								type="text"
+								value={this.state.username}
+								onChange={this.handleInputChange.bind(this, "username")}
+							/>
+							<label>Password</label>
+							<input
+								type="password"
+								value={this.state.password}
+								onChange={this.handleInputChange.bind(this, "password")}
+							/>
+							<label>Confirm Password</label>
+							<input
+								type="password"
+								value={this.state.passwordConfirm}
+								onChange={this.handleInputChange.bind(this, "passwordConfirm")}
+							/>
+							<label>Email (we won't give it to anyone)</label>
+							<input
+								type="text"
+								value={this.state.email}
+								onChange={this.handleInputChange.bind(this, "email")}
+							/>
+							<label htmlFor="tos-checkbox">
+								<span>
+									Accept our{" "}
+									<a className="textLink" href="#tos">
+										Terms of Service
+									</a>
+								</span>
+								<input
+									id="tos-checkbox"
+									type="checkbox"
+									value={this.state.tosAccepted}
+									onChange={this.handleInputChange.bind(this, "tosAccepted")}
+								/>
+							</label>
+							<div className="actions">
+								<button onClick={this.registerUser}>Sign Up</button>
+							</div>
+						</form>
+					</article>
+				);
     }
 }
 RegistrationPage.contextType = SessionContext;
