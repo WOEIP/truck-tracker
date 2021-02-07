@@ -16,7 +16,9 @@ class PasswordReset extends Component {
     this.resetPassword = this.resetPassword.bind(this);
   }
 
-  resetPassword () {
+  resetPassword (e) {
+    e.preventDefault();
+
     const urlParams = new URLSearchParams(window.location.search);
     const confirmationToken = urlParams.get('token');
     let postData = {
@@ -35,8 +37,6 @@ class PasswordReset extends Component {
   }
 
   handleInputChange(inputField, evt) {
-    evt.preventDefault();
-
     let newState = this.state;
     newState[inputField] = evt.target.value;
     this.setState(newState);
