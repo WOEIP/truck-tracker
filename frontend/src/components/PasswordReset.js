@@ -35,6 +35,8 @@ class PasswordReset extends Component {
   }
 
   handleInputChange(inputField, evt) {
+    evt.preventDefault();
+
     let newState = this.state;
     newState[inputField] = evt.target.value;
     this.setState(newState);
