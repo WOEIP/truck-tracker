@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import Api from './../utils/Api.js';
 import Menu from './../components/Menu.js';
+import MessagingDisplay from "./MessagingDisplay";
 
 import '../styles/password-reset-landing.scss';
 
@@ -11,6 +12,7 @@ class PasswordResetLanding extends Component {
         this.state = {
             password: '',
             passwordConfirm: '',
+            error: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -21,6 +23,12 @@ class PasswordResetLanding extends Component {
         // TODO disable send button when there is no password
         // TODO instead of preventDefault, we could maybe track down what catches the event?
         event.preventDefault()
+
+        if(this.state.password !== this.state.passwordConfirm){
+            this.setState({
+                error: "Passwords do not match. Please re-enter and try again."
+            })
+        } else {
 
        const urlParams = new URLSearchParams(window.location.search);
        const confirmationToken = urlParams.get('token');
@@ -41,6 +49,7 @@ class PasswordResetLanding extends Component {
             console.log(error);
         });
     }
+    }
 
     handleInputChange(inputField, evt) {
         let newState = this.state;
@@ -49,9 +58,14 @@ class PasswordResetLanding extends Component {
     };
 
     render() {
+        const errors = this.state.error ? (
+            <MessagingDisplay message={this.state.error} />
+        ) : null;
+
         return (
             <article id="password-reset-landing">
               <Menu current="login"/>
+              {errors}
               <form>
                 <label>New password</label>
                 <input type="password"
