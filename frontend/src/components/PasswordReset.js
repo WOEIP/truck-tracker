@@ -16,7 +16,9 @@ class PasswordReset extends Component {
     this.resetPassword = this.resetPassword.bind(this);
   }
 
-  resetPassword () {
+  resetPassword (e) {
+    e.preventDefault();
+
     const urlParams = new URLSearchParams(window.location.search);
     const confirmationToken = urlParams.get('token');
     let postData = {
