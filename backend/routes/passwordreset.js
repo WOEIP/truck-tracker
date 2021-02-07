@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../config');
 const crypto = require('crypto');
 const knex = require('knex');
-const Emailer = require('../lib/emailer.js');
+const Emailer = require('../utils/emailer.js');
 const PwResets = require('../models/pw-resets');
 
 //TODO parsers?

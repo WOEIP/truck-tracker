@@ -1,5 +1,4 @@
 'use strict';
-
 const Router = require('koa-router');
 const bcrypt = require('bcryptjs');
 const config = require('../config');
@@ -7,6 +6,7 @@ const parser = require('koa-body');
 const passport = require('koa-passport');
 const EmailConfirmations = require('../models/email-confirmations');
 const Users = require('../models/users');
+const DbUtils = require('../utils/db');
 
 const parsers = {
     query: parser({urlencoded: true, multipart: false, json: false}),
@@ -25,8 +25,9 @@ auth.post('/login', parsers.json, async ctx => {
         let response = {};
         if (user) {
             let emailVerified = await checkEmailVerification(user, ctx.request.body);
-                    console.error(emailVerified);
             if (emailVerified) {
+                DbUtils.patchById(Users, user.id, {isEmailVerified: true});
+
                 ctx.login(user);
                 ctx.status = 200;
                 let data = {

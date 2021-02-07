@@ -6,7 +6,8 @@ const knex = require('knex');
 const bcrypt = require('bcryptjs');
 const config = require('../config');
 const crypto = require('crypto');
-const Emailer = require('../lib/emailer.js');
+const DbUtils = require('../utils/db');
+const Emailer = require('../utils/emailer.js');
 
 const Users = require('../models/users');
 const EmailConfirmations = require('../models/email-confirmations');
@@ -74,16 +75,7 @@ users.get('/:id', async ctx => {
 users.patch('/:id', parsers.json, async (ctx) => {
     let response = {}
     try{
-        let targetUser = await Users.query()
-        .findById(ctx.params.id)
-
-        //currently, we have to have dateRegistered and lastLogin in patch request or it won't work
-        let patchedPayload = Object.assign(ctx.request.body, {dateRegistered: targetUser.dateRegistered, lastLogin: 0})
-
-        //actual patch request
-        await Users.query()
-        .patch(patchedPayload)
-        .findById(ctx.params.id)
+        DbUtils.patchById(Users, ctx.params.id, ctx.request.body);
 
         response.status = 'User object successfully modified'
         ctx.body = JSON.stringify(response);
