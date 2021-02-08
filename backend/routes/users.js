@@ -28,9 +28,9 @@ const LOCAL_RESIDENT_OPTIONS = {
 }
 
 users.get('/', async ctx => {
-    return passport.authenticate('local', async (err, user, info, status) => {
-    ctx.body = await Users.query();
-    })
+    if (ctx.isAuthenticated()){
+        ctx.body = await Users.query().select('username', 'is_verified', 'id')
+    }
 });
 
 users.post('/', parsers.json, async ctx => {
