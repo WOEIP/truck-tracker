@@ -2,7 +2,6 @@
 
 const Router = require('koa-router');
 const parser = require('koa-body');
-const knex = require('knex');
 const bcrypt = require('bcryptjs');
 const passport = require('koa-passport');
 const config = require('../config');
