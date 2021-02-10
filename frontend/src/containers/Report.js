@@ -52,7 +52,6 @@ class Report extends Component {
 
         //if an account was newly registered, change the newlyRegistered flag to false
         //after 10 seconds, show the confirmation messaging until then
-
         if (session.data.newlyRegistered) {
             setTimeout(function () {
                 session.update({ newlyRegistered: false });
@@ -180,9 +179,9 @@ class Report extends Component {
     }
 
     render() {
-        const ActiveContent = this.getActiveContent();
+        let ActiveContent = this.getActiveContent();
 
-        const registrationMessage = this.context.data.newlyRegistered ? (
+        let registrationMessage = this.context.data.newlyRegistered ? (
             <MessagingDisplay
                 message="Thank you for making an account! You are now able to make TruckTracker reports. If you have any questions, you can email info@woeip.org."
                 successDisplay="true"

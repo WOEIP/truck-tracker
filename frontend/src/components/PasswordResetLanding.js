@@ -59,7 +59,7 @@ class PasswordResetLanding extends Component {
     }
 
     render() {
-        const errors = this.state.error ? (
+        let errors = this.state.error ? (
             <MessagingDisplay message={this.state.error} />
         ) : null;
 
