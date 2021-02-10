@@ -99,7 +99,8 @@ class Report extends Component {
             newPostData.dotNumber = dotNumber;
             return {
                 postData: newPostData,
-                currentView: "photoUpload",
+                currentView: "thankYouPage",
+                // currentView: "photoUpload",
             };
         });
     }
