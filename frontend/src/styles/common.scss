@@ -53,3 +53,15 @@ article {
         width: 80%;
     }
 }
+
+.button {
+ background-color: #fff; /* Green */
+ border: none;
+ color: $overlay-bg-color;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 18px;
+ border-radius:5px;
+}

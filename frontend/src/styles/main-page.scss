@@ -6,9 +6,13 @@
 
 #logo-container {
     & > img {
-        width: 30%;
-        margin: 0 auto;
+        width: 20%;
+        margin: 20px auto;
     }
+}
+
+.logo-home {
+  max-width:200px;
 }
 
 .vert-space {
@@ -53,6 +57,10 @@
         letter-spacing: .3rem;
         text-transform: uppercase;
     }
+}
+
+.title {
+  color: #fff;
 }
 
 // Temporary, obviously.
