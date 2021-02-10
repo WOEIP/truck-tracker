@@ -9,7 +9,7 @@ class MainPage extends Component {
     return (
       <div id="app-container">
         <div id="logo-container">
-          <img className="logo-home" src={logo-200p} alt="WOEIP logo"/>
+          <img className="logo-home" src={logo} alt="WOEIP logo"/>
         </div>
 
         <div className="vert-space short"></div>
@@ -27,7 +27,7 @@ class MainPage extends Component {
         </div>
         <div className="vert-space short"></div>
         <div id="beta-testing-message-container">
-          <p>Truck Tracker is currently in early release and you may encounter issues. Please <a className="textlink" href="#contact">let us know</a> if you have trouble using the site or have feedback to help us improve.
+          <p>Truck Tracker is currently in early release. If you have issues using the site or have feedback to help us improve, please <a className="textlink" href="#contact">let us know</a>.
           </p>
         </div>
 
