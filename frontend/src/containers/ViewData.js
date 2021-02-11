@@ -8,6 +8,7 @@ import Api from '../utils/Api.js';
 
 import HeatMap from './../components/HeatMap';
 import HeatMapSettings from './../components/HeatMapSettings';
+import MessagingDisplay from "../components/MessagingDisplay";
 
 import { truckTypes } from '../components/TruckSelection';
 import { SessionContext } from "../utils/Session.js";
@@ -36,7 +37,14 @@ class Data extends Component {
   }
 
   componentDidMount () {
-    this.fetchData();
+      this.fetchData();
+      let session = this.context;
+
+      if (session.data.newReport) {
+          setTimeout(function () {
+              session.update({ newReport: false });
+          }, 10000);
+      }
   }
 
   filterData (truckTypesToShow, fromTime, toTime) {
@@ -111,9 +119,17 @@ class Data extends Component {
   }
 
   render() {
+    let newReportMessage = this.context.data.newReport ? (
+        <MessagingDisplay
+            message="Thank you for making a report! You should see your submitted data reflected on the map below."
+            successDisplay="true"
+        />
+    ) : null;
+
     return (
       <article id="view-data-container">
         <Menu current="view-data"/>
+        {newReportMessage}
         <p>
           Here you can see our aggregated data from the submissions West Oakland
           residents gave us.

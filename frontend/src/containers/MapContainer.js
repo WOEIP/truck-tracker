@@ -167,7 +167,7 @@ class MapContainer extends Component {
               <div className="actions">
                 <button onClick={this.confirmDataSubmission}
                         className="confirm-button">
-                  Confirm
+                  Confirm 
                 </button>
                 <button onClick={this.cancel}
                         className="cancel-button">

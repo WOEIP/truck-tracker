@@ -22,6 +22,7 @@ class Report extends Component {
         this.goToTruckSelection = this.goToTruckSelection.bind(this);
         this.goToMotionView = this.goToMotionView.bind(this);
         this.goToMapView = this.goToMapView.bind(this);
+        this.goToViewData = this.goToViewData.bind(this);
         this.createPostData = this.createPostData.bind(this);
         this.addDotNumber = this.addDotNumber.bind(this);
         this.sendData = this.sendData.bind(this);
@@ -32,6 +33,7 @@ class Report extends Component {
             truckWasMoving: false,
             engineWasRunning: false,
             postData: null,
+            loading: false
         };
     }
 
@@ -48,15 +50,14 @@ class Report extends Component {
     }
 
     componentDidMount() {
-        let session = this.context;
-
-        //if an account was newly registered, change the newlyRegistered flag to false
+        // let session = this.context;
+        //if registration success message here : if an account was newly registered, change the newlyRegistered flag to false
         //after 10 seconds, show the confirmation messaging until then
-        if (session.data.newlyRegistered) {
-            setTimeout(function () {
-                session.update({ newlyRegistered: false });
-            }, 10000);
-        }
+        // if (session.data.newlyRegistered) {
+        //     setTimeout(function () {
+        //         session.update({ newlyRegistered: false });
+        //     }, 10000);
+        // }
     }
 
     createPostData(
@@ -99,18 +100,26 @@ class Report extends Component {
             newPostData.dotNumber = dotNumber;
             return {
                 postData: newPostData,
-                currentView: "thankYouPage",
+                currentView: "photoUpload",
                 // currentView: "photoUpload",
             };
         });
     }
 
     sendData() {
-        Api.post("reports", this.state.postData);
+        this.setState({
+            loading: true,
+        });
 
-        this.setState((prevState) => ({
-            currentView: "thankYouPage",
-        }));
+        Api.post("reports", this.state.postData)
+            .then(this.goToViewData()
+            )
+            .catch((error) => console.log(error))
+            .finally(() => {
+                this.setState({
+                    loading: false,
+                });
+            });
     }
 
     goToMotionView(truck) {
@@ -126,6 +135,14 @@ class Report extends Component {
             truckWasMoving: truckWasMoving,
             engineWasRunning: engineWasRunning,
         });
+    }
+
+    goToViewData(){
+        let session = this.context;
+        session.update({
+            newReport: true
+        })
+        window.location.hash = "#view-data"
     }
 
     goToTruckSelection() {
@@ -170,7 +187,10 @@ class Report extends Component {
             case "photoUpload":
                 return {
                     component: PhotoUpload,
-                    props: { sendData: that.sendData },
+                    props: {
+                        sendData: that.sendData,
+                        loading: this.state.loading
+                    },
                 };
             case "thankYouPage":
                 return { component: ThankYouPage, props: {} };
