@@ -112,8 +112,7 @@ class Report extends Component {
         });
 
         Api.post("reports", this.state.postData)
-            .then(this.goToViewData()
-            )
+            .then(this.goToViewData)
             .catch((error) => console.log(error))
             .finally(() => {
                 this.setState({
