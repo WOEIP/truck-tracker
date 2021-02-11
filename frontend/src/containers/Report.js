@@ -49,17 +49,6 @@ class Report extends Component {
         }
     }
 
-    componentDidMount() {
-        // let session = this.context;
-        //if registration success message here : if an account was newly registered, change the newlyRegistered flag to false
-        //after 10 seconds, show the confirmation messaging until then
-        // if (session.data.newlyRegistered) {
-        //     setTimeout(function () {
-        //         session.update({ newlyRegistered: false });
-        //     }, 10000);
-        // }
-    }
-
     createPostData(
         e,
         timeSeen,
