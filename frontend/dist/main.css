@@ -1742,22 +1742,6 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
     letter-spacing: .3rem;
     text-transform: uppercase; }
 
-#beta-testing-message-container {
-  width: 90%;
-  margin: 0 auto;
-  background-color: rgba(229, 114, 91, 0.4);
-  border-style: solid;
-  border-color: white;
-  border-left-width: 0px;
-  border-right-width: 0px;
-  border-top-width: 1px;
-  border-bottom-width: 1px; }
-  #beta-testing-message-container > p {
-    font-weight: 700;
-    text-align: center;
-    font-size: 2vw;
-    color: white; }
-
 .main-menu {
   width: 30%;
   margin: 0 auto;
