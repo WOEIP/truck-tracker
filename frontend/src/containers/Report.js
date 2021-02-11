@@ -32,6 +32,7 @@ class Report extends Component {
             truckWasMoving: false,
             engineWasRunning: false,
             postData: null,
+            loading: false
         };
     }
 
@@ -99,18 +100,29 @@ class Report extends Component {
             newPostData.dotNumber = dotNumber;
             return {
                 postData: newPostData,
-                currentView: "thankYouPage",
+                currentView: "photoUpload",
                 // currentView: "photoUpload",
             };
         });
     }
 
     sendData() {
-        Api.post("reports", this.state.postData);
+        this.setState({
+            loading: true
+        })
 
-        this.setState((prevState) => ({
-            currentView: "thankYouPage",
-        }));
+        Api.post("reports", this.state.postData)
+            .then(() =>
+                this.setState((prevState) => ({
+                    currentView: "thankYouPage",
+                }))
+            )
+            .catch((error) => console.log(error))
+            .finally(() => {
+                this.setState({
+                    loading: false,
+                });
+            });
     }
 
     goToMotionView(truck) {
@@ -170,7 +182,10 @@ class Report extends Component {
             case "photoUpload":
                 return {
                     component: PhotoUpload,
-                    props: { sendData: that.sendData },
+                    props: {
+                        sendData: that.sendData,
+                        loading: this.state.loading
+                    },
                 };
             case "thankYouPage":
                 return { component: ThankYouPage, props: {} };

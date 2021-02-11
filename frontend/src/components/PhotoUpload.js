@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import LoadingButton from "./LoadingButton";
+import "../styles/loading-button.scss";
 
 class PhotoPage extends Component {
 
@@ -11,7 +13,7 @@ class PhotoPage extends Component {
     sendData(e){
         e.preventDefault();
 
-        this.props.sendData();
+        this.props.sendData()
     }
 
     render() {
@@ -23,7 +25,7 @@ class PhotoPage extends Component {
                         Coming soon...
                     </p>
                     <div className="dot-actions">
-                        <button onClick={this.sendData}>Submit</button>
+                        <LoadingButton onClick={this.sendData} loading={this.props.loading} label="Submit"/>
                     </div>
                 </form>
             </div>
