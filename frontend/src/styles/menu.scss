@@ -11,11 +11,9 @@
     background-size: cover;
     background-position: center;
     &:hover{
-        background-color: $generic-blue;
         border-radius: 4px 4px 0 0;
     }
     &:active{
-        background-color: $generic-blue;
         border-radius: 4px 4px 0 0;
     }
 }
@@ -24,7 +22,7 @@
     box-sizing: border-box;
     cursor: pointer;
     ul {
-        background-color: $dark-blue;
+        background-color: $generic-blue;
         display: none;
         list-style: none;
         position: absolute;
@@ -37,6 +35,7 @@
         z-index: 999;
         display: block;
     }
+
 }
 
 .top-menu-item {
@@ -44,22 +43,27 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 10px 0;
+    padding: 10px 0 5px 0;
+    margin: 0 5px;
     text-decoration: none;
-    color: $generic-blue;
+    color: $dark-blue;
     &.current {
-        color: $light-grey;
+        color: $rust;
+        border-bottom: 2px solid $rust;
     }
     &:hover {
-        color: white;
+      color: $rust;
+      border-bottom: 2px solid $rust;
     }
 }
 
 #top-menu-container {
     overflow: hidden;
-    background-color: $dark-blue;
+    margin-bottom: 40px;
+    background-color: $generic-blue;
     width: 100%;
     border-radius: 3px;
+    padding: 10px;
 }
 
 @media screen and (min-width : 35.5em) {

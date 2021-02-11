@@ -9,12 +9,12 @@ html {
 }
 
 .textlink {
-    text-decoration: none;
-    color: $light-grey;
+    color: $light-blue;
 }
 
 .textlink:hover {
-    color: $generic-blue;
+    background-color: $white;
+    color: $dark-blue;
 }
 
 *,
@@ -22,8 +22,11 @@ html {
     font-family: Rajdhani;
 }
 
-p, p *, h1.title, h2.title {
+p, p * {
     font-family: Fjord One;
+}
+
+h1.title, h2.title {
     font-weight: bold;
 }
 
@@ -38,9 +41,9 @@ article {
     }
     box-sizing: border-box;
     width: 100%;
-    margin: 1rem auto;
+    margin: 0 auto;
     padding: 1rem;
-    background-color: $overlay-bg-color;
+    background-color: rgba($dark-blue, 0.9);
     color: white;
     text-align: left;
     font-size: 1.2rem;
@@ -55,13 +58,14 @@ article {
 }
 
 .button {
- background-color: #fff; /* Green */
+ background-color: $light-grey; /* Green */
  border: none;
  color: $overlay-bg-color;
- padding: 15px 32px;
+ padding: 10px 20px;
  text-align: center;
  text-decoration: none;
  display: inline-block;
  font-size: 18px;
+ font-weight: bold;
  border-radius:5px;
 }
