@@ -12,6 +12,7 @@ class MainPage extends Component {
           <img className="logo-home" src={logo} alt="WOEIP logo"/>
         </div>
 
+
         <div className="vert-space short"></div>
         <nav className="pure-g main-menu">
           <a className="pure-u-1 pure-u-sm-1-4" href="#report">Report</a>

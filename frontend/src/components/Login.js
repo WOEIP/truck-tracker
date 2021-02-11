@@ -24,8 +24,9 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
-    login(e) {
-        e.preventDefault();
+    login(event) {
+        // TODO instead of preventDefault, we could maybe track down what catches the event?
+        event.preventDefault();
 
         let session = this.context;
 
@@ -85,7 +86,7 @@ class Login extends Component {
     }
 
     render() {
-        const errors = this.state.error ? (
+        let errors = this.state.error ? (
             <MessagingDisplay message={this.state.error} />
         ) : null;
 
@@ -108,6 +109,9 @@ class Login extends Component {
                         value={this.state.password}
                         onChange={this.handlePassChange}
                     />
+                    <p className="password-reset">
+                        <a href="#passwordreset">Forgot your password?</a>
+                    </p>
                     <div className="actions">
                         <button onClick={this.login}>Login</button>
                         <button onClick={this.goToRegistration}>Sign Up</button>

@@ -3,7 +3,6 @@
 const Router = require('koa-router');
 const parser = require('koa-body');
 
-const logger = require('../lib/logger.js');
 const passport = require('koa-passport');
 
 const knex = require('knex');

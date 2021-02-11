@@ -14,6 +14,7 @@ class RegistrationPage extends Component {
         this.state = {
             username: "",
             password: "",
+            passwordConfirm: "",
             email: "",
             error: "",
             tosAccepted: false,
@@ -34,12 +35,13 @@ class RegistrationPage extends Component {
             password: this.state.password,
         };
 
-        if (!postData.username ||
-            !postData.password ||
-            !postData.email
-        ) {
+        if (!postData.username || !postData.password || !postData.email) {
             this.setState({
                 error: "All fields must be complete to create an account.",
+            });
+        } else if (this.state.password !== this.state.passwordConfirm) {
+            this.setState({
+                error: "Passwords do not match. Please re-enter and try again.",
             });
         } else {
             Api.post("users", postData)
@@ -62,7 +64,7 @@ class RegistrationPage extends Component {
     }
 
     render() {
-        const errors = this.state.error ? (
+        let errors = this.state.error ? (
             <MessagingDisplay message={this.state.error} />
         ) : null;
 
@@ -85,6 +87,15 @@ class RegistrationPage extends Component {
                         type="password"
                         value={this.state.password}
                         onChange={this.handleInputChange.bind(this, "password")}
+                    />
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        value={this.state.passwordConfirm}
+                        onChange={this.handleInputChange.bind(
+                            this,
+                            "passwordConfirm"
+                        )}
                     />
                     <label>Email (we won't give it to anyone)</label>
                     <input

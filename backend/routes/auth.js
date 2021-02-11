@@ -1,8 +1,12 @@
 'use strict';
-
 const Router = require('koa-router');
+const bcrypt = require('bcryptjs');
+const config = require('../config');
 const parser = require('koa-body');
 const passport = require('koa-passport');
+const EmailConfirmations = require('../models/email-confirmations');
+const Users = require('../models/users');
+const DbUtils = require('../utils/db');
 
 const parsers = {
     query: parser({urlencoded: true, multipart: false, json: false}),
@@ -17,10 +21,13 @@ auth.get('/', parsers.json, async ctx => {
 });
 
 auth.post('/login', parsers.json, async ctx => {
-    return passport.authenticate('local', (err, user, info, status) => {
+    return passport.authenticate('local', async (err, user, info, status) => {
         let response = {};
         if (user) {
-            if (user.is_email_verified) {
+            let emailVerified = await checkEmailVerification(user, ctx.request.body.confirmationToken);
+            if (emailVerified) {
+                DbUtils.patchById(Users, user.id, {isEmailVerified: true});
+
                 ctx.login(user);
                 ctx.status = 200;
                 let data = {
@@ -35,13 +42,12 @@ auth.post('/login', parsers.json, async ctx => {
                 response.status = 'error';
                 response.errorCode = 'err_email_not_verified';
             }
-            ctx.body = JSON.stringify(response);
         } else {
             ctx.status = 400;
             response.status = 'error';
             response.errorCode = 'err_user_not_found';
-            ctx.body = JSON.stringify(response);
         }
+        ctx.body = JSON.stringify(response);
     })(ctx);
 });
 
@@ -55,5 +61,22 @@ auth.post('/logout', parsers.json, async ctx => {
         ctx.throw(401);
     }
 });
+
+const checkEmailVerification = async (userData, confirmationToken) => {
+    if (userData.is_email_verified) { return true; }
+
+    let user = await Users.query().findById(userData.id);
+    if (!user) { return false; };
+
+    let emailConfirmationRecord = await EmailConfirmations.query()
+        .select('email_confirmations.*')
+        .where('requester_id', user.id);
+    if (!emailConfirmationRecord.length) { return false; };
+
+    const salt = config.secrets.get('salt');
+    let receivedHash = await bcrypt.hash(confirmationToken, salt);
+
+    return receivedHash === emailConfirmationRecord[0].confirmationHash;
+}
 
 module.exports = auth;

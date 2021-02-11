@@ -2,11 +2,12 @@
 
 const Router = require('koa-router');
 const parser = require('koa-body');
-const knex = require('knex');
 const bcrypt = require('bcryptjs');
+const passport = require('koa-passport');
 const config = require('../config');
 const crypto = require('crypto');
-const Emailer = require('../lib/emailer.js');
+const DbUtils = require('../utils/db');
+const Emailer = require('../utils/emailer.js');
 
 const Users = require('../models/users');
 const EmailConfirmations = require('../models/email-confirmations');
@@ -26,7 +27,9 @@ const LOCAL_RESIDENT_OPTIONS = {
 }
 
 users.get('/', async ctx => {
-    ctx.body = await Users.query();
+    if (ctx.isAuthenticated()){
+        ctx.body = await Users.query().select('username', 'is_verified', 'id')
+    }
 });
 
 users.post('/', parsers.json, async ctx => {
@@ -50,7 +53,7 @@ users.post('/', parsers.json, async ctx => {
             .insert(entryToInsert)
             .returning('*'); // TODO probably not needed
 
-        let confirmationLink = 'https://trucktracker.net/#login?token=' + confirmationToken;
+        let confirmationLink = 'https://trucktracker.net/?token=' + confirmationToken + '#login';
 
         Emailer.sendEmailConfirmationLink(ctx.request.body.email, confirmationLink);
 
@@ -74,16 +77,7 @@ users.get('/:id', async ctx => {
 users.patch('/:id', parsers.json, async (ctx) => {
     let response = {}
     try{
-        let targetUser = await Users.query()
-        .findById(ctx.params.id)
-
-        //currently, we have to have dateRegistered and lastLogin in patch request or it won't work
-        let patchedPayload = Object.assign(ctx.request.body, {dateRegistered: targetUser.dateRegistered, lastLogin: 0})
-
-        //actual patch request
-        await Users.query()
-        .patch(patchedPayload)
-        .findById(ctx.params.id)
+        DbUtils.patchById(Users, ctx.params.id, ctx.request.body);
 
         response.status = 'User object successfully modified'
         ctx.body = JSON.stringify(response);
@@ -98,7 +92,7 @@ users.patch('/:id', parsers.json, async (ctx) => {
     }
 });
 
-function createUser (userParams) {
+const createUser = userParams => {
     let newUser = userParams;
     let saltRounds = 10;
     newUser.pwSalt = bcrypt.genSaltSync(saltRounds);

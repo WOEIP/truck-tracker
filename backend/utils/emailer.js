@@ -27,8 +27,26 @@ const sendEmail = async (toEmail, subject, htmlBody) => {
     console.log("Message sent: %s", info.messageId);
 }
 
+Emailer.relayUserContact = (name, email, message, inquiryType) => {
+                               console.log(inquiryType);
+    let subject = 'Truck Tracker user contact';
+
+    // TODO make woeip.org relays for this so we can control messaging without changing the code.
+    let toEmail = inquiryType === 'site-feedback'
+        ? 'motching@gmail.com'
+        : 'brian.woeip@gmail.com';
+
+    let htmlBody =
+        '<p>Message from a user: </p>' +
+        '<p>name: ' + name + '</p>' +
+        '<p>email: ' + email + '</p>' +
+        '<p>message: ' + message + '</p>';
+
+    sendEmail(toEmail, subject, htmlBody);
+}
+
 Emailer.sendEmailConfirmationLink = (toEmail, confirmationLink) => {
-    let subject = "Thank you for helping Truck Tracker!";
+    let subject = 'Thank you for helping Truck Tracker!';
 
     let htmlBody =
         '<p>Somebody recently have made an account on trucktracker.net with your email address. To confirm that it was you and verify your address, please click the below link to log in: </p>' +

@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-const logger = require('./../lib/logger.js');
 const moment = require('moment');
 
 const {TRUCK_TYPES} = require('../lib/constants');

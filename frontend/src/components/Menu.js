@@ -21,7 +21,7 @@ class Menu extends Component {
         {id: "logout", text: "Sign out"}
       ];
 
-      if (session.data.loggedInUser.is_admin) {
+      if (session.data.loggedInUser.isAdmin) {
         menuItems.push (
           {id: "admin", text: "Admin"}
         )
