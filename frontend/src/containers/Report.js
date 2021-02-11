@@ -22,6 +22,7 @@ class Report extends Component {
         this.goToTruckSelection = this.goToTruckSelection.bind(this);
         this.goToMotionView = this.goToMotionView.bind(this);
         this.goToMapView = this.goToMapView.bind(this);
+        this.goToViewData = this.goToViewData.bind(this);
         this.createPostData = this.createPostData.bind(this);
         this.addDotNumber = this.addDotNumber.bind(this);
         this.sendData = this.sendData.bind(this);
@@ -49,15 +50,14 @@ class Report extends Component {
     }
 
     componentDidMount() {
-        let session = this.context;
-
-        //if an account was newly registered, change the newlyRegistered flag to false
+        // let session = this.context;
+        //if registration success message here : if an account was newly registered, change the newlyRegistered flag to false
         //after 10 seconds, show the confirmation messaging until then
-        if (session.data.newlyRegistered) {
-            setTimeout(function () {
-                session.update({ newlyRegistered: false });
-            }, 10000);
-        }
+        // if (session.data.newlyRegistered) {
+        //     setTimeout(function () {
+        //         session.update({ newlyRegistered: false });
+        //     }, 10000);
+        // }
     }
 
     createPostData(
@@ -108,14 +108,11 @@ class Report extends Component {
 
     sendData() {
         this.setState({
-            loading: true
-        })
+            loading: true,
+        });
 
         Api.post("reports", this.state.postData)
-            .then(() =>
-                this.setState((prevState) => ({
-                    currentView: "thankYouPage",
-                }))
+            .then(this.goToViewData()
             )
             .catch((error) => console.log(error))
             .finally(() => {
@@ -138,6 +135,14 @@ class Report extends Component {
             truckWasMoving: truckWasMoving,
             engineWasRunning: engineWasRunning,
         });
+    }
+
+    goToViewData(){
+        let session = this.context;
+        session.update({
+            newReport: true
+        })
+        window.location.hash = "#view-data"
     }
 
     goToTruckSelection() {
