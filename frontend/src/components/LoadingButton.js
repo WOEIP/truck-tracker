@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fontawesome/react-fontawesome';
+import { faSpinner } from "@fontawesome/free-solid-svg-icons";
 
 function LoadingButton(props) {
     // TODO this should be done by disabled
