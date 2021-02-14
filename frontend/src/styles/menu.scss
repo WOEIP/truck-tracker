@@ -22,7 +22,6 @@
     box-sizing: border-box;
     cursor: pointer;
     ul {
-        background-color: $generic-blue;
         display: none;
         list-style: none;
         position: absolute;
@@ -47,27 +46,20 @@
     margin: 0 5px;
     text-decoration: none;
     color: $dark-blue;
-    &.current {
-        color: $rust;
-        border-bottom: 2px solid $rust;
-    }
-    &:hover {
-      color: $rust;
-      border-bottom: 2px solid $rust;
+    &.current, &:hover {
+        color: $dark-rust;
     }
 }
 
 #top-menu-container {
     overflow: hidden;
     margin-bottom: 40px;
-    background-color: $generic-blue;
+    background-color: $light-blue;
     width: 100%;
     border-radius: 3px;
-    padding: 10px;
 }
 
 @media screen and (min-width : 35.5em) {
-
     #top-menu-icon {
         display:none;
     }

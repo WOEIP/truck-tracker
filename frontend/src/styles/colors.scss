@@ -1,3 +1,15 @@
+// These are WOEIP "brand colors" which we currently don't
+// use but they shall be reached for whenever we need a new color.
+$orange: #ea9b25;
+$yellow: #f5d13c;
+$olive: #b5cc18;
+
+// These are WOEIP "brand colors" which we use as a base for our palette
+$rust: #b23e00;
+
+// Truck tracker colors
+$dark-rust: darken($rust, 16%);
+
 $overlay-bg-color : rgba(40, 80, 150, 0.9);
 $dark-blue: #092a61;
 $light-blue:#9ACDF4;
@@ -6,7 +18,3 @@ $dark-grey: #222;
 $light-grey: #ddd;
 $white: #fff;
 $red: #e5725b;
-$rust: #b23e00;
-$orange: #ea9b25;
-$yellow: #f5d13c;
-$olive: #b5cc18;
