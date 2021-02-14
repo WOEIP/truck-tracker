@@ -110,7 +110,7 @@ class Login extends Component {
                         onChange={this.handlePassChange}
                     />
                     <p className="password-reset">
-                        <a href="#passwordreset">Forgot your password?</a>
+                        <a className="textlink" href="#passwordreset">Forgot your password?</a>
                     </p>
                     <div className="actions">
                         <button onClick={this.login}>Login</button>

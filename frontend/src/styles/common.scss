@@ -9,7 +9,7 @@ html {
 }
 
 .textlink {
-    color: $light-blue;
+    color: $bright-yellow;
 }
 
 .textlink:hover {
@@ -57,15 +57,21 @@ article {
     }
 }
 
-.button {
- background-color: $light-grey; /* Green */
- border: none;
- color: $overlay-bg-color;
- padding: 10px 20px;
- text-align: center;
- text-decoration: none;
- display: inline-block;
- font-size: 18px;
- font-weight: bold;
- border-radius:5px;
+button, a.button {
+    color: $dark-blue;
+    background-color: $light-grey;
+    width: 10rem;
+    transition: background-color 0.1s ease;
+    border: 0 none;
+    border-radius: 3px;
+    padding: .5rem;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: .2rem;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    &:hover {
+        color: $generic-blue;
+    }
 }

@@ -2,14 +2,10 @@
 
 #movement-button-container {
     & button {
-        border: 0 none;
-        border-radius: 3px;
-        background-color: $light-grey;
-        color: $dark-blue;
-        letter-spacing: .2rem;
-        padding: .5rem;
         margin: 1rem;
         width: 45%;
+        display: block;
+        margin: 30px auto;
         &:hover {
             background-color: $white;
             color: $generic-blue;
