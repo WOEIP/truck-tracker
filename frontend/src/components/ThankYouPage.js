@@ -10,9 +10,9 @@ class ThankYouPage extends Component {
   render() {
     return (
       <div>
-        <h2>Thank you for reporting!</h2>
+        <h2>Your report has been submitted</h2>
         <p>
-          Make sure to <a className="textlink" href="#view-data">check out</a> an aggregated display of all of our data!
+          Thank you for reporting neighborhood truck activity. You can view your report on the <a className="textlink" href="#view-data">truck activity map</a>. Please note that until a member of our team verifies your report, you'll only be able to see it when you're signed into Truck Tracker.
         </p>
       </div>
     );

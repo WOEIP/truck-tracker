@@ -54,10 +54,10 @@ class Login extends Component {
                 let errorText = "";
                 switch (errorData.errorCode) {
                     case "err_user_not_found":
-                        errorText = "Username or Password are incorrect.";
+                        errorText = "Username or password are incorrect.";
                         break;
                     case "err_email_not_verified":
-                        errorText = "This address hasn't been verified. Please check your email!"; // TODO resend link
+                        errorText = "Your account hasn't been verified yet. Please check your email."; // TODO resend link
                         break;
                     default:
                         errorText = "Error at login";
@@ -94,7 +94,7 @@ class Login extends Component {
             <article id="login-page">
                 <Menu current="login" />
                 {errors}
-                <p>Please log in to report an incident!</p>
+                <p>Sign in to record truck activity or <a className="textLink" href="#RegistrationPage">create a new account</a> to get started.</p>
                 <form>
                     <label>Username</label>
                     <input

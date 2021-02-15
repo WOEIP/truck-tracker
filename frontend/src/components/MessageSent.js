@@ -16,7 +16,7 @@ class MessageSent extends Component {
       <article id="registration-sent">
         <Menu current="login"/>
         <p>
-          Thank you for taking the time to send us a message! We will be in touch with you shortly. In the meantime please feel free to look at the <a className="textlink" href="#view-data">data we already have!</a>
+          Thank you for contacting us! We’ll be in touch as soon as possible. In the meantime, consider exploring the <a className="textlink" href="#view-data">truck activity map</a>.
         </p>
        </article>
     );
