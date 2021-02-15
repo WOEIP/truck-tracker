@@ -16,7 +16,7 @@ class HeatMapSettings extends Component {
   render() {
     return (
       <div id="settings-wrapper">
-        <h3>Select truck types to show</h3>
+        <h3>Filter by truck type</h3>
         <ul>
           {truckTypes.map((item) =>
             <li key={item.key}>
@@ -27,7 +27,7 @@ class HeatMapSettings extends Component {
             </li>
           )}
         </ul>
-        <h3>Truck seen between</h3>
+        <h3>Activity seen between</h3>
           <Flatpickr
             options={{
               defaultDate: this.props.defaultFromTime,

@@ -67,6 +67,7 @@ class PasswordResetLanding extends Component {
             <article id="password-reset-landing">
                 <Menu current="login" />
                 {errors}
+                <h1>Reset your password</h1>
                 <form>
                     <label>New password</label>
                     <input
