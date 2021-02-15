@@ -94,8 +94,10 @@ class Login extends Component {
             <article id="login-page">
                 <Menu current="login" />
                 {errors}
-                <p>Sign in to record truck activity or <a className="textLink" href="#RegistrationPage">create a new account</a> to get started.</p>
+                <h1>Sign in to record trucks</h1>
+                <p>Sign in to your account to record truck activity or <a className="textLink" href="#register">create a new account</a> to get started.</p>
                 <form>
+                    <p>
                     <label>Username</label>
                     <input
                         type="text"
@@ -103,19 +105,19 @@ class Login extends Component {
                         value={this.state.username}
                         onChange={this.handleUserChange}
                     />
-                    <label>Password</label>
+                    </p>
+                    <p><label>Password</label>
                     <input
                         type="password"
                         value={this.state.password}
                         onChange={this.handlePassChange}
-                    />
-                    <p className="password-reset">
-                        <a className="textlink" href="#passwordreset">Forgot your password?</a>
+                    /><br/>
+                    <a className="textlink password-reset help" href="#passwordreset">Forgot your password?</a>
                     </p>
-                    <div className="actions">
-                        <button onClick={this.login}>Login</button>
-                        <button onClick={this.goToRegistration}>Sign Up</button>
+                    <div className="actions spacer-sm">
+                        <button onClick={this.login}>Sign in</button>
                     </div>
+
                 </form>
             </article>
         );
