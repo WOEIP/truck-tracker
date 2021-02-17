@@ -54,10 +54,10 @@ class Login extends Component {
                 let errorText = "";
                 switch (errorData.errorCode) {
                     case "err_user_not_found":
-                        errorText = "Username or Password are incorrect.";
+                        errorText = "Username or password are incorrect.";
                         break;
                     case "err_email_not_verified":
-                        errorText = "This address hasn't been verified. Please check your email!"; // TODO resend link
+                        errorText = "Your account hasn't been verified yet. Please check your email."; // TODO resend link
                         break;
                     default:
                         errorText = "Error at login";
@@ -94,8 +94,10 @@ class Login extends Component {
             <article id="login-page">
                 <Menu current="login" />
                 {errors}
-                <p>Please log in to report an incident!</p>
+                <h1>Sign in to record trucks</h1>
+                <p>Sign in to your account to record truck activity or <a className="textLink" href="#register">create a new account</a> to get started.</p>
                 <form>
+                    <p>
                     <label>Username</label>
                     <input
                         type="text"
@@ -103,19 +105,19 @@ class Login extends Component {
                         value={this.state.username}
                         onChange={this.handleUserChange}
                     />
-                    <label>Password</label>
+                    </p>
+                    <p><label>Password</label>
                     <input
                         type="password"
                         value={this.state.password}
                         onChange={this.handlePassChange}
-                    />
-                    <p className="password-reset">
-                        <a href="#passwordreset">Forgot your password?</a>
+                    /><br/>
+                    <a className="textlink password-reset help" href="#passwordreset">Forgot your password?</a>
                     </p>
-                    <div className="actions">
-                        <button onClick={this.login}>Login</button>
-                        <button onClick={this.goToRegistration}>Sign Up</button>
+                    <div className="actions spacer-sm">
+                        <button onClick={this.login}>Sign in</button>
                     </div>
+
                 </form>
             </article>
         );

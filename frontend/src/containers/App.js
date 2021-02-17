@@ -6,7 +6,7 @@ import Logout from './../components/Logout';
 import MainPage from './../components/MainPage';
 import Report from './../containers/Report';
 import ViewData from './../containers/ViewData';
-import Mission from './../components/Mission';
+import About from './../components/About';
 import TermsOfService from './../components/TermsOfService.js';
 import Contact from './../components/Contact';
 import MessageSent from './../components/MessageSent.js';
@@ -47,8 +47,8 @@ class App extends Component {
         return Logout;
       case '#report':
         return Report;
-      case '#mission':
-        return Mission;
+      case '#about':
+        return About;
       case '#tos':
         return TermsOfService;
       case '#contact':

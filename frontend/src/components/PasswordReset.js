@@ -48,7 +48,7 @@ class PasswordReset extends Component {
     render() {
         let confirmationMessage= this.state.requestSent ? (
             <MessagingDisplay
-              message="We have sent an email to your email address with instructions on how to reset your password"
+              message="Please check your email for instructions for resetting your password."
               successDisplay="true"
             />
         ) : null;
@@ -58,7 +58,7 @@ class PasswordReset extends Component {
               <Menu current="login"/>
                 {confirmationMessage}
               <p>
-                Please give your email address and we'll send you a reset link!
+                Enter the email address you used to create your Truck Tracker account.
               </p>
               <form>
                 <label>Email</label>
@@ -67,7 +67,7 @@ class PasswordReset extends Component {
                        onChange={this.handleInputChange.bind(this, 'email')} />
                 <div className="actions">
                   <button onClick={this.resetPassword}>
-                    Send
+                    Request password reset
                   </button>
                 </div>
               </form>

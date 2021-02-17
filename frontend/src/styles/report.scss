@@ -115,23 +115,10 @@ input[type=number] {
     & button{
         float: left;
         box-sizing: border-box;
-        transition: background-color 0.1s ease;
-        border: 0 none;
-        border-radius: 3px;
-        background-color: $dark-blue;
-        color: $light-grey;
-        letter-spacing: .2rem;
-        padding: .5rem;
-        width: 45%;
-        max-width: 8rem;
         &.cancel-button {
             margin-left: 1rem;
             background-color: $light-grey;
             color: $dark-blue;
-        }
-        &:hover {
-            background-color: $generic-blue;
-            color: white;
         }
     }
 }

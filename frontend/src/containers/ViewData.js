@@ -121,7 +121,7 @@ class Data extends Component {
   render() {
     let newReportMessage = this.context.data.newReport ? (
         <MessagingDisplay
-            message="Thank you for making a report! You should see your submitted data reflected on the map below."
+            message="Thank you for making a report. You should see your submitted data reflected on the map below."
             successDisplay="true"
         />
     ) : null;
@@ -130,9 +130,9 @@ class Data extends Component {
       <article id="view-data-container">
         <Menu current="view-data"/>
         {newReportMessage}
+        <h1>View truck activity data</h1>
         <p>
-          Here you can see our aggregated data from the submissions West Oakland
-          residents gave us.
+        Move around the map to see truck activity reported by Oaklanders. Don't see your own reports? <a className="textlink" href="#login">Sign in</a>.
         </p>
         <div id="heatmap">
           <HeatMap data = {this.state.data}></HeatMap>

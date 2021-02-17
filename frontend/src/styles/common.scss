@@ -9,12 +9,12 @@ html {
 }
 
 .textlink {
-    text-decoration: none;
-    color: $light-grey;
+    color: $bright-yellow;
 }
 
 .textlink:hover {
-    color: $generic-blue;
+    background-color: $white;
+    color: $dark-blue;
 }
 
 *,
@@ -22,9 +22,16 @@ html {
     font-family: Rajdhani;
 }
 
-p, p *, h1.title {
+p, p * {
     font-family: Fjord One;
+}
+
+h1.title, h2.title {
     font-weight: bold;
+}
+
+li.tos {
+  margin-bottom:1em;
 }
 
 label, button {
@@ -38,11 +45,11 @@ article {
     }
     box-sizing: border-box;
     width: 100%;
-    margin: 1rem auto;
+    margin: 0 auto;
     padding: 1rem;
-    background-color: $overlay-bg-color;
+    background-color: rgba($dark-blue, 0.9);
     color: white;
-    text-align: justify;
+    text-align: left;
     font-size: 1.2rem;
 }
 
@@ -51,5 +58,24 @@ article {
     article {
         padding: 3rem;
         width: 80%;
+    }
+}
+
+button, a.button {
+    color: $dark-blue;
+    background-color: $light-grey;
+    width: 10rem;
+    transition: background-color 0.1s ease;
+    border: 0 none;
+    border-radius: 3px;
+    padding: .5rem;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: .2rem;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    &:hover {
+        color: $generic-blue;
     }
 }

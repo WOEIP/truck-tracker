@@ -67,6 +67,7 @@ class PasswordResetLanding extends Component {
             <article id="password-reset-landing">
                 <Menu current="login" />
                 {errors}
+                <h1>Reset your password</h1>
                 <form>
                     <label>New password</label>
                     <input
@@ -74,7 +75,7 @@ class PasswordResetLanding extends Component {
                         value={this.state.password}
                         onChange={this.handleInputChange.bind(this, "password")}
                     />
-                    <label>Confirm New Password</label>
+                    <label>Confirm new password</label>
                     <input
                         type="password"
                         value={this.state.passwordConfirm}
@@ -84,7 +85,7 @@ class PasswordResetLanding extends Component {
                         )}
                     />
                     <div className="actions">
-                        <button onClick={this.setPassword}>Send</button>
+                        <button onClick={this.setPassword}>Reset password</button>
                     </div>
                 </form>
             </article>

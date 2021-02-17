@@ -14,12 +14,11 @@ class RegistrationSent extends Component {
     return (
       <article id="registration-sent">
         <Menu current="login"/>
+        <h1>Almost done!</h1>
         <p>
-            We have sent you an email with an account confirmation. Please use the link in there to log in the first time.
+        Check your email to confirm your account and start recording truck activity. Thank you for helping us improve West Oakland's air quality.
         </p>
-        <p>
-            Thank you for taking the time to make Oakland air quality better!
-        </p>
+
        </article>
     );
   }

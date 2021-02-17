@@ -10,9 +10,6 @@
         }
         p.password-reset {
             margin: 0;
-            & a {
-                color: $generic-blue;
-            }
         }
         div.actions {
             button {
@@ -31,4 +28,13 @@
             }
         }
     }
+}
+
+.spacer-sm {
+  margin-top: 20px;
+}
+
+
+.help {
+  font-size: 16px;
 }

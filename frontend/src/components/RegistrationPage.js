@@ -49,7 +49,7 @@ class RegistrationPage extends Component {
                     window.location.hash = "#registerdone";
                 })
                 .catch((error) => {
-                    error = { body: "Username or Email already registered." };
+                    error = { body: "Username or email already registered." };
                     this.setState({
                         error: error.body,
                     });
@@ -72,23 +72,38 @@ class RegistrationPage extends Component {
             <article id="registration-page">
                 <Menu current="login" />
                 {errors}
+                <h1>Create a Truck Tracker account</h1>
                 <p>
-                    Please fill in your data and then send it for verification!
+                Create a free account to record track activity in West Oakland.
                 </p>
                 <form>
-                    <label>Username</label>
+                    <p>
+                    <label>Create a username</label>
                     <input
                         type="text"
                         value={this.state.username}
                         onChange={this.handleInputChange.bind(this, "username")}
                     />
-                    <label>Password</label>
+                    </p>
+                    <p>
+                    <label>Email</label>
+                    <input
+                        type="text"
+                        value={this.state.email}
+                        onChange={this.handleInputChange.bind(this, "email")}
+                    />
+                    </p>
+                    <p>
+                    <label>Choose a password</label><br/>
+                    <span className="help">8+ characters; use a combination of numbers, letters and symbols.</span>
                     <input
                         type="password"
                         value={this.state.password}
                         onChange={this.handleInputChange.bind(this, "password")}
                     />
-                    <label>Confirm Password</label>
+                    </p>
+                    <p>
+                    <label>Confirm password</label>
                     <input
                         type="password"
                         value={this.state.passwordConfirm}
@@ -97,18 +112,10 @@ class RegistrationPage extends Component {
                             "passwordConfirm"
                         )}
                     />
-                    <label>Email (we won't give it to anyone)</label>
-                    <input
-                        type="text"
-                        value={this.state.email}
-                        onChange={this.handleInputChange.bind(this, "email")}
-                    />
-                    <label htmlFor="tos-checkbox">
-                        <span>
-                            Accept our{" "}
-                            <a className="textLink" href="#tos">
-                                Terms of Service
-                            </a>
+                    </p>
+                    <div><label htmlFor="tos-checkbox">
+                        <span class="help">
+                            {" "} I agree to the <a className="textLink" href="#tos">Terms of Service</a>.
                         </span>
                         <input
                             id="tos-checkbox"
@@ -119,9 +126,9 @@ class RegistrationPage extends Component {
                                 "tosAccepted"
                             )}
                         />
-                    </label>
+                    </label></div>
                     <div className="actions">
-                        <button onClick={this.registerUser}>Sign Up</button>
+                        <button onClick={this.registerUser}>Create account</button>
                     </div>
                 </form>
             </article>
