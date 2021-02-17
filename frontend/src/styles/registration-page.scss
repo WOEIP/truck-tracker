@@ -11,8 +11,8 @@
         & #tos-checkbox {
             width: 5%;
             position: relative;
-            top: 2px;
             float: left;
+            margin: 0 .4rem 0 0;
         }
         & label{
             & span {
@@ -37,6 +37,11 @@
                 background-color: $white;
                 color: $generic-blue;
             }
+        }
+
+        & .tos-box{
+            display: flex;
+            align-items: center
         }
     }
 }

@@ -74,7 +74,8 @@ class RegistrationPage extends Component {
                 {errors}
                 <h1>Create a Truck Tracker account</h1>
                 <p>
-                Create a free account to record track activity in West Oakland.
+                    Create a free account to record track activity in West
+                    Oakland.
                 </p>
                 <form>
                     <label>Create a username</label>
@@ -89,8 +90,12 @@ class RegistrationPage extends Component {
                         value={this.state.email}
                         onChange={this.handleInputChange.bind(this, "email")}
                     />
-                    <label>Choose a password</label><br/>
-                    <span className="help">8+ characters; use a combination of numbers, letters and symbols.</span>
+                    <label>Choose a password</label>
+                    <br />
+                    <span className="help">
+                        8+ characters; use a combination of numbers, letters and
+                        symbols.
+                    </span>
                     <input
                         type="password"
                         value={this.state.password}
@@ -105,10 +110,8 @@ class RegistrationPage extends Component {
                             "passwordConfirm"
                         )}
                     />
-                    <div><label htmlFor="tos-checkbox">
-                        <span class="help">
-                            {" "} I agree to the <a className="textLink" href="#tos">Terms of Service</a>.
-                        </span>
+                    <div className="tos-box">
+                        <label htmlFor="tos-checkbox"></label>
                         <input
                             id="tos-checkbox"
                             type="checkbox"
@@ -118,9 +121,18 @@ class RegistrationPage extends Component {
                                 "tosAccepted"
                             )}
                         />
-                    </label></div>
+                        <span class="help">
+                            I agree to the{" "}
+                            <a className="textLink" href="#tos">
+                                Terms of Service
+                            </a>
+                            .
+                        </span>
+                    </div>
                     <div className="actions">
-                        <button onClick={this.registerUser}>Create account</button>
+                        <button onClick={this.registerUser}>
+                            Create account
+                        </button>
                     </div>
                 </form>
             </article>
