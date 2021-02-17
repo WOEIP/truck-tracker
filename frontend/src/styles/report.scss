@@ -13,15 +13,6 @@
     position: relative;
 }
 
-// #map-overlay {
-//     background-color: $white;
-//     display: block;
-//     position: absolute;
-//     top: 60px;
-//     left: 60px;
-//     z-index: 999;
-// }
-
 div#second_marker_prompt {
     margin-top: 1em;
     display: none;
@@ -42,12 +33,12 @@ p#idling_toggle {
     right: 10px;
     margin: auto;
     padding: 30px;
-    width: 20rem;
+    width: 25rem;
     border-radius: 3px;
     & input {
-        color: $dark-grey;
-        margin: 2px;
+        margin-top: 5px;
         padding-left: 10px;
+        width: 100%;
     }
     & > p {
         text-align: left;
