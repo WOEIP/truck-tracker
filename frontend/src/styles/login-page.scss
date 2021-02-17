@@ -12,16 +12,6 @@
             margin: 0;
         }
         div.actions {
-            button {
-                border: 0 none;
-                border-radius: 3px;
-                background-color: $light-grey;
-                color: $dark-blue;
-                letter-spacing: .2rem;
-                padding: .5rem;
-                margin: 0 1rem 0 0;
-                width: 40%;
-            }
             button:hover {
                 background-color: $white;
                 color: $generic-blue;

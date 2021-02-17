@@ -114,7 +114,7 @@ class Login extends Component {
                     /><br/>
                     <a className="textlink password-reset help" href="#passwordreset">Forgot your password?</a>
                     </p>
-                    <div className="actions spacer-sm">
+                    <div className="actions">
                         <button onClick={this.login}>Sign in</button>
                     </div>
 
