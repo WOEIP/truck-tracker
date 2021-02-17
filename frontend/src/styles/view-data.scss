@@ -20,4 +20,13 @@ $map-width: 70%; //TODO user should be able to hide settings menu
         width: 9rem;
         text-align: center;
     }
+
+    .truck-filter-list{
+        list-style: none;
+        padding: 0 0 0 0;
+    }
+
+    .filter-checkbox{
+        margin: 0 .45rem 0 0;
+    }
 }

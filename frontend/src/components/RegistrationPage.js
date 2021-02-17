@@ -74,35 +74,33 @@ class RegistrationPage extends Component {
                 {errors}
                 <h1>Create a Truck Tracker account</h1>
                 <p>
-                Create a free account to record track activity in West Oakland.
+                    Create a free account to record track activity in West
+                    Oakland.
                 </p>
                 <form>
-                    <p>
                     <label>Create a username</label>
                     <input
                         type="text"
                         value={this.state.username}
                         onChange={this.handleInputChange.bind(this, "username")}
                     />
-                    </p>
-                    <p>
                     <label>Email</label>
                     <input
                         type="text"
                         value={this.state.email}
                         onChange={this.handleInputChange.bind(this, "email")}
                     />
-                    </p>
-                    <p>
-                    <label>Choose a password</label><br/>
-                    <span className="help">8+ characters; use a combination of numbers, letters and symbols.</span>
+                    <label>Choose a password</label>
+                    <br />
+                    <span className="help">
+                        8+ characters; use a combination of numbers, letters and
+                        symbols.
+                    </span>
                     <input
                         type="password"
                         value={this.state.password}
                         onChange={this.handleInputChange.bind(this, "password")}
                     />
-                    </p>
-                    <p>
                     <label>Confirm password</label>
                     <input
                         type="password"
@@ -112,11 +110,8 @@ class RegistrationPage extends Component {
                             "passwordConfirm"
                         )}
                     />
-                    </p>
-                    <div><label htmlFor="tos-checkbox">
-                        <span class="help">
-                            {" "} I agree to the <a className="textLink" href="#tos">Terms of Service</a>.
-                        </span>
+                    <div className="tos-box">
+                        <label htmlFor="tos-checkbox"></label>
                         <input
                             id="tos-checkbox"
                             type="checkbox"
@@ -126,9 +121,18 @@ class RegistrationPage extends Component {
                                 "tosAccepted"
                             )}
                         />
-                    </label></div>
+                        <span class="help">
+                            I agree to the{" "}
+                            <a className="textLink" href="#tos">
+                                Terms of Service
+                            </a>
+                            .
+                        </span>
+                    </div>
                     <div className="actions">
-                        <button onClick={this.registerUser}>Create account</button>
+                        <button onClick={this.registerUser}>
+                            Create account
+                        </button>
                     </div>
                 </form>
             </article>
