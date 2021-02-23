@@ -46,26 +46,30 @@ Emailer.relayUserContact = (name, email, message, inquiryType) => {
 }
 
 Emailer.sendEmailConfirmationLink = (toEmail, confirmationLink) => {
-    let subject = 'Thank you for helping Truck Tracker!';
+    let subject = 'Confirm your account';
 
     let htmlBody =
-        '<p>Somebody recently have made an account on trucktracker.net with your email address. To confirm that it was you and verify your address, please click the below link to log in: </p>' +
+        '<p>Welcome to Truck Tracker!</p>' +
+        '<p>To report truck activity in West Oakland, confirm your account by clicking the link below:</p>' +
         '<p>' +
-        '<a href="' + confirmationLink + '">Confirm email</a>' +
-        '<\p>';
+        '<a href="' + confirmationLink + '">Confirm account</a>' +
+        '<\p>' +
+        '<p>If you didn’t create an account, you can ignore this email.</p>' +
+        '<p>Thanks for using Truck Tracker, a project of the West Oakland Environmental Indicators Project.</p>';
 
     sendEmail(toEmail, subject, htmlBody);
 }
 
 Emailer.sendPasswordResetLink = (toEmail, resetLink) => {
-    let subject = "Truck Tracker password reset";
+    let subject = "Reset your Truck Tracker password";
 
     let htmlBody =
-        '<p>You requested a password reset for your Truck Tracker account. To confirm your request, please click on the link below, or copy and paste the entire link into your browser.</p>' +
+        '<p>We received a request to reset your password. You can reset your password by clicking the following link:</p>' +
         '<p>' +
-        '<a href="' + resetLink + '">Password reset</a>' +
+        '<a href="' + resetLink + '">Password your reset</a>' +
         '<\p>'+
-        '<p>Please note that this link expires in 24 hours and may require your immediate attention if you wish to access your online account in the future.</p>';
+        '<p><b>This link expires in 24 hours.</b> If you didn’t make this request, don’t worry; you can simply ignore this email and nothing will change.</p>' +
+        '<p>Have a great day,<br/>The Truck Tracker team</p>';
 
     sendEmail(toEmail, subject, htmlBody);
 }
