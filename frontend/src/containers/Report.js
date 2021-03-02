@@ -83,16 +83,27 @@ class Report extends Component {
         }));
     }
 
+    //When we add back in photoupload - should just set postData to newPostData and
+    //current view to photoUpload - sendData() will handle loading and the API call
     addDotNumber(dotNumber) {
         this.setState((prevState) => {
             let newPostData = Object.assign({}, prevState.postData);
             newPostData.dotNumber = dotNumber;
             return {
                 postData: newPostData,
-                currentView: "photoUpload",
-                // currentView: "photoUpload",
+                //currentView: "photoUpload",
+                loading: true
             };
         });
+
+        Api.post("reports", this.state.postData)
+            .then(this.goToViewData)
+            .catch((error) => console.log(error))
+            .finally(() => {
+                this.setState({
+                    loading: false,
+                });
+            });
     }
 
     sendData() {

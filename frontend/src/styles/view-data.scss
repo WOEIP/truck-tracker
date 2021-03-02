@@ -1,14 +1,22 @@
 @import "colors";
 
-$map-width: 70%; //TODO user should be able to hide settings menu
+$map-width: 100%; //TODO user should be able to hide settings menu
 
+#view-data-container{
+    display: flex;
+    flex-direction: column;
+}
 #heatmap {
     width: $map-width;
     float: left;
 }
 
+.view-data-message{
+    margin-top: 0;
+}
+
 #heatmap-settings {
-    width: 100% - $map-width;
+    width: 100%;
     float: right;
     #settings-wrapper {
         padding-left: 1rem;
@@ -22,8 +30,28 @@ $map-width: 70%; //TODO user should be able to hide settings menu
     }
 
     .truck-filter-list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         list-style: none;
         padding: 0 0 0 0;
+
+        li{
+            padding-bottom: .2em;
+        }
+    }
+
+    .seen-between-container{
+        display: flex;
+        height: 5vh;
+        line-height: 5vh;
+    }
+
+    .flatpickr-input{
+        background: $light-blue;
+    }
+
+    .flatpickr-and{
+        margin: 0 .4rem 0 .4rem
     }
 
     .filter-checkbox{
