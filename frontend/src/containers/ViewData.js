@@ -130,7 +130,7 @@ class Data extends Component {
       <article id="view-data-container">
         <Menu current="view-data"/>
         {newReportMessage}
-        <h1>View truck activity data</h1>
+        <h1 className="title">View truck activity data</h1>
         <p className="view-data-message">
         Move around the map to see truck activity reported by Oaklanders. Don't see your own reports? <a className="textlink" href="#login">Sign in</a>.
         </p>

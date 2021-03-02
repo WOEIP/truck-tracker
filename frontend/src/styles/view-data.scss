@@ -2,10 +2,10 @@
 
 $map-width: 100%; //TODO user should be able to hide settings menu
 
-#view-data-container{
-    display: flex;
-    flex-direction: column;
-}
+// #view-data-container{
+//     display: flex;
+//     flex-direction: column;
+// }
 #heatmap {
     width: $map-width;
     float: left;
