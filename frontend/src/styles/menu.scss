@@ -2,11 +2,11 @@
 
 #top-menu-icon {
     border-radius: 3px;
-    float: right;
+    float: left;
     width: 2.5em;
     height: 2.5em;
     background-image:url(../img/menu-icon.png);
-    background-color: $dark-blue ;
+    background-color: $light-blue ;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -22,26 +22,29 @@
     box-sizing: border-box;
     cursor: pointer;
     ul {
-        display: none;
+        height: 0;
         list-style: none;
-        position: absolute;
-        right: 1em;
-        top: 3em;
+        padding: 50px 0 0 8px;
+        margin: 0;
+        width: 100%;
         border-radius: 4px 0 4px 4px;
+        background-color: $light-blue;
+        transition: height 0.3s ease-in;
     }
-    &:hover ul {
-        z-index: 999;
-        display: block;
-    }
+}
 
+#top-menu.opened{
+    ul {
+        height: 180px;
+        transition: height 0.3s ease-in;
+    }
 }
 
 .top-menu-item {
     display: block;
-    text-align: center;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 10px 0 5px 0;
+    padding: 5px 0;
     text-decoration: none;
     color: $dark-blue;
     &.current, &:hover {
@@ -51,13 +54,16 @@
 
 #top-menu-container {
     overflow: hidden;
-    margin-bottom: 40px;
     background-color: $light-blue;
     width: 100%;
     border-radius: 3px;
 }
 
 @media screen and (min-width : 35.5em) {
+    #top-menu-container {
+        margin-bottom: 40px;
+    }
+
     #top-menu-icon {
         display:none;
     }
@@ -66,6 +72,7 @@
         border-radius: 3px;
         float: right;
         padding: .2rem 0;
+        height: 30px;
         ul {
             white-space:nowrap;
             display: inline-block;
@@ -79,6 +86,7 @@
             }
         }
         .top-menu-item {
+            text-align: center;
             line-height: 1.5rem;
             padding: 0 .5em;
         }

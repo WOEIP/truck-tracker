@@ -52,14 +52,9 @@ class HeatMap extends Component {
   componentDidUpdate(){
     //Clear the map. TODO: find a more elegant way
     for(let i in this.map._layers) {
-        console.log(this.map._layers[i]);
-        console.log(i);
         if(this.map._layers[i]._path != undefined ||
            this.map._layers[i]._latlng != undefined) {
           this.map.removeLayer(this.map._layers[i]);
-        } else {
-            console.log(this.map._layers[i]);
-            console.log(i);
         }
     }
 
@@ -106,7 +101,6 @@ class HeatMap extends Component {
       L.marker([start.lat, start.lon], {icon: truckIcon}).addTo(this.map);
     } else {
       let URL = 'osrm/getroute/' + start.lon + ',' + start.lat + ';' + end.lon + ',' + end.lat;
-      //console.log(URL);
       Api.get(URL)
           .then(response => {
             response.data.matchings.map((m) => L.polyline(polyline.decode(m.geometry), {color: drawColor}).addTo(this.map));
