@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import LoadingButton from "./LoadingButton";
+import "../styles/loading-button.scss";
 
 class DotPage extends Component {
 
@@ -38,8 +40,14 @@ class DotPage extends Component {
                         usually found on the driver's side door of the truck.
                     </p>
                     <div className="dot-actions">
-                        <button onClick={this.addDotNumber}>Confirm</button>
-                        <p className="skip-step" onClick={this.addDotNumber}>Skip this step</p>
+                        <LoadingButton
+                            onClick={this.addDotNumber}
+                            loading={this.props.loading}
+                            label="Submit"
+                        />
+                        <p className="skip-step" onClick={this.addDotNumber}>
+                            Skip this step
+                        </p>
                     </div>
                 </form>
             </div>
