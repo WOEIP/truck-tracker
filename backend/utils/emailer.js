@@ -66,7 +66,7 @@ Emailer.sendPasswordResetLink = (toEmail, resetLink) => {
     let htmlBody =
         '<p>We received a request to reset your password. You can reset your password by clicking the following link:</p>' +
         '<p>' +
-        '<a href="' + resetLink + '">Password your reset</a>' +
+        '<a href="' + resetLink + '">Reset password</a>' +
         '<\p>'+
         '<p><b>This link expires in 24 hours.</b> If you didn’t make this request, don’t worry; you can simply ignore this email and nothing will change.</p>' +
         '<p>Have a great day,<br/>The Truck Tracker team</p>';
