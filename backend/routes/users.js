@@ -53,7 +53,11 @@ users.post('/', parsers.json, async ctx => {
             .insert(entryToInsert)
             .returning('*'); // TODO probably not needed
 
-        let confirmationLink = 'https://trucktracker.net/?token=' + confirmationToken + '#login';
+        let confirmationLink = 'https://trucktracker.net/?username=' +
+            insertedUser.username +
+            '&token=' +
+            confirmationToken +
+            '#login';
 
         Emailer.sendEmailConfirmationLink(ctx.request.body.email, confirmationLink);
 
