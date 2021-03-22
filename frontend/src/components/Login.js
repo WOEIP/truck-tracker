@@ -24,6 +24,17 @@ class Login extends Component {
         this.login = this.login.bind(this);
     }
 
+    componentDidMount() {
+        let urlParams = new URLSearchParams(window.location.search);
+        let username = urlParams.get('username');
+
+        if (username) {
+            this.setState({
+                username: username
+            });
+        }
+    }
+
     login(event) {
         // TODO instead of preventDefault, we could maybe track down what catches the event?
         event.preventDefault();
@@ -35,8 +46,8 @@ class Login extends Component {
             password: this.state.password,
         };
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const confirmationToken = urlParams.get('token');
+        let urlParams = new URLSearchParams(window.location.search);
+        let confirmationToken = urlParams.get('token');
 
         if (confirmationToken) {
             postData.confirmationToken = confirmationToken;
