@@ -38,7 +38,7 @@ class Users extends BaseModel {
                 isAdmin: {type: 'boolean'},
                 dateRegistered: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
                 lastLogin: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
-            },
+            }
         };
     }
 
