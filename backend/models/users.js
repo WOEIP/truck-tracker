@@ -3,7 +3,6 @@
 const _ = require('lodash');
 const moment = require('moment');
 
-const {TRUCK_TYPES} = require('../lib/constants');
 const {BaseModel} = require('.');
 
 const UNIX_EPOCH_MAX = 2147483647; // 2^31 - 1

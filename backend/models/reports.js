@@ -3,7 +3,19 @@
 const _ = require('lodash');
 const moment = require('moment');
 
-const {TRUCK_TYPES} = require('../lib/constants');
+const TRUCK_TYPES = [
+  'AC_BUS',
+  '2_AXLE',
+  'BOBTAIL',
+  '3_AXLE',
+  '4_AXLE',
+  '5_AXLE',
+  '6_PLUS_AXLE',
+  'PORT_CHASSIS',
+  'PORT_CONTAINER',
+  'BOX_TRUCK'
+];
+
 const {BaseModel} = require('.');
 
 const ONE_DAY = 60 * 24; // minutes
@@ -31,7 +43,7 @@ class Reports extends BaseModel {
                        'end',
                        'reporterId'],
             properties: {
-                truckType: {enum: TRUCK_TYPES.values},
+                truckType: {enum: TRUCK_TYPES},
                 truckSeenAt: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},
                 reporterId: {type: 'string', format: 'uuid'},
                 reportedAt: {type: 'number', minimum: 0, maximum: UNIX_EPOCH_MAX},

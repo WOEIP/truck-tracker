@@ -1,11 +1,21 @@
 'use strict';
 
-const {TRUCK_TYPES} = require('../lib/constants');
+const TRUCK_TYPES = [
+  'AC_BUS',
+  '2_AXLE',
+  'BOBTAIL',
+  '3_AXLE',
+  '4_AXLE',
+  '5_AXLE',
+  '6_PLUS_AXLE',
+  'PORT_CHASSIS',
+  'PORT_CONTAINER'
+];
 
 async function up(knex) {
     await knex.schema.createTable('reports', table => {
         table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
-        table.enum('truck_type', TRUCK_TYPES.values).notNullable();
+        table.enum('truck_type', TRUCK_TYPES).notNullable();
         table.timestamp('truck_seen_at').notNullable();
         table.uuid('reporter_id').references('users.id');
         table.timestamp('reported_at').notNullable().defaultTo(knex.fn.now());
