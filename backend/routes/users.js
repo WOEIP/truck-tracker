@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash');
+
 const Router = require('koa-router');
 const parser = require('koa-body');
 const bcrypt = require('bcryptjs');
@@ -10,6 +12,7 @@ const DbUtils = require('../utils/db');
 const Emailer = require('../utils/emailer.js');
 
 const Users = require('../models/users');
+const TeamsUsers = require('../models/teams-users');
 const EmailConfirmations = require('../models/email-confirmations');
 
 const parsers = {
@@ -75,7 +78,13 @@ users.post('/', parsers.json, async ctx => {
 });
 
 users.get('/:id', async ctx => {
-    ctx.body = await Users.query().findById(ctx.params.id);
+    let user = await Users.query().findById(ctx.params.id);
+    let teamsRecords = await TeamsUsers
+        .select('teams_users')
+        .where('user_id', ctx.params.id);
+    let teamsForUser = teamsRecords.map(record => record.team_id);
+    user.teamsForUser = teamsForUser;
+    ctx.body = user;
 });
 
 users.patch('/:id', parsers.json, async (ctx) => {

@@ -6,6 +6,7 @@ const parser = require('koa-body');
 const passport = require('koa-passport');
 const EmailConfirmations = require('../models/email-confirmations');
 const Users = require('../models/users');
+const TeamsUsers = require('../models/teams-users');
 const DbUtils = require('../utils/db');
 
 const parsers = {
@@ -28,11 +29,17 @@ auth.post('/login', parsers.json, async ctx => {
             if (emailVerified) {
                 DbUtils.patchById(Users, user.id, {isEmailVerified: true});
 
+                let teamsForUser = await TeamsUsers.query()
+                    .select('teams_users.team_id')
+                    .where('user_id', user.id)
+                    .map(teamIdObject => {return teamIdObject.teamId;});
+
                 ctx.login(user);
                 ctx.status = 200;
                 let data = {
                     username: user.username,
                     isAdmin: user.is_admin,
+                    teamsForUser: teamsForUser,
                     id: user.id
                 }
                 response.status = 'success';
