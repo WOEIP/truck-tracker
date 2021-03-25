@@ -77,9 +77,14 @@ class Report extends Component {
             truckWasMovingP: truckWasMovingP,
         };
 
+        let teamSettings = session.data.activeTeam;
+
+        // TODO this whole currentView method looks like spaghetti.. we should refactor routing.
+        let nextView = teamSettings.askForDotNumber ? 'dot' : 'thankYouPage';
+
         this.setState((prevState) => ({
             postData: postData,
-            currentView: "dot",
+            currentView: nextView,
         }));
     }
 
@@ -141,7 +146,7 @@ class Report extends Component {
         session.update({
             newReport: true
         })
-        window.location.hash = "#view-data"
+        window.location.hash = "#view-data";
     }
 
     goToTruckSelection() {
@@ -151,7 +156,6 @@ class Report extends Component {
     }
 
     getActiveContent() {
-        //TODO that is ugly
         var that = this;
         switch (this.state.currentView) {
             case "giveLocation":

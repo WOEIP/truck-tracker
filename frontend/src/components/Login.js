@@ -57,8 +57,19 @@ class Login extends Component {
             .then((response) => {
                 if (response.status === 200) {
                     let user = response.data.data;
-                    session.update({ loggedInUser: user });
-                    window.location.hash = "#report";
+                    let newSession = {};
+                    newSession.loggedInUser = user;
+                    if (user.teamsForUser.length) {
+                        // Supporting one team per user so far
+                        Api.get('teams/' + user.teamsForUser[0]).then(response => {
+                            newSession.activeTeam = response.data;
+                            session.update(newSession);
+                            window.location.hash = "#report";
+                        });
+                    } else {
+                        session.update(newSession);
+                        window.location.hash = "#report";
+                    }
                 }
             })
             .catch((errorData) => {

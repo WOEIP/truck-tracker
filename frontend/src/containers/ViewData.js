@@ -10,7 +10,7 @@ import HeatMap from './../components/HeatMap';
 import HeatMapSettings from './../components/HeatMapSettings';
 import MessagingDisplay from "../components/MessagingDisplay";
 
-import { truckTypes } from '../components/TruckSelection';
+import { allTruckTypes } from '../components/TruckSelection';
 import { SessionContext } from "../utils/Session.js";
 
 class Data extends Component {
@@ -22,7 +22,7 @@ class Data extends Component {
     this.filterData = this.filterData.bind(this);
     this.fetchData = this.fetchData.bind(this); // TODO a button for this
 
-    var truckTypesToShow = truckTypes.map (truck => {
+    var truckTypesToShow = allTruckTypes.map (truck => {
       return truck.key;
     });
 

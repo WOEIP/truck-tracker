@@ -77,8 +77,13 @@ class Menu extends Component {
     }
 
     render() {
+        let session = this.context;
+
         return (
             <div id="top-menu-container">
+              <span id="team-name">
+                  Team: {session.data.activeTeam ? session.data.activeTeam.teamName : ''}
+              </span>
               <nav id="top-menu" className={this.menuClass()}>
                 <div onClick={this.toggleOpenStatus.bind(this)} id="top-menu-icon"></div>
                 <ul>
