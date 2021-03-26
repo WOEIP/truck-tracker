@@ -61,6 +61,7 @@ class Teams extends BaseModel {
             'allow_moving_truck',
             'allow_moving_truck_single_click',
             'ask_for_time',
+            'allow_AC_BUS',
             'allow_2_AXLE',
             'allow_BOBTAIL',
             'allow_3_AXLE',
@@ -91,6 +92,7 @@ class Teams extends BaseModel {
             'allowMovingTruck',
             'allowMovingTruckSingleClick',
             'askForTime',
+            'allowACBUS',
             'allow2AXLE',
             'allowBOBTAIL',
             'allow3AXLE',
@@ -99,7 +101,7 @@ class Teams extends BaseModel {
             'allow6AXLE',
             'allowPORTCHASSIS',
             'allowPORTCONTAINER',
-            'allowBOX_TRUCK'
+            'allowBOXTRUCK'
         ]);
 
         return formatted;
