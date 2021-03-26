@@ -85,8 +85,6 @@ class TruckSelection extends Component {
         let truckTypes = [];
         let teamSettings = this.context.data.activeTeam;
 
-                console.log(this.context);
-                console.log(teamSettings);
         allTruckTypes.map(truckType => {
             if (teamSettings[truckType.allowKey]) {
                 truckTypes.push(truckType);
