@@ -29,6 +29,7 @@
     "babel-preset-react": "^6.24.1",
     "bcryptjs": "^2.4.3",
     "css-loader": "^5.0.1",
+    "dropzone": "^5.7.6",
     "file-loader": "^1.1.11",
     "flatpickr": "^4.6.3",
     "leaflet": "^1.6.0",
