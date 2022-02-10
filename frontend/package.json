@@ -35,7 +35,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
     "nanomatch": "^1.2.13",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^2.1.6",
     "purecss": "^1.0.1",
     "rc-time-picker": "^3.7.3",
