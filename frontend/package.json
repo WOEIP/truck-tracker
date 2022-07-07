@@ -33,7 +33,7 @@
     "flatpickr": "^4.6.3",
     "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
-    "moment": "^2.26.0",
+    "moment": "^2.29.4",
     "nanomatch": "^1.2.13",
     "node-sass": "^5.0.0",
     "postcss-loader": "^2.1.6",
